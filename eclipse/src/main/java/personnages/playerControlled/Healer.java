@@ -1,4 +1,4 @@
-package personnages;
+package personnages.playerControlled;
 
 public class Healer extends Personnages{
 

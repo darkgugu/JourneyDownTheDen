@@ -1,4 +1,6 @@
-package personnages;
+package personnages.IAControlled;
+
+import personnages.Unites;
 
 public class Ennemis extends Unites{
 

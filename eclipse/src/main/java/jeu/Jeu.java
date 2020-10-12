@@ -1,7 +1,7 @@
 package jeu;
 
-import personnages.BouleDeFeu;
-import personnages.Healer;
+import capacites.BouleDeFeu;
+import personnages.playerControlled.Healer;
 
 public class Jeu {
 

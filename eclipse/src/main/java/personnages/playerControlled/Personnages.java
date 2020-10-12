@@ -1,4 +1,6 @@
-package personnages;
+package personnages.playerControlled;
+
+import personnages.Unites;
 
 public class Personnages extends Unites{
 

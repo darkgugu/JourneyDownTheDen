@@ -1,4 +1,6 @@
-package personnages;
+package capacites;
+
+import personnages.Unites;
 
 public class BouleDeFeu extends Capacites{
 		

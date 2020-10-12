@@ -1,4 +1,4 @@
-package personnages;
+package capacites;
 
 public enum DamageElement {
 	FIRE,
