@@ -2,7 +2,7 @@ package personnages.playerControlled;
 
 import capacites.Capacites;
 
-public class Healer extends Personnages{
+public class Magician extends Personnages{
 
 	private Capacites skills[] = new Capacites[10];
 	
@@ -16,8 +16,8 @@ public class Healer extends Personnages{
 		this.skills[1] = b;
 	}
 
-	public Healer() {
-		super(100, "baseHealer", 10, 20, 10, 5);
+	public Magician() {
+		super(100, "baseMagician", 10, 50, 20, 5);
 
 	}
 

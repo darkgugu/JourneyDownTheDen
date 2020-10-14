@@ -2,7 +2,7 @@ package personnages;
 
 public class Unites {
 
-	protected int pv;
+	private int pv;
 	protected String name;
 	protected int physicalBaseDamage;
 	private int magicalBaseDamage;
@@ -11,7 +11,7 @@ public class Unites {
 	
 	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint) {
 		super();
-		this.pv = pv;
+		this.setPv(pv);
 		this.name = name;
 		this.physicalBaseDamage = physicalBaseDamage;
 		this.setMagicalBaseDamage(magicalBaseDamage);
@@ -25,6 +25,18 @@ public class Unites {
 
 	public void setMagicalBaseDamage(int magicalBaseDamage) {
 		this.magicalBaseDamage = magicalBaseDamage;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getPv() {
+		return pv;
+	}
+
+	public void setPv(int pv) {
+		this.pv += pv;
 	}
 	
 	
