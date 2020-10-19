@@ -12,12 +12,20 @@ public class BouleDeFeu extends Capacites{
 
 	}
 	
-	@Override
-	public int cast(Unites unite) {
+	public int cast(Unites caster, Unites cible) {
 		
-		super.cast(unite);
-		finalDamages = damage * unite.getMagicalBaseDamage();
+		super.cast(caster);
+		finalDamages = damage * caster.getMagicalBaseDamage();
 		System.out.println("Dégats : " + finalDamages);
+		if(cible.setPv(finalDamages)) {
+			System.out.println(caster.getClass().getSimpleName() + 
+							   " à tué " +
+							   cible.getClass().getSimpleName() +
+							   " avec " +
+							   getClass().getSimpleName()
+			);
+			
+		}
 		return finalDamages;
 	}
 	

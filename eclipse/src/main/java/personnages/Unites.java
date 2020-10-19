@@ -37,11 +37,21 @@ public class Unites {
 		return pv;
 	}
 
-	public void setPv(int pv) {
-		this.pv += pv;
+	public boolean setPv(int pv) {
+		
+		this.pv -= pv;
 		if (this.pv > this.pvMax) {
 			this.pv = this.pvMax;
 		}
+		if(this.pv <= 0) {
+			
+			return true;
+		}
+		else {
+		
+			return false;
+		}
+		
 	}
 
 	public int getPvMax() {
