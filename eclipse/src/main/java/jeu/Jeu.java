@@ -40,8 +40,10 @@ public class Jeu{
 		
 		System.out.println(healer);
 		
-		BasicGameApp game = new BasicGameApp();
+//		BasicGameApp game = new BasicGameApp();
 		
-		game.main(args);
+//		game.initGameVars(healer.getPv(), healer.getPvMax());
+		
+//		game.main(args);
 	}
 }

@@ -5,6 +5,15 @@
  */
 package fxglExemple;
 
+import java.util.Map;
+import capacites.BouleDeFeu;
+import capacites.Soin;
+import personnages.IAControlled.Gobelin;
+import personnages.playerControlled.Healer;
+import personnages.playerControlled.Magician;
+import personnages.playerControlled.Warrior;
+
+
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
@@ -18,6 +27,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import personnages.playerControlled.Healer;
 
 public class BasicGameApp extends GameApplication {
 	private Entity player;
@@ -134,19 +144,40 @@ public class BasicGameApp extends GameApplication {
 		textPixels.setTranslateY(60); // y = 100
 
 		getGameScene().addUINode(textPixels); // add to the scene graph
-//		textPixels.textProperty().bind(getGameState().intProperty("pixelsMoved").asString());
+		textPixels.textProperty().bind(getGameState().intProperty("pixelsMoved").asString());
 
 		Text uiScore = getUIFactory().newText("", Color.RED, 16.0);
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().addUINode(uiText);
+		
+		
+	    Text textPv = getUIFactory().newText("", Color.BLACK, 22);
+	    Text textPvMax = getUIFactory().newText("", Color.BLACK, 22);
+//	    15 / 960
+	    textPv.setTranslateX(15);
+	    textPv.setTranslateY(960);
+	    
+	    textPvMax.setTranslateX(100);
+	    textPvMax.setTranslateY(960);
+	    
+	    textPv.textProperty().bind(getGameState().intProperty("Pv").asString());
+	    textPvMax.textProperty().bind(getGameState().intProperty("PvMax").asString());
+
+	    getGameScene().addUINodes(textPv, textPvMax);
 	}
 
-//	@Override
-//	protected void initGameVars(Map<String, Object> vars) {
-//		vars.put("pixelsMoved", 0);
-//	}
+	@Override
+	public void initGameVars(Map<String, Object> vars) {
+		
+
+		vars.put("pixelsMoved", 0);
+		vars.put("Pv", 100);
+		vars.put("PvMax", 100);
+	}
 
 	public static void main(String[] args) {
+		
+
 		launch(args);
 	}
 }
