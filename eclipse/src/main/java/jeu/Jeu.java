@@ -2,6 +2,7 @@ package jeu;
 
 import capacites.BouleDeFeu;
 import capacites.Soin;
+import fxglExemple.BasicGameApp;
 import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
@@ -38,5 +39,9 @@ public class Jeu{
 		System.out.println("Gobelin HP : " + gobelin.getPv() + "/" + gobelin.getPvMax());
 		
 		System.out.println(healer);
+		
+		BasicGameApp game = new BasicGameApp();
+		
+		game.main(args);
 	}
 }
