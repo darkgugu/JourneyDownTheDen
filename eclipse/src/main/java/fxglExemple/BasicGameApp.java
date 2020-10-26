@@ -21,7 +21,11 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.settings.GameSettings;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
@@ -40,6 +44,14 @@ public class BasicGameApp extends GameApplication {
 
 	@SuppressWarnings("unused")
 	private Entity lineOfUI;
+	
+	Healer healer = new Healer();
+	
+	@FXML
+	private TextField textField;
+	
+	@FXML
+	private Label myLabel;
 
 	@Override
 	protected void initSettings(GameSettings settings) {
@@ -56,6 +68,7 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
+		
 		background = Entities.builder().at(0, 0).viewFromTexture("mapTest.png").buildAndAttach(getGameWorld());
 
 		player = Entities.builder().at(60, 60).viewFromTexture("down_character.png").buildAndAttach(getGameWorld());
@@ -171,8 +184,15 @@ public class BasicGameApp extends GameApplication {
 		
 
 		vars.put("pixelsMoved", 0);
-		vars.put("Pv", 100);
-		vars.put("PvMax", 100);
+		vars.put("Pv", healer.getPv());
+		vars.put("PvMax", healer.getPvMax());
+	}
+	
+	@FXML
+	protected void handleClickButton(ActionEvent e) {
+
+		System.out.println(textField.getText());
+		myLabel.setText(textField.getText());
 	}
 
 	public static void main(String[] args) {
