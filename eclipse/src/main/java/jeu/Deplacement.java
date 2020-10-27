@@ -11,14 +11,12 @@ public class Deplacement {
 	public void calculateCross(int pm, int posx, int posy) {
 				
 		for (int i = 1; i <= pm; i++) {
-			
-			
+					
 			add(posx - i, posy);
 			add(posx, posy + i);
 			add(posx + i, posy);
 			add(posx, posy - i);
 		}
-	
 	}
 	
 	public void calculateDiag(int pm, int posx, int posy) {
@@ -36,12 +34,10 @@ public class Deplacement {
 		}
 		
 		calculateDiag(pm - 1, posx, posy);
-		
 	}
 
 	public void add(int x, int y) {
 		
 		list.add(new SimpleEntry<Integer, Integer>(x, y));
-		
 	}
 }

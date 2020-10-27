@@ -15,10 +15,7 @@ public class Jeu{
 		
 		new Deplacement().calculateCross(3, 4, 4);
 		new Deplacement().calculateDiag(3, 4, 4);
-		
-//		for (int i = 0; i < dep.length; i++) {
-//			System.out.println(dep[i]);
-//		}
+		new Click().cases(79, 128);
 
 //		Healer healer = new Healer();
 //		Magician magician = new Magician();
