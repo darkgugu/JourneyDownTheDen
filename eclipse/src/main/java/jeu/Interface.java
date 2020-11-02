@@ -1,5 +1,8 @@
 package jeu;
 
+import java.util.List;
+import java.util.AbstractMap.SimpleEntry;
+
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
@@ -8,6 +11,7 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.settings.GameSettings;
 
+import fxglExemple.Deplacement;
 import jeu.Click;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -147,17 +151,33 @@ public interface Interface {
 
 			@Override
 			public void handle(MouseEvent event) {
-
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
+				int casePlayerX = (int) (player.getPosition().getX() / 60);
+				int casePlayerY = (int) (player.getPosition().getY() / 60);
 				int tab[] = new Click().cases(x, y);
+				Deplacement move = new Deplacement();
+				move.calculateCross(2, casePlayerX, casePlayerY);
+				move.calculateDiag(2, casePlayerX, casePlayerY);
+				List<SimpleEntry<Integer, Integer>> list = move.list;
+				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 
-				player.translateX(tab[2] - player.getPosition().getX() - 60 + 10);
-				player.translateY(tab[3] - player.getPosition().getY() - 60 - 10);
+				System.out.println("Coordonées du joueur en case (" + casePlayerX + " , " + casePlayerY + ")");
+//				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
+
+				if (list.contains(vars)) {
+
+					player.translateX(tab[2] - player.getPosition().getX() - 60 + 10);
+					player.translateY(tab[3] - player.getPosition().getY() - 60 - 10);
+				} else {
+					System.out.println("pas de deplacmeent");
+				}
+
 
 				System.out.println("Coordonées" + x + " et " + y);
 				for (int i = 0; i < 4; i++) {
 					System.out.println(tab[i]);
+				}
 				}
 			}
 		});
@@ -170,7 +190,7 @@ public interface Interface {
 				int caseCursorX = ((int) event.getSceneX() / 60) -1;
 				int caseCursorY = ((int) event.getSceneY() / 60) -1;
 				int casePlayerX = (int) (player.getPosition().getX() / 60);
-				int casePlayerY = (int) (player.getPosition().getY()) / 60;
+				int casePlayerY = (int) (player.getPosition().getY() / 60);
 //				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
 //				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
 //				System.out.println("Coordonées de la souris (" + xcase + " , " + ycase + ")");
