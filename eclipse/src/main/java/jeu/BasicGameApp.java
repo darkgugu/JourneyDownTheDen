@@ -1,7 +1,12 @@
+/*
+ * FXGL - JavaFX Game Library. The MIT License (MIT).
+ * Copyright (c) AlmasB (almaslvl@gmail.com).
+ * See LICENSE for details.
+ */
 package jeu;
 
-import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
@@ -10,9 +15,8 @@ import com.almasb.fxgl.entity.components.IrremovableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.settings.GameSettings;
+import com.sun.crypto.provider.DESedeParameters;
 
-import jeu.Deplacement;
-import jeu.Click;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -20,8 +24,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import fxglExemple.Deplacement;
 
-public interface Interface extends Gameap {
+public class BasicGameApp extends GameApplication {
 	private Entity player;
 	@SuppressWarnings("unused")
 	private Entity background;
@@ -151,6 +156,7 @@ public interface Interface extends Gameap {
 
 			@Override
 			public void handle(MouseEvent event) {
+
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
 				int casePlayerX = (int) (player.getPosition().getX() / 60);
@@ -178,33 +184,34 @@ public interface Interface extends Gameap {
 				for (int i = 0; i < 4; i++) {
 					System.out.println(tab[i]);
 				}
-				}
 			}
 		});
 
-		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-
-				int caseCursorX = ((int) event.getSceneX() / 60) -1;
-				int caseCursorY = ((int) event.getSceneY() / 60) -1;
-				int casePlayerX = (int) (player.getPosition().getX() / 60);
-				int casePlayerY = (int) (player.getPosition().getY() / 60);
-//				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-//				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
-//				System.out.println("Coordonées de la souris (" + xcase + " , " + ycase + ")");
-
-				int x = (int) event.getSceneX();
-				int y = (int) event.getSceneY();
-				int tab[] = new Click().cases(x, y);
-				
-				if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
-					System.out.println("printed !");
-					casesAround = Entities.builder().at(tab[2] - 160 , tab[3] -160 ).viewFromTexture("rangeUnitOf2.png").buildAndAttach(getGameWorld());
-				} 
-			}
-		});
+//		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
+//
+//			@Override
+//			public void handle(MouseEvent event) {
+//
+//				int caseCursorX = ((int) event.getSceneX() / 60) - 1;
+//				int caseCursorY = ((int) event.getSceneY() / 60) - 1;
+//				int casePlayerX = (int) (player.getPosition().getX() / 60);
+//				int casePlayerY = (int) (player.getPosition().getY() / 60);
+////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
+////				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
+//
+//				int x = (int) event.getSceneX();
+//				int y = (int) event.getSceneY();
+//				int tab[] = new Click().cases(x, y);
+//
+//				if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
+////					System.out.println("printed !");
+//					casesAround = Entities.builder().at(tab[2] - 160, tab[3] - 160).viewFromTexture("rangeUnitOf2.png")
+//							.buildAndAttach(getGameWorld());
+//				} else {
+////					casesAround.removeFromWorld();
+//				}
+//			}
+//		});
 //		Text fenetre = new Text("Ma fenetre");
 //		fenetre.setTranslateX(15);
 //		fenetre.setTranslateY(940);
@@ -220,4 +227,5 @@ public interface Interface extends Gameap {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
