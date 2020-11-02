@@ -15,7 +15,6 @@ import com.almasb.fxgl.entity.components.IrremovableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.settings.GameSettings;
-import com.sun.crypto.provider.DESedeParameters;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -57,7 +56,7 @@ public class BasicGameApp extends GameApplication {
 		settings.setWidth(1920); // 791
 		settings.setHeight(1080); // 575
 		settings.setFullScreenAllowed(true);
-		settings.setManualResizeEnabled(true);
+//		settings.setManualResizeEnabled(true);
 		settings.setTitle("Journey down the den");
 		settings.setVersion("0.2");
 		settings.setAppIcon("JDTD_icon.png");
@@ -69,7 +68,7 @@ public class BasicGameApp extends GameApplication {
 	protected void initGame() {
 		background = Entities.builder().at(0, 0).with(new IrremovableComponent()).viewFromTexture("mapTest.png")
 				.buildAndAttach(getGameWorld());
-		player = Entities.builder().at(0, 0).viewFromTexture("down_hero1.png").buildAndAttach(getGameWorld());
+		player = Entities.builder().at(25, 25).viewFromTexture("down_hero1.png").buildAndAttach(getGameWorld());
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
 		info_hero1 = Entities.builder().at(5, 905).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
@@ -91,17 +90,17 @@ public class BasicGameApp extends GameApplication {
 			@Override
 			protected void onAction() {
 				if (gridState == false) {
-					for (int i = 0; i < 1920;) {
-						for (int j = 0; j < 900;) {
-							Entities.builder().at(i, j).viewFromNode(new Rectangle(61, 2, Color.DIMGREY))
-									.buildAndAttach(getGameWorld());
-							Entities.builder().at(i, j).viewFromNode(new Rectangle(2, 61, Color.DIMGREY))
-									.buildAndAttach(getGameWorld());
-							j += 60;
-						}
-						i += 60;
-					}
-//					grid = Entities.builder().at(0, 0).viewFromTexture("grid.png").buildAndAttach(getGameWorld());
+//					for (int i = 0; i < 1920;) {
+//						for (int j = 0; j < 900;) {
+//							Entities.builder().at(i, j).viewFromNode(new Rectangle(61, 2, Color.DIMGREY))
+//									.buildAndAttach(getGameWorld());
+//							Entities.builder().at(i, j).viewFromNode(new Rectangle(2, 61, Color.DIMGREY))
+//									.buildAndAttach(getGameWorld());
+//							j += 60;
+//						}
+//						i += 60;
+//					}
+					grid = Entities.builder().at(0, 0).viewFromTexture("grille.png").buildAndAttach(getGameWorld());
 					gridState = true;
 				} else {
 					grid.removeFromWorld();
@@ -125,6 +124,7 @@ public class BasicGameApp extends GameApplication {
 ////				        getGameWorld().getEntities()(
 ////				                tileX,
 ////				                tileY)
+
 ////				                .forEach(Entities::destroy);
 //						j -= 40;
 //					}
@@ -159,16 +159,16 @@ public class BasicGameApp extends GameApplication {
 
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
-				int casePlayerX = (int) (player.getPosition().getX() / 60);
-				int casePlayerY = (int) (player.getPosition().getY() / 60);
+				int casePlayerX = (int) player.getPosition().getX() / 60;
+				int casePlayerY = (int) player.getPosition().getY() / 60;
 				int tab[] = new Click().cases(x, y);
 				Deplacement move = new Deplacement();
 				move.calculateCross(2, casePlayerX, casePlayerY);
 				move.calculateDiag(2, casePlayerX, casePlayerY);
 				List<SimpleEntry<Integer, Integer>> list = move.list;
+				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
 				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
-
-				System.out.println("Coordonées du joueur en case (" + casePlayerX + " , " + casePlayerY + ")");
+				System.out.println("Coordonées player case (" + casePlayerX + " , " + casePlayerY + ")");
 //				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
 
 				if (list.contains(vars)) {
@@ -176,11 +176,11 @@ public class BasicGameApp extends GameApplication {
 					player.translateX(tab[2] - player.getPosition().getX() - 60 + 10);
 					player.translateY(tab[3] - player.getPosition().getY() - 60 - 10);
 				} else {
-					System.out.println("pas de deplacmeent");
+					System.out.println("pas de deplacement");
 				}
-
-
-				System.out.println("Coordonées" + x + " et " + y);
+//				int tab2 = (int) (tab[2] - player.getPosition().getX() - 60 + 10);
+//				int tab3 = (int) (tab[3] - player.getPosition().getY() - 60 - 10);
+//				System.out.println("translateX = " + tab2 + " et translateY =" + tab3);
 				for (int i = 0; i < 4; i++) {
 					System.out.println(tab[i]);
 				}
