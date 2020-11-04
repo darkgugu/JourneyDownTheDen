@@ -7,8 +7,8 @@ public class Click {
 		int tab[] = new int[4];
 		int xcase = x / 60;
 		int ycase = y / 60;
-		int xpix = xcase * 60 + 30;
-		int ypix = ycase * 60 + 30;
+		int xpix = xcase * 60;
+		int ypix = ycase * 60;
 
 		tab[0] = xcase;
 		tab[1] = ycase;
