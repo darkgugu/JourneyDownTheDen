@@ -7,10 +7,12 @@ public class Unites {
 	protected int physicalBaseDamage;
 	private int magicalBaseDamage;
 	protected int range;
-	protected int actionPoint;
+	protected int actionPoint, actionPointMax;
+	protected int movePoint, movePointMax;
 	private int pvMax;
+
 	
-	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint) {
+	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint, int movePoint) {
 		super();
 		this.pv = pv;
 		this.name = name;
@@ -18,8 +20,36 @@ public class Unites {
 		this.setMagicalBaseDamage(magicalBaseDamage);
 		this.range = range;
 		this.actionPoint = actionPoint;
+		this.actionPointMax = actionPoint;
+		this.movePoint = movePoint;
+		this.movePointMax = movePoint;		
 		this.setPvMax(pv);
 	}
+
+	public void setActionPointToMax() {
+		this.actionPoint = actionPointMax;
+	}
+
+	public int getActionPoint() {
+		return actionPoint;
+	}
+
+	public int getMovePoint() {
+		return movePoint;
+	}
+
+	public void setActionPoint(int actionPoint) {
+		this.actionPoint = actionPoint;
+	}
+
+	public void setMovePoint(int movePoint) {
+		this.movePoint = movePoint;
+	}
+
+	public void setMovePointToMax() {
+		this.movePoint = movePointMax;
+	}
+
 
 	public int getMagicalBaseDamage() {
 		return magicalBaseDamage;

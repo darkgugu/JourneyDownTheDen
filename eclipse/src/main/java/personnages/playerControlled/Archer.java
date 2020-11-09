@@ -17,7 +17,7 @@ public class Archer extends Personnages{
 	}
 
 	public Archer() {
-		super(100, "Archer", 10, 50, 20, 5);
+		super(100, "Archer", 10, 50, 20, 5, 10);
 
 	}
 
