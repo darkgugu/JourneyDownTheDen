@@ -1,5 +1,8 @@
 package jeu;
 
+import java.util.List;
+import java.util.AbstractMap.SimpleEntry;
+
 import capacites.BouleDeFeu;
 import capacites.Soin;
 import fxglExemple.BasicGameApp;
@@ -13,9 +16,23 @@ public class Jeu{
 
 	public static void main(String[] args) {
 		
-		new Deplacement().calculateCross(3, 4, 4);
-		new Deplacement().calculateDiag(3, 4, 4);
-		new Click().cases(79, 128);
+		Deplacement depl = new Deplacement();
+		
+		depl.calculateCross(3, 4, 4);
+		depl.calculateDiag(3, 4, 4);
+		int[] tab = new Click().cases(1053, 502);
+		
+		List<SimpleEntry<Integer, Integer>> list = depl.list;
+		
+		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(4, 8);
+
+		
+		if(list.contains(vars)) {
+			
+			System.out.println("ok");
+		}
+		
+		System.out.println(tab[0] + "," + tab[1]);
 
 //		Healer healer = new Healer();
 //		Magician magician = new Magician();

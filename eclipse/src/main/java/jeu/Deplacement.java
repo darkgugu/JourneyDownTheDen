@@ -35,6 +35,18 @@ public class Deplacement {
 		
 		calculateDiag(pm - 1, posx, posy);
 	}
+	
+	public int[] cases(int x, int y) {
+		
+		int tab[] = new int[2];
+		int xpix = x / 60 * 60 + 30;
+		int ypix = y / 60 * 60 + 30;
+
+		tab[0] = xpix;
+		tab[1] = ypix;
+		
+		return tab;
+	}
 
 	public void add(int x, int y) {
 		
