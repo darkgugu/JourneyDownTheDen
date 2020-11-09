@@ -9,6 +9,7 @@ import fxglExemple.BasicGameApp;
 import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
+import personnages.playerControlled.Personnages;
 import personnages.playerControlled.Warrior;
 
 public class Jeu{
@@ -16,28 +17,58 @@ public class Jeu{
 
 	public static void main(String[] args) {
 		
-		Deplacement depl = new Deplacement();
-		
-		depl.calculateCross(3, 4, 4);
-		depl.calculateDiag(3, 4, 4);
-		int[] tab = new Click().cases(1053, 502);
-		
-		List<SimpleEntry<Integer, Integer>> list = depl.list;
-		
-		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(4, 8);
+//		Deplacement depl = new Deplacement();
+//		
+//		depl.calculateCross(3, 4, 4);
+//		depl.calculateDiag(3, 4, 4);
+//		int[] tab = new Click().cases(1053, 502);
+//		
+//		List<SimpleEntry<Integer, Integer>> list = depl.list;
+//		
+//		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(4, 8);
+//
+//		
+//		if(list.contains(vars)) {
+//			
+//			System.out.println("ok");
+//		}
+//		
+//		System.out.println(tab[0] + "," + tab[1]);
 
+		Healer healer = new Healer();
+		Magician magician = new Magician();
+		Gobelin gobelin = new Gobelin();
+		Warrior warrior = new Warrior();
 		
-		if(list.contains(vars)) {
+		Personnages persos[] = new Personnages[3];
+		
+		persos[0] = healer;
+		persos[1] = magician;
+		persos[2] = warrior;
+		
+		Tour tour = new Tour(persos);
+		
+		for (int i = 0; i < 30; i++) {
+
+			magician.setActionPoint(magician.getActionPoint() - 1);
+			magician.setMovePoint(magician.getMovePoint() - 1);
 			
-			System.out.println("ok");
+			warrior.setActionPoint(warrior.getActionPoint() - 1);
+			warrior.setMovePoint(warrior.getMovePoint() - 1);
+			
+			healer.setActionPoint(healer.getActionPoint() - 1);
+			healer.setMovePoint(healer.getMovePoint() - 1);
+			
+			System.out.print("H/W/M " + healer.getActionPoint());
+			System.out.print(" / " + warrior.getActionPoint());
+			System.out.print(" / " + magician.getActionPoint());
+			System.out.println();
+			
+			if(tour.CheckFin()) {
+				tour.Debut();
+				System.out.println("//////// TOUR SUIVANT /////////");
+			}
 		}
-		
-		System.out.println(tab[0] + "," + tab[1]);
-
-//		Healer healer = new Healer();
-//		Magician magician = new Magician();
-//		Gobelin gobelin = new Gobelin();
-//		Warrior warrior = new Warrior();
 //	
 //		BouleDeFeu bdf = new BouleDeFeu();
 //		Soin soin = new Soin();
