@@ -2,5 +2,14 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="eclipse/src/main/java"/>
+	<classpathentry kind="lib" path="C:/Users/Marc/.m2/repository/com/github/almasb/fxgl-base/0.5.4/fxgl-base-0.5.4.jar" sourcepath="C:/Users/Marc/.m2/repository/com/github/almasb/fxgl-base/0.5.4/fxgl-base-0.5.4-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.github.almasb"/>
+			<attribute name="maven.artifactId" value="fxgl-base"/>
+			<attribute name="maven.version" value="0.5.4"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
