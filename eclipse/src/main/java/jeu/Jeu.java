@@ -5,7 +5,6 @@ import java.util.AbstractMap.SimpleEntry;
 
 import capacites.BouleDeFeu;
 import capacites.Soin;
-import fxglExemple.BasicGameApp;
 import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
