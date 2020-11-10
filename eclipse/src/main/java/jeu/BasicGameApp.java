@@ -225,12 +225,12 @@ public class BasicGameApp extends GameApplication {
 			}
 		});
 
-		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-
-			}
-		});
+//		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
+//			@Override
+//			public void handle(MouseEvent event) {
+//
+//			}
+//		});
 //		Text fenetre = new Text("Ma fenetre");
 //		fenetre.setTranslateX(15);
 //		fenetre.setTranslateY(940);
