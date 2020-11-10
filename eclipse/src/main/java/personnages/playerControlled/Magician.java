@@ -17,7 +17,7 @@ public class Magician extends Personnages{
 	}
 
 	public Magician() {
-		super(100, "Magician", 10, 50, 20, 5);
+		super(100, "Magician", 10, 50, 20, 5, 10);
 
 	}
 

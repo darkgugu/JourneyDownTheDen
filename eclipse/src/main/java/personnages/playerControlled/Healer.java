@@ -17,7 +17,7 @@ public class Healer extends Personnages{
 	}
 
 	public Healer() {
-		super(100, "Healer", 10, 20, 10, 5);
+		super(95, "Healer", 10, 20, 10, 10, 10);
 
 	}
 
