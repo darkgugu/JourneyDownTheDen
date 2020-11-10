@@ -1,7 +1,7 @@
 package jeu;
 
 public class Click {
-
+  
 	public int[] cases(int x, int y) {
 
 		int tab[] = new int[4];

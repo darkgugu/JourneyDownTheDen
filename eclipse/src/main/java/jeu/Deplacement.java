@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deplacement {
+
 	public List<SimpleEntry<Integer, Integer>> list = new ArrayList<SimpleEntry<Integer, Integer>>();
 
 	public void calculateCross(int pm, int posx, int posy) {
 
 		for (int i = 1; i <= pm; i++) {
-
+      
 			add(posx - i, posy);
 			add(posx, posy + i);
 			add(posx + i, posy);
 			add(posx, posy - i);
 		}
-
 	}
 
 	public void calculateDiag(int pm, int posx, int posy) {
@@ -32,7 +32,6 @@ public class Deplacement {
 			add(posx + j, posy - pm + j);
 			add(posx - j, posy + pm - j);
 		}
-
 		calculateDiag(pm - 1, posx, posy);
 
 	}
