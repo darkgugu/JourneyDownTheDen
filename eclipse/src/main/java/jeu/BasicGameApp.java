@@ -67,7 +67,7 @@ public class BasicGameApp extends GameApplication {
 		background = Entities.builder().at(0, 0).with(new IrremovableComponent()).viewFromTexture("mapTest.png")
 				.buildAndAttach(getGameWorld());
 //		player = Entities.builder().at(30, 30).viewFromTexture("down_hero1.png").buildAndAttach(getGameWorld());
-		playerEntity = Entities.builder().at(0, 0).viewFromTexture("down.png").with(new Player())
+		playerEntity = Entities.builder().at(0, 0).viewFromTexture("down_hero1.png").with(new Player())
 				.buildAndAttach(getGameWorld());
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
@@ -198,39 +198,38 @@ public class BasicGameApp extends GameApplication {
 			}
 		});
 
-		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-
-				int caseCursorX = ((int) event.getSceneX() / 60) - 1;
-				int caseCursorY = ((int) event.getSceneY() / 60) - 1;
-				int casePlayerX = (int) (playerEntity.getPosition().getX() / 60);
-				int casePlayerY = (int) (playerEntity.getPosition().getY() / 60);
-//				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-//				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
-
-				int x = (int) event.getSceneX();
-				int y = (int) event.getSceneY();
-				int tab[] = new Click().cases(x, y);
-
-				if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
-//					System.out.println("printed !");
-					casesAround = Entities.builder()
-							.at(tab[2] - playerEntity.getPosition().getX(), tab[3] - playerEntity.getPosition().getY())
-							.viewFromTexture("rangeUnitOf2.png").buildAndAttach(getGameWorld());
-				} else {
-//					casesAround.removeFromWorld();
-				}
-			}
-		});
-
-//		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
+/* 
+ * AFFICHAGE DES CASES ADJACENTES
+ */
+		
+//		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
+//
 //			@Override
 //			public void handle(MouseEvent event) {
 //
+//				int caseCursorX = ((int) event.getSceneX() / 60) - 1;
+//				int caseCursorY = ((int) event.getSceneY() / 60) - 1;
+//				int casePlayerX = (int) (playerEntity.getPosition().getX() / 60);
+//				int casePlayerY = (int) (playerEntity.getPosition().getY() / 60);
+////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
+////				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
+//
+//				int x = (int) event.getSceneX();
+//				int y = (int) event.getSceneY();
+//				int tab[] = new Click().cases(x, y);
+//
+//				if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
+////					System.out.println("printed !");
+//					casesAround = Entities.builder()
+//							.at(tab[2] - playerComponent.getPosition().getX(), tab[3] - playerComponent.getPosition().getY())
+//							.viewFromTexture("rangeUnitOf2.png").buildAndAttach(getGameWorld());
+//				} else {
+////					casesAround.removeFromWorld();
+//				}
 //			}
 //		});
+
+
 //		Text fenetre = new Text("Ma fenetre");
 //		fenetre.setTranslateX(15);
 //		fenetre.setTranslateY(940);

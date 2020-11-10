@@ -1,0 +1,60 @@
+17:27:07.438 [JavaFX Application Thread] DEBUG GameApplication      - Logger initialized
+17:27:07.450 [JavaFX Application Thread] DEBUG GameApplication      - Logging settings
+Title: Journey down the den
+Version: 0.2
+Width: 1920
+Height: 1080
+Fullscreen: true
+Intro: false
+Menus: false
+Profiling: false
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.almasb.fxgl.scene.SceneFactory
+Dialog Factory: class com.almasb.fxgl.ui.FXGLDialogFactory
+UI Factory: class com.almasb.fxgl.ui.FXGLUIFactory
+Notification Service: class com.almasb.fxgl.gameplay.notification.XboxNotificationView
+Exception Handler: class com.almasb.fxgl.app.FXGLExceptionHandler
+17:27:07.450 [JavaFX Application Thread] DEBUG GameApplication      - Starting FXGL
+17:27:07.456 [JavaFX Application Thread] INFO  FXGL                 - FXGL-0.5.4 on DESKTOP
+17:27:07.456 [JavaFX Application Thread] INFO  FXGL                 - Source code and latest versions at: https://github.com/AlmasB/FXGL
+17:27:07.456 [JavaFX Application Thread] INFO  FXGL                 -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+17:27:07.457 [JavaFX Application Thread] DEBUG FXGL                 - FXGL started
+17:27:07.457 [JavaFX Application Thread] DEBUG FXGL                 - Initializing FXGL
+17:27:07.507 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+17:27:07.576 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/fonts/VarelaRound-Regular.ttf
+17:27:07.926 [JavaFX Application Thread] DEBUG MainWindow           - Creating a JavaFX scene
+17:27:07.954 [JavaFX Application Thread] DEBUG MainWindow           - Target settings size: 1920.0 x 1080.0
+17:27:07.954 [JavaFX Application Thread] DEBUG MainWindow           - Scaled scene size:    1920.0 x 1080.0
+17:27:07.954 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (1.0, 1.0)
+17:27:07.963 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/css/fxgl_dark.css
+17:27:07.967 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/textures/JDTD_icon.png
+17:27:07.967 [JavaFX Application Thread] FATAL AssetLoader          - Loading failed for asset: JDTD_icon.png. Cause: Asset "/assets/textures/JDTD_icon.png" was not found!
+17:27:07.967 [JavaFX Application Thread] FATAL FXGL                 - Uncaught Exception:
+
+Fatal exception occurred: java.lang.IllegalArgumentException : Failed to load asset: JDTD_icon.png. Cause: Asset "/assets/textures/JDTD_icon.png" was not found!
+E: com.almasb.fxgl.asset.AssetLoader.loadFailed(AssetLoader.kt:737)
+E: com.almasb.fxgl.asset.AssetLoader.loadImage(AssetLoader.kt:168)
+E: com.almasb.fxgl.app.DSLKt.image(DSL.kt:80)
+E: com.almasb.fxgl.app.MainWindow.initStage(MainWindow.kt:143)
+E: com.almasb.fxgl.app.MainWindow.<init>(MainWindow.kt:64)
+E: com.almasb.fxgl.app.FXGL.initLoopStartSequence(FXGL.kt:113)
+E: com.almasb.fxgl.app.FXGL.access$initLoopStartSequence(FXGL.kt:54)
+E: com.almasb.fxgl.app.FXGL$Companion.startLoop(FXGL.kt:393)
+E: com.almasb.fxgl.app.FXGL.startLoop(FXGL.kt)
+E: com.almasb.fxgl.app.GameApplication.startFXGL(GameApplication.java:109)
+E: com.almasb.fxgl.app.GameApplication.start(GameApplication.java:80)
+E: com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$8(LauncherImpl.java:863)
+E: com.sun.javafx.application.PlatformImpl.lambda$runAndWait$7(PlatformImpl.java:326)
+E: com.sun.javafx.application.PlatformImpl.lambda$null$5(PlatformImpl.java:295)
+E: java.security.AccessController.doPrivileged(Native Method)
+E: com.sun.javafx.application.PlatformImpl.lambda$runLater$6(PlatformImpl.java:294)
+E: com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
+E: com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+E: com.sun.glass.ui.win.WinApplication.lambda$null$4(WinApplication.java:186)
+E: java.lang.Thread.run(Thread.java:748)
+
+17:27:07.968 [JavaFX Application Thread] FATAL FXGL                 - Application will now exit
+17:27:07.968 [JavaFX Application Thread] DEBUG LoopRunner           - Stopping loop
