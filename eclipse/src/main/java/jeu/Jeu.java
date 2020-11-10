@@ -64,8 +64,8 @@ public class Jeu{
 			System.out.print(" / " + magician.getActionPoint());
 			System.out.println();
 			
-			if(tour.CheckFin()) {
-				tour.Debut();
+			if(tour.checkFin()) {
+				tour.debut();
 				System.out.println("//////// TOUR SUIVANT /////////");
 			}
 		}

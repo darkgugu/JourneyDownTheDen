@@ -11,7 +11,7 @@ public class Tour {
 		this.persos = persos;
 	}
 	
-	public void Debut() {
+	public void debut() {
 		
 		for (int i = 0; i < persos.length; i++) {
 			
@@ -20,7 +20,7 @@ public class Tour {
 		}
 	}
 	
-	public boolean CheckFin() {
+	public boolean checkFin() {
 		
 		int points = 0;
 		
