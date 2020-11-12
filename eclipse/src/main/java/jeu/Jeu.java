@@ -34,40 +34,40 @@ public class Jeu{
 //		
 //		System.out.println(tab[0] + "," + tab[1]);
 
-		Healer healer = new Healer();
-		Magician magician = new Magician();
-		Gobelin gobelin = new Gobelin();
-		Warrior warrior = new Warrior();
-		
-		Personnages persos[] = new Personnages[3];
-		
-		persos[0] = healer;
-		persos[1] = magician;
-		persos[2] = warrior;
-		
-		Tour tour = new Tour(persos);
-		
-		for (int i = 0; i < 30; i++) {
-
-			magician.setActionPoint(magician.getActionPoint() - 1);
-			magician.setMovePoint(magician.getMovePoint() - 1);
-			
-			warrior.setActionPoint(warrior.getActionPoint() - 1);
-			warrior.setMovePoint(warrior.getMovePoint() - 1);
-			
-			healer.setActionPoint(healer.getActionPoint() - 1);
-			healer.setMovePoint(healer.getMovePoint() - 1);
-			
-			System.out.print("H/W/M " + healer.getActionPoint());
-			System.out.print(" / " + warrior.getActionPoint());
-			System.out.print(" / " + magician.getActionPoint());
-			System.out.println();
-			
-			if(tour.checkFin()) {
-				tour.debut();
-				System.out.println("//////// TOUR SUIVANT /////////");
-			}
-		}
+//		Healer healer = new Healer();
+//		Magician magician = new Magician();
+//		Gobelin gobelin = new Gobelin();
+//		Warrior warrior = new Warrior();
+//		
+//		Personnages persos[] = new Personnages[3];
+//		
+//		persos[0] = healer;
+//		persos[1] = magician;
+//		persos[2] = warrior;
+//		
+//		Tour tour = new Tour(persos);
+//		
+//		for (int i = 0; i < 30; i++) {
+//
+//			magician.setActionPoint(magician.getActionPoint() - 1);
+//			magician.setMovePoint(magician.getMovePoint() - 1);
+//			
+//			warrior.setActionPoint(warrior.getActionPoint() - 1);
+//			warrior.setMovePoint(warrior.getMovePoint() - 1);
+//			
+//			healer.setActionPoint(healer.getActionPoint() - 1);
+//			healer.setMovePoint(healer.getMovePoint() - 1);
+//			
+//			System.out.print("H/W/M " + healer.getActionPoint());
+//			System.out.print(" / " + warrior.getActionPoint());
+//			System.out.print(" / " + magician.getActionPoint());
+//			System.out.println();
+//			
+//			if(tour.checkFin()) {
+//				tour.debut();
+//				System.out.println("//////// TOUR SUIVANT /////////");
+//			}
+//		}
 //	
 //		BouleDeFeu bdf = new BouleDeFeu();
 //		Soin soin = new Soin();
