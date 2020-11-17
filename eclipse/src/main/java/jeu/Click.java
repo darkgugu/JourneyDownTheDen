@@ -2,7 +2,7 @@ package jeu;
 
 public class Click {
   
-	public int[] cases(int x, int y) {
+	public static int[] cases(int x, int y) {
 
 		int tab[] = new int[4];
 		int xcase = x / 60;

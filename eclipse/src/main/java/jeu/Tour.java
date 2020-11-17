@@ -38,5 +38,19 @@ public class Tour {
 			return false;
 		}
 	}
+	
+	public Player CheckPlayer(Player[] persos, int x, int y) {
+		
+		for (int i = 0; i < persos.length; i++) {
+			
+			if(Click.cases(x, y) == position.getX()) {
+				
+				
+			}
+		}
+		
+		
+		return null;
+	}
 
 }
