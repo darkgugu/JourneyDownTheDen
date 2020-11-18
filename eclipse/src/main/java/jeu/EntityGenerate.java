@@ -1,24 +1,41 @@
 package jeu;
 
 import com.almasb.fxgl.entity.Entities;
-import com.almasb.fxgl.entity.Entities.EntityBuilder;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.entity.components.IrremovableComponent;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+public class EntityGenerate implements EntityFactory {
 
-//public class EntityGenerate implements EntityFactory {
-//
-//	@Spawns("unit1")
-//	public Entity Background(SpawnData data) {
-//		return EntityBuilder()
-//				.at(0, 0)
-//				.with(new IrremovableComponent())
-//				.viewFromTexture("mapTest.png");
-//
+	@Spawns("redHero")
+	public Entity newRedHero(SpawnData data) {
+		return  Entities.builder()
+				.from(data)
+				.type(EntityType.PLAYER_RED)
+				.viewFromTexture("redHero.png")
+				.with(new Player())
+				.build();
+	}
+	
+//	@Spawns("greenHero")
+//	public Entity newGreenHero(SpawnData data) {
+//		return Entities.builder()
+//				.from(data)
+//				.type(EntityType.PLAYER_GREEN)
+//				.viewFromTexture("greenHero.png")
+//				.with(new Player())
+//				.build();
 //	}
-//}
+	
+//	@Spawns("blueHero")
+//	public Entity newBlueHero(SpawnData data) {
+//		return  Entities.builder()
+//				.from(data)
+//				.type(EntityType.PLAYER_BLUE)
+//				.viewFromTexture("blueHero.png")
+//				.with(new Player())
+//				.build();
+//	}
+
+}
