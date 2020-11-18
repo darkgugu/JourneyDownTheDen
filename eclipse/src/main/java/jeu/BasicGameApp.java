@@ -56,7 +56,10 @@ public class BasicGameApp extends GameApplication {
 	protected void initGame() {
 //		getGameWorld().setLevelFromMap("mapTest.png");
 		getGameWorld().addEntityFactory(new EntityGenerate());
-		Entity redHero = getGameWorld().spawn("redHero", new Point2D(50, 50));
+		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
+//		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
+//		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
+
 		playerComponent = redHero.getComponent(Player.class);
 
 //		background = Entities.builder().at(0, 0).with(new IrremovableComponent()).viewFromTexture("mapTest.png")
