@@ -43,13 +43,15 @@ public class Tour {
 		
 		for (int i = 0; i < persos.length; i++) {
 			
-			if(Click.cases(x, y) == position.getX()) {
+			int[] tabPerso = Click.cases(x, y); // int[] tabPerso = Click.cases(position.getX(), position.getY());
+			int[] tabClick = Click.cases(x, y);
+			
+			
+			if(tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 				
-				
+				return persos[i];	
 			}
-		}
-		
-		
+		}	
 		return null;
 	}
 
