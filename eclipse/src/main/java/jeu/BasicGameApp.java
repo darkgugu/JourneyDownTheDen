@@ -77,7 +77,7 @@ public class BasicGameApp extends GameApplication {
 //		info_hero3 = Entities.builder().at(633, 910).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
 
 // 		Repeatable theme
-//		getAudioPlayer().loopBGM("town_theme.mp3");
+		getAudioPlayer().loopBGM("town_theme.mp3");
 	}
 
 	@Override
@@ -108,7 +108,6 @@ public class BasicGameApp extends GameApplication {
 					gridState = false;
 				}
 			}
-
 		}, KeyCode.F);
 	}
 
