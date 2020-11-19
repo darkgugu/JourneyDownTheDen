@@ -5,28 +5,28 @@
  */
 package jeu;
 
-import java.util.AbstractMap.SimpleEntry;
-import java.util.List;
-
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.components.IrremovableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
 import com.almasb.fxgl.settings.GameSettings;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import jeu.Deplacement;
 
 public class BasicGameApp extends GameApplication {
-	private Player playerComponent;
+	private Player redHeroComponent;
+	private Player blueHeroComponent;
+	private Player greenHeroComponent;
 	private Player selectedUnit;
 	private Entity background;
 	private Entity lineOfUI;
@@ -39,12 +39,12 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initSettings(GameSettings settings) {
-		settings.setWidth(1920); // 791
-		settings.setHeight(1080); // 575
+		settings.setWidth(1920);
+		settings.setHeight(1080);
 		settings.setFullScreenAllowed(true);
 		settings.setManualResizeEnabled(true);
 		settings.setTitle("Journey down the den");
-		settings.setVersion("0.2");
+		settings.setVersion("0.3");
 		settings.setAppIcon("JDTD_icon.png");
 		settings.setProfilingEnabled(true);
 
@@ -54,14 +54,19 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
-//		getGameWorld().setLevelFromMap("mapTest.png");
+		getGameWorld().setLevelFromMap("level1.tmx");
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
-//		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
-//		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
+		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
+		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
 
-		playerComponent = redHero.getComponent(Player.class);
-
+		redHeroComponent = redHero.getComponent(Player.class);
+		redHeroComponent.setName("red");
+		blueHeroComponent = blueHero.getComponent(Player.class);
+		blueHeroComponent.setName("blue");
+		greenHeroComponent = greenHero.getComponent(Player.class);
+		greenHeroComponent.setName("green");
+		selectedUnit = redHeroComponent;
 //		background = Entities.builder().at(0, 0).with(new IrremovableComponent()).viewFromTexture("mapTest.png")
 //				.buildAndAttach(getGameWorld());
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
@@ -73,6 +78,19 @@ public class BasicGameApp extends GameApplication {
 
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
+	}
+
+	@Override
+	protected void initPhysics() {
+		FXGL.getPhysicsWorld()
+				.addCollisionHandler(new CollisionHandler(EntityType.PLAYER_RED, EntityType.PLAYER_GREEN) {
+
+					// order of types is the same as passed into the constructor
+					@Override
+					protected void onCollisionBegin(Entity redHero, Entity greenHero) {
+						greenHero.removeFromWorld();
+					}
+				});
 	}
 
 	@Override
@@ -105,47 +123,29 @@ public class BasicGameApp extends GameApplication {
 
 			@Override
 			public void handle(MouseEvent event) {
-
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
 				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
+				Player[] persos = new Player[3];
+				persos[0] = redHeroComponent;
+				persos[1] = blueHeroComponent;
+				persos[2] = greenHeroComponent;
+				if (event.getButton() == MouseButton.SECONDARY) {
+					for (int i = 0; i < persos.length; i++) {
+						int pX = (int) persos[i].getPosition().getX();
+						int pY = (int) persos[i].getPosition().getY();
+						int[] tabPerso = Click.cases(pX, pY);
+						int[] tabClick = Click.cases(x, y);
 
-				//To do si clic sur une unité mettre à jour le selectedUnit
-				selectedUnit = playerComponent;
-				//To do si selectedUnit not null & clic case déplacement valide alors se déplacer
-				selectedUnit.move(new Point2D(x, y));
-				
-//				playerComponent.move(new Point2D(x, y));
-				
-//				double posX = playerEntity.getPosition().getX();
-//				double posY = playerEntity.getPosition().getY();
-//				System.out.println("Coordonées player X Y (" + posX + " , " + posY + ")");
-//
-//				int casePlayerX = (int) (posX / 60);
-//				int casePlayerY = (int) (posY / 60);
-//				System.out.println("Coordonées player case (" + casePlayerX + " , " + casePlayerY + ")");
-//
-//				int tab[] = new Click().cases(x, y);
-//				Deplacement move = new Deplacement();
-//				move.calculateCross(2, casePlayerX, casePlayerY);
-//				move.calculateDiag(2, casePlayerX, casePlayerY);
-//				List<SimpleEntry<Integer, Integer>> list = move.list;
-//				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
-////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-//
-//				if (list.contains(vars)) {
-//
-//					playerEntity.translateX(tab[2] - playerEntity.getPosition().getX());
-//					playerEntity.translateY(tab[3] - playerEntity.getPosition().getY());
-//					posX = playerEntity.getPosition().getX();
-//					posY = playerEntity.getPosition().getY();
-//					System.out.println("Coordonées player X Y (" + posX + " , " + posY + ")");
-//				} else {
-//					System.out.println("pas de deplacement");
-//				}
-//				for (int i = 0; i < 4; i++) {
-//					System.out.println(tab[i]);
-//				}
+						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
+							selectedUnit = persos[i];
+							System.out.println(selectedUnit.getName());
+						}
+					}
+				} else {
+					//if check available case == true je me déplace
+					selectedUnit.move(new Point2D(x, y));
+				}
 			}
 		});
 
