@@ -5,6 +5,7 @@ import personnages.playerControlled.Personnages;
 public class Tour {
 	
 	private Personnages persos[] = new Personnages[3];
+	private int nbTour = 0;
 
 	public Tour(Personnages[] persos) {
 		super();
@@ -15,6 +16,7 @@ public class Tour {
 		
 		for (int i = 0; i < persos.length; i++) {
 			
+			setNbTour(getNbTour() + 1);
 			persos[i].setActionPointToMax();
 			persos[i].setMovePointToMax();
 		}
@@ -39,7 +41,7 @@ public class Tour {
 		}
 	}
 	
-	public Player CheckPlayer(Player[] persos, int x, int y) {
+	public Player checkPlayer(Player[] persos, int x, int y) {
 		
 		for (int i = 0; i < persos.length; i++) {
 			
@@ -53,6 +55,14 @@ public class Tour {
 			}
 		}	
 		return null;
+	}
+
+	public int getNbTour() {
+		return nbTour;
+	}
+
+	public void setNbTour(int nbTour) {
+		this.nbTour = nbTour;
 	}
 
 }

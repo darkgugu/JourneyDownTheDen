@@ -1,7 +1,6 @@
 package jeu;
 
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
 
 import capacites.BouleDeFeu;
 import capacites.Soin;
@@ -11,6 +10,11 @@ import personnages.playerControlled.Magician;
 import personnages.playerControlled.Personnages;
 import personnages.playerControlled.Warrior;
 
+import java.util.AbstractMap.SimpleEntry;
+
+
+
+@SuppressWarnings("unused")
 public class Jeu{
 	
 
@@ -20,7 +24,8 @@ public class Jeu{
 //		
 //		depl.calculateCross(3, 4, 4);
 //		depl.calculateDiag(3, 4, 4);
-//		int[] tab = new Click().cases(1053, 502);
+//		new Click();
+//		int[] tab = Click.cases(1053, 502);
 //		
 //		List<SimpleEntry<Integer, Integer>> list = depl.list;
 //		
@@ -33,7 +38,7 @@ public class Jeu{
 //		}
 //		
 //		System.out.println(tab[0] + "," + tab[1]);
-
+//
 //		Healer healer = new Healer();
 //		Magician magician = new Magician();
 //		Gobelin gobelin = new Gobelin();
