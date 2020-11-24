@@ -5,13 +5,13 @@
  */
 package jeu;
 
-import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.parser.tiled.TiledMap;
+import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 
 import javafx.event.EventHandler;
@@ -46,7 +46,7 @@ public class BasicGameApp extends GameApplication {
 		settings.setTitle("Journey down the den");
 		settings.setVersion("0.3");
 		settings.setAppIcon("JDTD_icon.png");
-		settings.setProfilingEnabled(true);
+//		settings.setProfilingEnabled(true);
 
 //To implement later
 //		settings.setIntroEnabled(true);
@@ -54,12 +54,13 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
-		getGameWorld().setLevelFromMap("level1.tmx");
+//		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
+//		getGameWorld().setLevelFromMap(map1);
+
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
 		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
-
 		redHeroComponent = redHero.getComponent(Player.class);
 		redHeroComponent.setName("red");
 		blueHeroComponent = blueHero.getComponent(Player.class);
@@ -67,8 +68,7 @@ public class BasicGameApp extends GameApplication {
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
 		selectedUnit = redHeroComponent;
-//		background = Entities.builder().at(0, 0).with(new IrremovableComponent()).viewFromTexture("mapTest.png")
-//				.buildAndAttach(getGameWorld());
+
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
 		info_hero1 = Entities.builder().at(5, 905).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
@@ -77,20 +77,7 @@ public class BasicGameApp extends GameApplication {
 //		info_hero3 = Entities.builder().at(633, 910).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
 
 // 		Repeatable theme
-		getAudioPlayer().loopBGM("town_theme.mp3");
-	}
-
-	@Override
-	protected void initPhysics() {
-		FXGL.getPhysicsWorld()
-				.addCollisionHandler(new CollisionHandler(EntityType.PLAYER_RED, EntityType.PLAYER_GREEN) {
-
-					// order of types is the same as passed into the constructor
-					@Override
-					protected void onCollisionBegin(Entity redHero, Entity greenHero) {
-						greenHero.removeFromWorld();
-					}
-				});
+//		getAudioPlayer().loopBGM("town_theme.mp3");
 	}
 
 	@Override
@@ -116,7 +103,7 @@ public class BasicGameApp extends GameApplication {
 		Text textPixels = new Text();
 		Point2D hotspot = Point2D.ZERO;
 
-		getGameScene().addUINode(textPixels); // add to the scene graph
+		getGameScene().addUINode(textPixels);
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -142,7 +129,6 @@ public class BasicGameApp extends GameApplication {
 						}
 					}
 				} else {
-					//if check available case == true je me déplace
 					selectedUnit.move(new Point2D(x, y));
 				}
 			}
@@ -178,18 +164,7 @@ public class BasicGameApp extends GameApplication {
 //				}
 //			}
 //		});
-
-//		Text fenetre = new Text("Ma fenetre");
-//		fenetre.setTranslateX(15);
-//		fenetre.setTranslateY(940);
-//		
-//		getGameScene().addUINode(fenetre);
 	}
-
-//	@Override
-//	protected void initGameVars(Map<String, Object> vars) {
-//		vars.put("pixelsMoved", 0);
-//	}
 
 	public static void main(String[] args) {
 		launch(args);
