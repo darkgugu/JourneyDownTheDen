@@ -5,28 +5,28 @@
  */
 package jeu;
 
-import java.util.AbstractMap.SimpleEntry;
-import java.util.List;
-
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.components.IrremovableComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.parser.tiled.TiledMap;
+import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import jeu.Deplacement;
 
 public class BasicGameApp extends GameApplication {
-	private Player playerComponent;
+	private Player redHeroComponent;
+	private Player blueHeroComponent;
+	private Player greenHeroComponent;
 	private Player selectedUnit;
 	private Entity background;
 	private Entity lineOfUI;
@@ -39,14 +39,14 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initSettings(GameSettings settings) {
-		settings.setWidth(1920); // 791
-		settings.setHeight(1080); // 575
+		settings.setWidth(1920);
+		settings.setHeight(1080);
 		settings.setFullScreenAllowed(true);
 		settings.setManualResizeEnabled(true);
 		settings.setTitle("Journey down the den");
-		settings.setVersion("0.2");
+		settings.setVersion("0.3");
 		settings.setAppIcon("JDTD_icon.png");
-		settings.setProfilingEnabled(true);
+//		settings.setProfilingEnabled(true);
 
 //To implement later
 //		settings.setIntroEnabled(true);
@@ -54,16 +54,21 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
-//		getGameWorld().setLevelFromMap("mapTest.png");
+//		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
+//		getGameWorld().setLevelFromMap(map1);
+
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
-//		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
-//		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
+		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
+		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
+		redHeroComponent = redHero.getComponent(Player.class);
+		redHeroComponent.setName("red");
+		blueHeroComponent = blueHero.getComponent(Player.class);
+		blueHeroComponent.setName("blue");
+		greenHeroComponent = greenHero.getComponent(Player.class);
+		greenHeroComponent.setName("green");
+		selectedUnit = redHeroComponent;
 
-		playerComponent = redHero.getComponent(Player.class);
-
-//		background = Entities.builder().at(0, 0).with(new IrremovableComponent()).viewFromTexture("mapTest.png")
-//				.buildAndAttach(getGameWorld());
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
 		info_hero1 = Entities.builder().at(5, 905).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
@@ -90,7 +95,6 @@ public class BasicGameApp extends GameApplication {
 					gridState = false;
 				}
 			}
-
 		}, KeyCode.F);
 	}
 
@@ -99,53 +103,34 @@ public class BasicGameApp extends GameApplication {
 		Text textPixels = new Text();
 		Point2D hotspot = Point2D.ZERO;
 
-		getGameScene().addUINode(textPixels); // add to the scene graph
+		getGameScene().addUINode(textPixels);
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
 				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
+				Player[] persos = new Player[3];
+				persos[0] = redHeroComponent;
+				persos[1] = blueHeroComponent;
+				persos[2] = greenHeroComponent;
+				if (event.getButton() == MouseButton.SECONDARY) {
+					for (int i = 0; i < persos.length; i++) {
+						int pX = (int) persos[i].getPosition().getX();
+						int pY = (int) persos[i].getPosition().getY();
+						int[] tabPerso = Click.cases(pX, pY);
+						int[] tabClick = Click.cases(x, y);
 
-				//To do si clic sur une unité mettre à jour le selectedUnit
-				selectedUnit = playerComponent;
-				//To do si selectedUnit not null & clic case déplacement valide alors se déplacer
-				selectedUnit.move(new Point2D(x, y));
-				
-//				playerComponent.move(new Point2D(x, y));
-				
-//				double posX = playerEntity.getPosition().getX();
-//				double posY = playerEntity.getPosition().getY();
-//				System.out.println("Coordonées player X Y (" + posX + " , " + posY + ")");
-//
-//				int casePlayerX = (int) (posX / 60);
-//				int casePlayerY = (int) (posY / 60);
-//				System.out.println("Coordonées player case (" + casePlayerX + " , " + casePlayerY + ")");
-//
-//				int tab[] = new Click().cases(x, y);
-//				Deplacement move = new Deplacement();
-//				move.calculateCross(2, casePlayerX, casePlayerY);
-//				move.calculateDiag(2, casePlayerX, casePlayerY);
-//				List<SimpleEntry<Integer, Integer>> list = move.list;
-//				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
-////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-//
-//				if (list.contains(vars)) {
-//
-//					playerEntity.translateX(tab[2] - playerEntity.getPosition().getX());
-//					playerEntity.translateY(tab[3] - playerEntity.getPosition().getY());
-//					posX = playerEntity.getPosition().getX();
-//					posY = playerEntity.getPosition().getY();
-//					System.out.println("Coordonées player X Y (" + posX + " , " + posY + ")");
-//				} else {
-//					System.out.println("pas de deplacement");
-//				}
-//				for (int i = 0; i < 4; i++) {
-//					System.out.println(tab[i]);
-//				}
+						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
+							selectedUnit = persos[i];
+							System.out.println(selectedUnit.getName());
+						}
+					}
+				} else {
+					selectedUnit.move(new Point2D(x, y));
+				}
 			}
 		});
 
@@ -179,18 +164,7 @@ public class BasicGameApp extends GameApplication {
 //				}
 //			}
 //		});
-
-//		Text fenetre = new Text("Ma fenetre");
-//		fenetre.setTranslateX(15);
-//		fenetre.setTranslateY(940);
-//		
-//		getGameScene().addUINode(fenetre);
 	}
-
-//	@Override
-//	protected void initGameVars(Map<String, Object> vars) {
-//		vars.put("pixelsMoved", 0);
-//	}
 
 	public static void main(String[] args) {
 		launch(args);

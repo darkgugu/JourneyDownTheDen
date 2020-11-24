@@ -45,7 +45,7 @@ public class Tour {
 		
 		for (int i = 0; i < persos.length; i++) {
 			
-			int[] tabPerso = Click.cases(x, y); // int[] tabPerso = Click.cases(position.getX(), position.getY());
+			int[] tabPerso = Click.cases(x, y);
 			int[] tabClick = Click.cases(x, y);
 			
 			

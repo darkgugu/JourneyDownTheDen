@@ -1,0 +1,584 @@
+12:43:53.767 [JavaFX Application Thread] DEBUG GameApplication      - Logger initialized
+12:43:53.782 [JavaFX Application Thread] DEBUG GameApplication      - Logging settings
+Title: Journey down the den
+Version: 0.3
+Width: 1920
+Height: 1080
+Fullscreen: true
+Intro: false
+Menus: false
+Profiling: true
+Single step:false
+App Mode: DEVELOPER
+Menu Key: ESCAPE
+Stage Style: DECORATED
+Scene Factory: class com.almasb.fxgl.scene.SceneFactory
+Dialog Factory: class com.almasb.fxgl.ui.FXGLDialogFactory
+UI Factory: class com.almasb.fxgl.ui.FXGLUIFactory
+Notification Service: class com.almasb.fxgl.gameplay.notification.XboxNotificationView
+Exception Handler: class com.almasb.fxgl.app.FXGLExceptionHandler
+12:43:53.782 [JavaFX Application Thread] DEBUG GameApplication      - Starting FXGL
+12:43:53.788 [JavaFX Application Thread] INFO  FXGL                 - FXGL-0.5.4 on DESKTOP
+12:43:53.788 [JavaFX Application Thread] INFO  FXGL                 - Source code and latest versions at: https://github.com/AlmasB/FXGL
+12:43:53.788 [JavaFX Application Thread] INFO  FXGL                 -              Join the FXGL chat at: https://gitter.im/AlmasB/FXGL
+12:43:53.788 [JavaFX Application Thread] DEBUG FXGL                 - FXGL started
+12:43:53.788 [JavaFX Application Thread] DEBUG FXGL                 - Initializing FXGL
+12:43:53.836 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+12:43:53.904 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/fonts/VarelaRound-Regular.ttf
+12:43:54.244 [JavaFX Application Thread] DEBUG MainWindow           - Creating a JavaFX scene
+12:43:54.272 [JavaFX Application Thread] DEBUG MainWindow           - Target settings size: 1920.0 x 1080.0
+12:43:54.272 [JavaFX Application Thread] DEBUG MainWindow           - Scaled scene size:    1920.0 x 1080.0
+12:43:54.272 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (1.0, 1.0)
+12:43:54.283 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/css/fxgl_dark.css
+12:43:54.286 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/textures/JDTD_icon.png
+12:43:54.293 [JavaFX Application Thread] DEBUG MainWindow           - Opening main window
+12:43:54.461 [JavaFX Application Thread] DEBUG MainWindow           - Window border size: (16.0, 20.0)
+12:43:54.462 [JavaFX Application Thread] DEBUG MainWindow           - Scaled size: 1920.0 x 1080.0
+12:43:54.462 [JavaFX Application Thread] DEBUG MainWindow           - Scaled ratio: (1.0, 1.0)
+12:43:54.462 [JavaFX Application Thread] DEBUG MainWindow           - Scene size: 1920.0 x 1080.0
+12:43:54.462 [JavaFX Application Thread] DEBUG MainWindow           - Stage size: 1936.0 x 1100.0
+12:43:54.493 [ForkJoinPool.commonPool-worker-9] DEBUG FS                   - Loaded DesktopFSService
+12:43:54.493 [ForkJoinPool.commonPool-worker-9] DEBUG FXGL                 - Loading FXGL system data
+12:43:54.499 [ForkJoinPool.commonPool-worker-9] DEBUG DesktopFSService     - Reading from: system\fxgl.bundle
+12:43:54.506 [ForkJoinPool.commonPool-worker-9] DEBUG Bundle               - Logging bundle: FXGL
+12:43:54.506 [ForkJoinPool.commonPool-worker-9] DEBUG Bundle               - FXGL.offline.timer.version.check=2020-11-18T09:51:52.340
+12:43:54.507 [ForkJoinPool.commonPool-worker-9] DEBUG FXGL                 - Initializing state machine and application states
+12:43:54.508 [ForkJoinPool.commonPool-worker-9] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+12:43:54.512 [ForkJoinPool.commonPool-worker-9] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+12:43:54.521 [ForkJoinPool.commonPool-worker-9] DEBUG AssetLoader          - Loading from cache: /assets/ui/fonts/VarelaRound-Regular.ttf
+12:43:54.523 [ForkJoinPool.commonPool-worker-9] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/fxgl_default.png
+12:43:54.524 [ForkJoinPool.commonPool-worker-9] DEBUG AssetLoader          - Loading from disk: /assets/ui/fonts/lucida_console.ttf
+12:43:54.530 [ForkJoinPool.commonPool-worker-9] DEBUG GameScene            - Game scene initialized: 1920x1080
+12:43:54.536 [ForkJoinPool.commonPool-worker-9] DEBUG GameWorld            - Game world initialized
+12:43:54.579 [ForkJoinPool.commonPool-worker-9] DEBUG PhysicsWorld         - Physics world initialized: appHeight=1080, physics.ppm=50,0
+12:43:54.607 [ForkJoinPool.commonPool-worker-9] DEBUG Input                - Registered new binding: Pause - Esc
+12:43:54.637 [JavaFX Application Thread] DEBUG FXGL                 - Running preInit()
+12:43:54.639 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Screenshot - P
+12:43:54.639 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Dev Options - CTRL+0
+12:43:54.639 [JavaFX Application Thread] DEBUG Input                - Registered new binding: System info dump - CTRL+9
+12:43:54.640 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Restart - CTRL+R
+12:43:54.640 [JavaFX Application Thread] DEBUG Input                - Registered new binding: Show grid - F
+12:43:54.640 [JavaFX Application Thread] INFO  FXGL                 - FXGL initialization took: 0,852 sec
+12:43:54.641 [JavaFX Application Thread] DEBUG LoopRunner           - Starting loop
+12:43:54.642 [JavaFX Application Thread] DEBUG StartupState         - STARTUP
+12:43:54.642 [JavaFX Application Thread] DEBUG GameApplication      - Starting new game
+12:43:54.642 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+12:43:54.643 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/css/fxgl_dark.css
+12:43:54.647 [JavaFX Application Thread] DEBUG AppStateMachine      - StartupState -> LoadingState
+12:43:54.651 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Clearing previous game
+12:43:54.651 [FXGL Background Thread 1 ] DEBUG GameWorld            - Clearing game world
+12:43:54.651 [FXGL Background Thread 1 ] DEBUG PhysicsWorld         - Clearing physics world
+12:43:54.651 [FXGL Background Thread 1 ] DEBUG GameScene            - Clearing game scene
+12:43:54.651 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing Game
+12:43:54.657 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/tmx/map1.tmx
+12:43:54.684 [FXGL Background Thread 1 ] WARN  TMXParser            - TiledMap generated from 1.4.2. Supported version: 1.1.2. Some features may not be parsed fully.
+12:43:54.706 [FXGL Background Thread 1 ] DEBUG GameWorld            - Clearing removable entities
+12:43:54.706 [FXGL Background Thread 1 ] DEBUG GameWorld            - Setting level from map
+12:43:54.743 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/iso-64x64-outside.png
+12:43:54.764 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.765 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.766 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.767 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.768 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.769 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.770 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.771 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.772 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.773 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.774 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.775 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/iso-64x64-building.png
+12:43:54.784 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.784 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.784 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.784 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.784 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.784 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.785 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.786 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.787 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.788 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.789 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.790 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.791 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.792 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.793 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.794 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.795 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.795 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.795 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.795 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.799 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.800 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.801 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.802 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.803 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.804 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.805 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.806 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.807 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.808 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.809 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.810 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.811 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.812 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.813 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.814 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.815 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.816 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.817 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.817 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.817 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.817 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.817 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.819 [FXGL Background Thread 1 ] DEBUG GameScene            - Creating render group for layer: BACKGROUND(1000)
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.838 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.839 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-building.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.840 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from cache: /assets/textures/iso-64x64-outside.png
+12:43:54.859 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/redHero.png
+12:43:54.861 [FXGL Background Thread 1 ] DEBUG GameScene            - Creating render group for layer: DEFAULT(100000)
+12:43:54.861 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/blueHero.png
+12:43:54.863 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/greenHero.png
+12:43:54.864 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/textures/Hero1_full.png
+12:43:54.866 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing Physics
+12:43:54.867 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initializing UI
+12:43:54.867 [FXGL Background Thread 1 ] DEBUG AssetLoader          - Loading from disk: /assets/ui/cursors/cursor.png
+12:43:54.875 [FXGL Background Thread 1 ] DEBUG InitAppTask          - Initialization Complete
+12:43:54.875 [FXGL Background Thread 1 ] INFO  InitAppTask          - Game initialization took: 0,225 sec
+12:43:54.878 [JavaFX Application Thread] DEBUG Input                - Clearing active input actions
+12:43:54.878 [JavaFX Application Thread] DEBUG AssetLoader          - Loading from disk: /assets/ui/css/fxgl_dark.css
+12:43:54.883 [JavaFX Application Thread] DEBUG AppStateMachine      - LoadingState -> PlayState
+12:43:56.127 [JavaFX Application Thread] DEBUG FXGL                 - Exiting FXGL
+12:43:56.127 [JavaFX Application Thread] DEBUG FXGL                 - Shutting down background threads
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Processed Frames: 103
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Average FPS: 59
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Avg Frame Took: 0,26 ms
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Avg Memory Usage: 59 MB
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Min Memory Usage: 9 MB
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Max Memory Usage: 65 MB
+12:43:56.127 [JavaFX Application Thread] INFO  Profiler             - Estimated GC runs: 2
+12:43:56.127 [JavaFX Application Thread] DEBUG FXGL                 - Saving FXGL system data
+12:43:56.129 [JavaFX Application Thread] DEBUG DesktopFSService     - Writing to: system\fxgl.bundle
+12:43:56.131 [JavaFX Application Thread] DEBUG FXGL                 - Closing logger and exiting JavaFX

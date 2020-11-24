@@ -10,6 +10,13 @@ import javafx.geometry.Point2D;
 
 public class Player extends Component {
 	private PositionComponent position;
+	private String name;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public PositionComponent getPosition() {
 		return position;
@@ -20,7 +27,6 @@ public class Player extends Component {
 	}
 
 	public void move(Point2D direction) {
-		System.out.println("Move on");
 		System.out.println(position.getX() + " " + position.getY());
 
 		int posX = (int) position.getX();
@@ -48,6 +54,5 @@ public class Player extends Component {
 		} else {
 			System.out.println("pas de deplacement");
 		}
-		System.out.println("Move off");
 	}
 }
