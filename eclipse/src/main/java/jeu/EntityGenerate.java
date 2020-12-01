@@ -7,6 +7,10 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.components.CollidableComponent;
 
+import personnages.playerControlled.Healer;
+import personnages.playerControlled.Magician;
+import personnages.playerControlled.Warrior;
+
 public class EntityGenerate implements EntityFactory {
 
 	@Spawns("redHero")
@@ -16,7 +20,7 @@ public class EntityGenerate implements EntityFactory {
 				.type(EntityType.PLAYER_RED)
 				.viewFromTexture("redHero.png")
 		        .with(new CollidableComponent(true))
-				.with(new Player())
+				.with(new Player(new Healer()))
 				.build();
 	}
 	
@@ -27,7 +31,7 @@ public class EntityGenerate implements EntityFactory {
 				.type(EntityType.PLAYER_GREEN)
 				.viewFromTexture("greenHero.png")
 		        .with(new CollidableComponent(true))
-				.with(new Player())
+				.with(new Player(new Warrior()))
 				.build();
 	}
 	
@@ -38,7 +42,7 @@ public class EntityGenerate implements EntityFactory {
 				.type(EntityType.PLAYER_BLUE)
 				.viewFromTexture("blueHero.png")
 		        .with(new CollidableComponent(true))
-				.with(new Player())
+				.with(new Player(new Magician()))
 				.build();
 	}
 

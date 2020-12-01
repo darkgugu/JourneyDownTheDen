@@ -7,10 +7,24 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.entity.components.PositionComponent;
 
 import javafx.geometry.Point2D;
+import personnages.playerControlled.Personnages;
 
 public class Player extends Component {
 	private PositionComponent position;
 	private String name;
+	private Personnages HeroClass;
+	
+	
+	public Player(Personnages heroClass) {
+		super();
+		setHeroClass(heroClass);
+	}
+	public Personnages getHeroClass() {
+		return HeroClass;
+	}
+	public void setHeroClass(Personnages heroClass) {
+		HeroClass = heroClass;
+	}
 	public String getName() {
 		return name;
 	}
@@ -51,6 +65,9 @@ public class Player extends Component {
 			posX = (int) position.getX();
 			posY = (int) position.getY();
 			System.out.println("Coordonées player X Y (" + posX + " , " + posY + ")");
+			System.out.println(
+					"Classe : " + getHeroClass().getName() +
+					"\nPV : " + getHeroClass().getPv() + "/" + getHeroClass().getPvMax());
 		} else {
 			System.out.println("pas de deplacement");
 		}
