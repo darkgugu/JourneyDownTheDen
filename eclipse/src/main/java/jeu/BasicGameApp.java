@@ -5,13 +5,13 @@
  */
 package jeu;
 
+
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
-import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 
 import javafx.event.EventHandler;
@@ -24,6 +24,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 public class BasicGameApp extends GameApplication {
+
 	private Player redHeroComponent;
 	private Player blueHeroComponent;
 	private Player greenHeroComponent;
@@ -32,10 +33,12 @@ public class BasicGameApp extends GameApplication {
 	private Entity lineOfUI;
 	private Entity grid;
 	private Entity info_hero1;
-
 	private Entity casesAround;
-
 	boolean gridState = false;
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 
 	@Override
 	protected void initSettings(GameSettings settings) {
@@ -54,9 +57,9 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
-//		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
-//		getGameWorld().setLevelFromMap(map1);
-
+		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
+		getGameWorld().setLevelFromMap(map1);
+		
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
@@ -88,13 +91,14 @@ public class BasicGameApp extends GameApplication {
 			@Override
 			protected void onAction() {
 				if (gridState == false) {
-					grid = Entities.builder().at(0, 0).viewFromTexture("grille.png").buildAndAttach(getGameWorld());
+					grid = Entities.builder().at(0, 0).viewFromTexture("grid.png").buildAndAttach(getGameWorld());
 					gridState = true;
 				} else {
 					grid.removeFromWorld();
 					gridState = false;
 				}
 			}
+			
 		}, KeyCode.F);
 	}
 
@@ -165,9 +169,4 @@ public class BasicGameApp extends GameApplication {
 //			}
 //		});
 	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
 }

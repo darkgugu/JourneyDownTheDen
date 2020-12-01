@@ -43,7 +43,6 @@ public class Player extends Component {
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 		System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-
 		if (list.contains(vars)) {
 
 			position.translateX(tab[2] - position.getX());
