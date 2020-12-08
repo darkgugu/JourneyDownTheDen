@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import ui.CharInfoView;
 
 public class BasicGameApp extends GameApplication {
 	private Player redHeroComponent;
@@ -35,12 +36,8 @@ public class BasicGameApp extends GameApplication {
 	private Entity background;
 	private Entity lineOfUI;
 	private Entity grid;
-<<<<<<< Updated upstream
-	private Entity info_hero1;
 
-=======
 	private Entity InfoUI;
->>>>>>> Stashed changes
 	private Entity casesAround;
 
 	boolean gridState = false;
@@ -62,8 +59,8 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
-//		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
-//		getGameWorld().setLevelFromMap(map1);
+		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
+		getGameWorld().setLevelFromMap(map1);
 
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
@@ -88,15 +85,8 @@ public class BasicGameApp extends GameApplication {
 
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
-<<<<<<< Updated upstream
-		info_hero1 = Entities.builder().at(5, 905).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
-=======
 		
 		InfoUI = Entities.builder().at(5, 901).viewFromTexture("UI.png").buildAndAttach(getGameWorld());
->>>>>>> Stashed changes
-//To implement
-//		info_hero2 = Entities.builder().at(319, 910).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
-//		info_hero3 = Entities.builder().at(633, 910).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
 
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
@@ -110,7 +100,7 @@ public class BasicGameApp extends GameApplication {
 			@Override
 			protected void onAction() {
 				if (gridState == false) {
-					grid = Entities.builder().at(0, 0).viewFromTexture("grille.png").buildAndAttach(getGameWorld());
+					grid = Entities.builder().at(0, 0).viewFromTexture("grid.png").buildAndAttach(getGameWorld());
 					gridState = true;
 				} else {
 					grid.removeFromWorld();
@@ -122,15 +112,10 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initUI() {
-		Text textPixels = new Text();
 		Point2D hotspot = Point2D.ZERO;
 
-<<<<<<< Updated upstream
-		getGameScene().addUINode(textPixels);
-=======
 		CharInfoView.charInfoUI(getGameScene(), redHeroComponent);
 		
->>>>>>> Stashed changes
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
