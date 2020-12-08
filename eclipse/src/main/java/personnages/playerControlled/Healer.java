@@ -1,26 +1,20 @@
 package personnages.playerControlled;
 
-import capacites.Capacites;
+import capacites.BouleDeFeu;
+import capacites.Soin;
 
 public class Healer extends Personnages{
-
-	private Capacites skills[] = new Capacites[10];
 	
-	public Capacites[] getSkills() {
-		return skills;
-	}
+	//private Capacites skills[] = new Capacites[10];
 
-
-	public void setSkills(Capacites a, Capacites b) {
-		this.skills[0] = a;
-		this.skills[1] = b;
-	}
 
 	public Healer() {
 		super(95, "Healer", 10, 20, 10, 10, 10);
-
+		skills[0] = new Soin();
+		skills[1] = new BouleDeFeu();		
 	}
 
+	
 	@Override
 	public String toString() {
 		

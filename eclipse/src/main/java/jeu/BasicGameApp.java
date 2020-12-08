@@ -15,6 +15,8 @@ import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 
 import capacites.BouleDeFeu;
+import capacites.Capacites;
+import capacites.Soin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
@@ -72,8 +74,12 @@ public class BasicGameApp extends GameApplication {
 		
 		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
-		new BouleDeFeu().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
-		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
+//		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
+//		redHeroComponent.getHeroClass().setSkillsI(new BouleDeFeu(), 1);
+		System.out.println(redHeroComponent.getHeroClass());
+		//System.out.println(greenHeroComponent.getHeroClass());
+		//new BouleDeFeu().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
+		//System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
