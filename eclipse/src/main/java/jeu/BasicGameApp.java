@@ -13,6 +13,7 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
 import capacites.BouleDeFeu;
 import capacites.Capacites;
@@ -34,8 +35,12 @@ public class BasicGameApp extends GameApplication {
 	private Entity background;
 	private Entity lineOfUI;
 	private Entity grid;
+<<<<<<< Updated upstream
 	private Entity info_hero1;
 
+=======
+	private Entity InfoUI;
+>>>>>>> Stashed changes
 	private Entity casesAround;
 
 	boolean gridState = false;
@@ -83,7 +88,12 @@ public class BasicGameApp extends GameApplication {
 
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
+<<<<<<< Updated upstream
 		info_hero1 = Entities.builder().at(5, 905).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
+=======
+		
+		InfoUI = Entities.builder().at(5, 901).viewFromTexture("UI.png").buildAndAttach(getGameWorld());
+>>>>>>> Stashed changes
 //To implement
 //		info_hero2 = Entities.builder().at(319, 910).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
 //		info_hero3 = Entities.builder().at(633, 910).viewFromTexture("Hero1_full.png").buildAndAttach(getGameWorld());
@@ -115,7 +125,12 @@ public class BasicGameApp extends GameApplication {
 		Text textPixels = new Text();
 		Point2D hotspot = Point2D.ZERO;
 
+<<<<<<< Updated upstream
 		getGameScene().addUINode(textPixels);
+=======
+		CharInfoView.charInfoUI(getGameScene(), redHeroComponent);
+		
+>>>>>>> Stashed changes
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
