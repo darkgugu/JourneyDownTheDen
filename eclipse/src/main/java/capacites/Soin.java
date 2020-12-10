@@ -7,15 +7,15 @@ public class Soin extends Capacites{
 	private int finalHeal;
 	
 	public Soin() {
-		super(DamageElement.LIGHT, 10, "magical", 20, 0);
+		super(DamageElement.LIGHT, 10, "magical", 20, 0, 3);
 		
 	}
 	
-	public int cast(Unites unite, Unites cible) {
+	public int cast(Unites caster, Unites cible) {
 
 		finalHeal = -1 * heal;
 		cible.setPv(finalHeal);
-		super.cast(unite);
+		super.cast(caster, cost);
 		System.out.println("Cible : " + cible.getName());
 		System.out.println("Soin : " + -finalHeal);
 		return finalHeal;

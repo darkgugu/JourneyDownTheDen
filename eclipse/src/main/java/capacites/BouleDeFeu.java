@@ -8,13 +8,13 @@ public class BouleDeFeu extends Capacites{
 	
 	
 	public BouleDeFeu() {
-		super(DamageElement.FIRE, 10, "magical", 0, 10);
+		super(DamageElement.FIRE, 10, "magical", 0, 10, 4);
 
 	}
 	
 	public int cast(Unites caster, Unites cible) {
 		
-		super.cast(caster);
+		super.cast(caster, cost);
 		finalDamages = damage * caster.getMagicalBaseDamage();
 		System.out.println("Dégats : " + finalDamages);
 		if(cible.setPv(finalDamages)) {

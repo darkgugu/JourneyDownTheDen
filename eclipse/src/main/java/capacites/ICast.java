@@ -4,5 +4,5 @@ import personnages.Unites;
 
 public interface ICast {
 
-	public int cast(Unites unite);
+	public int cast(Unites unite, int cost);
 }
