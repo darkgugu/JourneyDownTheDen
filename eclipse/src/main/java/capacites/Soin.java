@@ -7,7 +7,7 @@ public class Soin extends Capacites{
 	private int finalHeal;
 	
 	public Soin() {
-		super(DamageElement.LIGHT, 10, "magical", 20, 0, 3);
+		super(DamageElement.LIGHT, 10, "magical", 20, 0, 3, "Soin");
 		
 	}
 	

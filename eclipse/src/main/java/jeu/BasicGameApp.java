@@ -15,7 +15,7 @@ import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
-import capacites.BouleDeFeu;
+import capacites.Fireball;
 import capacites.Capacites;
 import capacites.Soin;
 import javafx.event.EventHandler;
@@ -77,12 +77,13 @@ public class BasicGameApp extends GameApplication {
 		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 //		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
-//		redHeroComponent.getHeroClass().setSkillsI(new BouleDeFeu(), 1);
+		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
 		System.out.println(redHeroComponent.getHeroClass());
-		//System.out.println(greenHeroComponent.getHeroClass());
-		//new BouleDeFeu().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
-		//System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
-
+		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
+		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
+		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
+		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
+		
 		lineOfUI = Entities.builder().at(0, 901).viewFromNode(new Rectangle(1920, 200, Color.GREY))
 				.buildAndAttach(getGameWorld());
 		

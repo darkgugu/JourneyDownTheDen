@@ -10,9 +10,10 @@ public class Capacites implements ICast{
 	protected int heal;
 	protected int damage;
 	protected int cost;
+	protected String name;
 //	protected int dotDamage;
 //	protected int dotDuration;
-	public Capacites(DamageElement type, int range, String damageType, int heal, int damage, int cost) {
+	public Capacites(DamageElement type, int range, String damageType, int heal, int damage, int cost, String name) {
 		super();
 		this.type = type;
 		this.range = range;
@@ -20,11 +21,23 @@ public class Capacites implements ICast{
 		this.heal = heal;
 		this.damage = damage;
 		this.cost = cost;
+		this.name = name;
 	}
 	
 	public int cast(Unites caster, int cost) {
 		caster.setActionPoint(caster.getActionPoint() - cost);
-		System.out.println(caster.getName() + " lance " + getClass().getSimpleName());
+		System.out.println(caster.getName() + " lance " + name);
 		return 0;
+	}
+
+	@Override
+	public void death(Unites killer, Unites cible) {
+		
+		System.out.println(
+					killer.getClass().getSimpleName() + 
+					" à tué " +
+					cible.getClass().getSimpleName() +
+					" avec " +
+					name);
 	}
 }
