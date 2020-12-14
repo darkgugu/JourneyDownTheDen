@@ -15,7 +15,7 @@ public class Soin extends Capacites{
 
 		finalHeal = -1 * heal;
 		cible.setPv(finalHeal);
-		super.cast(caster, cost);
+		super.cast(caster);
 		System.out.println("Cible : " + cible.getName());
 		System.out.println("Soin : " + -finalHeal);
 		return finalHeal;

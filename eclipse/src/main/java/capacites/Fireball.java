@@ -14,7 +14,7 @@ public class Fireball extends Capacites{
 	
 	public int cast(Unites caster, Unites cible) {
 		
-		super.cast(caster, cost);
+		super.cast(caster);
 		finalDamages = damage * caster.getMagicalBaseDamage();
 		System.out.println("Dégats : " + finalDamages);
 		if(cible.setPv(finalDamages)) {

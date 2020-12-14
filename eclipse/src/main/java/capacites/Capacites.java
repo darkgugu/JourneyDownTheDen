@@ -24,9 +24,9 @@ public class Capacites implements ICast{
 		this.name = name;
 	}
 	
-	public int cast(Unites caster, int cost) {
+	public int cast(Unites caster) {
 		caster.setActionPoint(caster.getActionPoint() - cost);
-		System.out.println(caster.getName() + " lance " + name);
+		System.out.println(caster.getName() + " lance " + getName());
 		return 0;
 	}
 
@@ -38,6 +38,10 @@ public class Capacites implements ICast{
 					" à tué " +
 					cible.getClass().getSimpleName() +
 					" avec " +
-					name);
+					getName());
+	}
+
+	public String getName() {
+		return name;
 	}
 }
