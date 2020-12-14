@@ -13,7 +13,6 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 
 import capacites.Fireball;
 import capacites.Capacites;
