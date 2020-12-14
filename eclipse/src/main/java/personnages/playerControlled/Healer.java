@@ -5,9 +5,6 @@ import capacites.Soin;
 
 public class Healer extends Personnages{
 	
-	//private Capacites skills[] = new Capacites[10];
-
-
 	public Healer() {
 		super(95, "Healer", 10, 20, 10, 10, 10);
 		skills[0] = new Soin();
