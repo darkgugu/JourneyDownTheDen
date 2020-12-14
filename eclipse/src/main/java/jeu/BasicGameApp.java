@@ -5,6 +5,8 @@
  */
 package jeu;
 
+import java.lang.reflect.InvocationTargetException;
+
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.core.logging.ConsoleOutput;
 import com.almasb.fxgl.core.logging.FileOutput;
@@ -88,7 +90,7 @@ public class BasicGameApp extends GameApplication {
 		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 //		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
-		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
+//		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
 		System.out.println(redHeroComponent.getHeroClass());
 
 		// System.out.println(greenHeroComponent.getHeroClass());
@@ -166,6 +168,29 @@ public class BasicGameApp extends GameApplication {
 				persos[0] = redHeroComponent;
 				persos[1] = blueHeroComponent;
 				persos[2] = greenHeroComponent;
+				int skillSlot = SkillSlot.isSkillSlot(x, y);
+				if(skillSlot != -1) {
+					
+					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Boule de Feu") {
+						
+						new Fireball().cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
+					}
+					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Soin") {
+						
+						new Soin().cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
+					}
+					
+					
+					//Introspection
+//					try {
+//						Capacites ent = (Capacites) Class.forName("capacites.Fireball").newInstance();
+//						ent.cast(selectedUnit.getHeroClass());
+//					} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+
+				}
 				if (event.getButton() == MouseButton.SECONDARY) {
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
