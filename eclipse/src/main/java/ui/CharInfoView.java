@@ -12,11 +12,14 @@ import javafx.scene.text.Font;
 
 public abstract class CharInfoView extends Application {
 
-	public static void charInfoUI(GameScene gameScene, Player player) {
+	public static void charInfoUI(GameScene gameScene, Player playerRed, Player playerBlue, Player playerGreen) {
 		String newLine = System.getProperty("line.separator");
 		Text textCharInfo = new Text();
-		Text textRedInfo = new Text();
 		Text textHelpInfo = new Text();
+		Text textRedInfo = new Text();
+		Text textBlueInfo = new Text();
+		Text textGreenInfo = new Text();
+		
 		/*
 		 * essayer d'utiliser une font custom
 		 */
@@ -30,24 +33,50 @@ public abstract class CharInfoView extends Application {
 
 //		textCharInfo.setFont(Font.loadFont("file:resources/assets/ui/fonts/font.ttf", 30));
 
+		/*
+		 * Texte générique
+		 */
 		textCharInfo.setFont(Font.font("Verdana", 15));
 		textCharInfo.setFill(Color.BLACK);
 		textCharInfo.setTranslateX(20);
 		textCharInfo.setTranslateY(923);
-		textCharInfo.setText("HP         " + "ATK        " + "MVT");
-		
+		textCharInfo.setText("HP            " + "ATK        " + "MVT");
+
 		textHelpInfo.setFont(Font.font("Verdana", 20));
 		textHelpInfo.setFill(Color.BLACK);
-		textHelpInfo.setTranslateX(1200);
+		textHelpInfo.setTranslateX(1450);
 		textHelpInfo.setTranslateY(923);
 		textHelpInfo.setText("~~Aide~~" + newLine + "Appuyer sur F pour afficher/cacher la grille");
 
-		textRedInfo.setFont(Font.font("Verdana", 25));
+		/*
+		 * Texte unites
+		 */
+		textRedInfo.setFont(Font.font("Verdana", 15));
 		textRedInfo.setFill(Color.BLACK);
 		textRedInfo.setTranslateX(20);
 		textRedInfo.setTranslateY(955);
-		textRedInfo.setText("                 " + "2      "+ player.getName());
-		gameScene.addUINodes(textCharInfo, textHelpInfo, textRedInfo);
+		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
+							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          " + playerRed.getHeroClass().getMovePoint()  
+							+ "               " + playerRed.getName());
+
+		textGreenInfo.setFont(Font.font("Verdana", 15));
+		textGreenInfo.setFill(Color.BLACK);
+		textGreenInfo.setTranslateX(20);
+		textGreenInfo.setTranslateY(1000);
+		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
+							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          " + playerGreen.getHeroClass().getMovePoint() 
+							+ "               " + playerGreen.getName());
+		
+		textBlueInfo.setFont(Font.font("Verdana", 15));
+		textBlueInfo.setFill(Color.BLACK);
+		textBlueInfo.setTranslateX(20);
+		textBlueInfo.setTranslateY(1050);
+		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
+							+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          " + playerBlue.getHeroClass().getMovePoint() 
+							+ "               " + playerBlue.getName());
+		
+		
+		gameScene.addUINodes(textCharInfo, textHelpInfo, textRedInfo, textBlueInfo, textGreenInfo);
 
 	}
 
