@@ -102,14 +102,10 @@ public class Unites {
 	}
 
 
-	public void setSkillsI(Capacites skill, int i) {
+	public void setSkills(Capacites skill, int i) {
 		this.skills[i] = skill;
 	}
 
-	public void setSkills(Capacites[] skills) {
-		this.skills = skills;
-	}
-	
 	
 	
 	

@@ -2,7 +2,7 @@ package jeu;
 
 import java.util.List;
 
-import capacites.BouleDeFeu;
+import capacites.Fireball;
 import capacites.Soin;
 import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;

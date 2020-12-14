@@ -6,6 +6,11 @@
 package jeu;
 
 import com.almasb.fxgl.app.GameApplication;
+import com.almasb.fxgl.core.logging.ConsoleOutput;
+import com.almasb.fxgl.core.logging.FileOutput;
+import com.almasb.fxgl.core.logging.Logger;
+import com.almasb.fxgl.core.logging.LoggerConfig;
+import com.almasb.fxgl.core.logging.LoggerLevel;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.PositionComponent;
@@ -14,9 +19,9 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
+import com.almasb.fxgl.settings.ReadOnlyGameSettings;
 
-import capacites.BouleDeFeu;
+import capacites.Fireball;
 import capacites.Capacites;
 import capacites.Soin;
 import javafx.event.EventHandler;
@@ -83,16 +88,23 @@ public class BasicGameApp extends GameApplication {
 		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 //		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
-//		redHeroComponent.getHeroClass().setSkillsI(new BouleDeFeu(), 1);
+		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
 		System.out.println(redHeroComponent.getHeroClass());
+
 		// System.out.println(greenHeroComponent.getHeroClass());
 		// new BouleDeFeu().cast(redHeroComponent.getHeroClass(),
 		// greenHeroComponent.getHeroClass());
 		// System.out.println("Green Hero PV : " +
 		// greenHeroComponent.getHeroClass().getPv());
 
-		lineOfUI = Entities.builder().at(0, 900).viewFromNode(new Rectangle(1920, 180, Color.GREY))
-				.buildAndAttach(getGameWorld());
+		lineOfUI = Entities.builder().at(0, 900).viewFromNode(new Rectangle(1920, 180, Color.GREY)).buildAndAttach(getGameWorld());
+
+		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
+		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
+		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
+		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
+		
+
 
 		InfoUI = Entities.builder().at(5, 901).viewFromTexture("UI.png").buildAndAttach(getGameWorld());
 		
@@ -120,6 +132,22 @@ public class BasicGameApp extends GameApplication {
 		}, KeyCode.F);
 	}
 
+	/*
+	 * LOGGER
+	 */
+
+//    private void initLogger(ReadOnlyGameSettings settings) {
+//        // we write all logs to file but adjust console log level based on app mode
+//        if (settings.isFileSystemWriteAllowed() && settings.isDesktop() && !settings.isExperimentalNative()) {
+//            Logger.addOutput(new FileOutput("FXGL"), LoggerLevel.DEBUG);
+//        }
+//        Logger.addOutput(new ConsoleOutput(), settings.getApplicationMode().getLoggerLevel());
+//
+//        Logger.configure(new LoggerConfig());
+//
+//        log.debug("Logging settings\n" + settings);
+//    }
+    
 	@Override
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
@@ -160,44 +188,44 @@ public class BasicGameApp extends GameApplication {
 		 * AFFICHAGE DES CASES ADJACENTES
 		 */
 
-		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				int x = (int) event.getSceneX();
-				int y = (int) event.getSceneY();
-				int caseCursorX = ((int) event.getSceneX() / 60);
-				int caseCursorY = ((int) event.getSceneY() / 60);
-				int casePlayerX = (int) (selectedUnit.getPosition().getX() / 60);
-				int casePlayerY = (int) (selectedUnit.getPosition().getY() / 60);
-
-				Player[] persos = new Player[3];
-				persos[0] = redHeroComponent;
-				persos[1] = blueHeroComponent;
-				persos[2] = greenHeroComponent;
-
-				for (int i = 0; i < persos.length; i++) {
-					int pX = (int) persos[i].getPosition().getX();
-					int pY = (int) persos[i].getPosition().getY();
-					new Click();
-					int tab[] = Click.cases(x, y);
-					if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
-//					System.out.println("printed !");
-
-						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 180, pY - 180));
-					
-					} else { 
-						if(rangeTwo != null){
-							rangeTwo.removeFromWorld();
-						}
-					}
-				}
-
-//				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-//				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
-
-			}
-		});
+//		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
+//
+//			@Override
+//			public void handle(MouseEvent event) {
+//				int x = (int) event.getSceneX();
+//				int y = (int) event.getSceneY();
+//				int caseCursorX = ((int) event.getSceneX() / 60);
+//				int caseCursorY = ((int) event.getSceneY() / 60);
+//				int casePlayerX = (int) (selectedUnit.getPosition().getX() / 60);
+//				int casePlayerY = (int) (selectedUnit.getPosition().getY() / 60);
+//
+//				Player[] persos = new Player[3];
+//				persos[0] = redHeroComponent;
+//				persos[1] = blueHeroComponent;
+//				persos[2] = greenHeroComponent;
+//
+//				for (int i = 0; i < persos.length; i++) {
+//					int pX = (int) persos[i].getPosition().getX();
+//					int pY = (int) persos[i].getPosition().getY();
+//					new Click();
+//					int tab[] = Click.cases(x, y);
+//					if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
+////					System.out.println("printed !");
+//
+//						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 180, pY - 180));
+//					
+//					} else { 
+//						if(rangeTwo != null){
+//							rangeTwo.removeFromWorld();
+//						}
+//					}
+//				}
+//
+////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
+////				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
+//
+//			}
+//		});
 
 	}
 
