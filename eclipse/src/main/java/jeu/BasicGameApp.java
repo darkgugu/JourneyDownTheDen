@@ -51,6 +51,7 @@ public class BasicGameApp extends GameApplication {
 	private Entity rangeTwo;
 	boolean gridState = false;
 	boolean rangeTwoState = false;
+	boolean activeSkillOk = false;
 
 	@Override
 	protected void initSettings(GameSettings settings) {
@@ -87,11 +88,11 @@ public class BasicGameApp extends GameApplication {
 		getGameWorld().addEntityFactory(new UIEntity());
 		
 
-		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
-		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
+//		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
+//		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 //		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
 //		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
-		System.out.println(redHeroComponent.getHeroClass());
+		//System.out.println(redHeroComponent.getHeroClass());
 
 		// System.out.println(greenHeroComponent.getHeroClass());
 		// new BouleDeFeu().cast(redHeroComponent.getHeroClass(),
@@ -101,11 +102,10 @@ public class BasicGameApp extends GameApplication {
 
 		lineOfUI = Entities.builder().at(0, 900).viewFromNode(new Rectangle(1920, 180, Color.GREY)).buildAndAttach(getGameWorld());
 
-		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
-		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
-		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
-		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
-		
+//		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
+//		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
+//		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
+//		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
 
 
 		InfoUI = Entities.builder().at(5, 901).viewFromTexture("UI.png").buildAndAttach(getGameWorld());
@@ -163,21 +163,32 @@ public class BasicGameApp extends GameApplication {
 			public void handle(MouseEvent event) {
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
+				
+				Fireball activeSkill = new Fireball();
+				int skillSlot = SkillSlot.isSkillSlot(x, y);
+				
 				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
 				Player[] persos = new Player[3];
 				persos[0] = redHeroComponent;
 				persos[1] = blueHeroComponent;
 				persos[2] = greenHeroComponent;
-				int skillSlot = SkillSlot.isSkillSlot(x, y);
+
 				if(skillSlot != -1) {
 					
 					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Boule de Feu") {
 						
-						new Fireball().cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
+						//Fireball activeSkill = new Fireball();
+						activeSkillOk = true;
+						System.out.println("Fireball");
+						
+						//.cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
 					}
 					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Soin") {
 						
-						new Soin().cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
+						System.out.println("Pas encore implémenté");
+						//Soin activeSkill = new Soin();
+						//activeSkillOk = true;
+						//.cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
 					}
 					
 					
@@ -191,6 +202,7 @@ public class BasicGameApp extends GameApplication {
 //					}
 
 				}
+
 				if (event.getButton() == MouseButton.SECONDARY) {
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
@@ -199,8 +211,20 @@ public class BasicGameApp extends GameApplication {
 						int[] tabClick = Click.cases(x, y);
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
-							selectedUnit = persos[i];
-							System.out.println(selectedUnit.getName());
+							
+							if(activeSkillOk) {
+								
+								activeSkill.cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
+								System.out.println("Target : " + persos[i].getName());
+								activeSkillOk = false;
+								
+							}
+							else {
+							
+								selectedUnit = persos[i];
+								System.out.println(selectedUnit.getName());
+								
+							}							
 						}
 					}
 				} else {

@@ -7,7 +7,7 @@ public class Healer extends Personnages{
 	
 	public Healer() {
 		super(95, "Healer", 10, 20, 10, 10, 10);
-		skills[0] = new Soin();
+		skills[0] = new Fireball();
 		skills[1] = new Fireball();		
 	}
 
