@@ -131,22 +131,6 @@ public class BasicGameApp extends GameApplication {
 			}
 		}, KeyCode.F);
 	}
-
-	/*
-	 * LOGGER
-	 */
-
-//    private void initLogger(ReadOnlyGameSettings settings) {
-//        // we write all logs to file but adjust console log level based on app mode
-//        if (settings.isFileSystemWriteAllowed() && settings.isDesktop() && !settings.isExperimentalNative()) {
-//            Logger.addOutput(new FileOutput("FXGL"), LoggerLevel.DEBUG);
-//        }
-//        Logger.addOutput(new ConsoleOutput(), settings.getApplicationMode().getLoggerLevel());
-//
-//        Logger.configure(new LoggerConfig());
-//
-//        log.debug("Logging settings\n" + settings);
-//    }
     
 	@Override
 	protected void initUI() {
