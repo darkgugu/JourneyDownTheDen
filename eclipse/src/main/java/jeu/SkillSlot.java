@@ -3,7 +3,7 @@ package jeu;
 public abstract class SkillSlot {
 	
 	public static int isSkillSlot(int x, int y) {
-		//780 840
+		
 		int skillSlot = -1;
 		
 		/* 	
@@ -14,7 +14,7 @@ public abstract class SkillSlot {
 		if(y >= 900 && y <= 960) {
 		
 			if(x >= 840 && x <= 900) skillSlot = 0;
-//			if(x >= 41 && x <= 80) skillSlot = 1;
+//			if(x >= 580 && x <= 620) skillSlot = 1;
 //			if(x >= 300 && x <= 400) skillSlot = 2;
 //			if(x >= 300 && x <= 400) skillSlot = 3;
 //			if(x >= 300 && x <= 400) skillSlot = 4;
