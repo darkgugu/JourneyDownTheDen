@@ -19,7 +19,6 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
-import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.settings.ReadOnlyGameSettings;
 
@@ -53,6 +52,10 @@ public class BasicGameApp extends GameApplication {
 	boolean rangeTwoState = false;
 	boolean activeSkillOk = false;
 
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 	@Override
 	protected void initSettings(GameSettings settings) {
 		settings.setWidth(1920);
@@ -72,7 +75,6 @@ public class BasicGameApp extends GameApplication {
 	protected void initGame() {
 		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
 		getGameWorld().setLevelFromMap(map1);
-
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
@@ -131,6 +133,7 @@ public class BasicGameApp extends GameApplication {
 					gridState = false;
 				}
 			}
+			
 		}, KeyCode.F);
 	}
     
@@ -151,7 +154,7 @@ public class BasicGameApp extends GameApplication {
 				Fireball activeSkill = new Fireball();
 				int skillSlot = SkillSlot.isSkillSlot(x, y);
 				
-				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
+				System.out.println("Coordonï¿½es cursor pixel (" + x + " , " + y + ")");
 				Player[] persos = new Player[3];
 				persos[0] = redHeroComponent;
 				persos[1] = blueHeroComponent;
@@ -169,7 +172,7 @@ public class BasicGameApp extends GameApplication {
 					}
 					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Soin") {
 						
-						System.out.println("Pas encore implémenté");
+						System.out.println("Pas encore implï¿½mentï¿½");
 						//Soin activeSkill = new Soin();
 						//activeSkillOk = true;
 						//.cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
@@ -255,16 +258,11 @@ public class BasicGameApp extends GameApplication {
 //					}
 //				}
 //
-////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-////				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
+////				System.out.println("Coordonï¿½es du tabl (" + tab[2] + " , " + tab[3] + ")");
+////				System.out.println("Coordonï¿½es du joueur (" + casePlayerX + " , " + casePlayerY + ")");
 //
 //			}
 //		});
 
 	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
 }

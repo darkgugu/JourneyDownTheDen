@@ -51,8 +51,8 @@ private Personnages HeroClass;
 
 		int casePlayerX = (int) (posX / 60);
 		int casePlayerY = (int) (posY / 60);
-		System.out.println("Coordonées player pixels ("  + position.getX() + " , " + position.getY() + ")");
-		System.out.println("Coordonées player case (" + casePlayerX + " , " + casePlayerY + ")");
+		System.out.println("Coordonï¿½es player pixels ("  + position.getX() + " , " + position.getY() + ")");
+		System.out.println("Coordonï¿½es player case (" + casePlayerX + " , " + casePlayerY + ")");
 
 		int tab[] = new Click().cases(((int) direction.getX()), ((int) direction.getY()));
 		Deplacement move = new Deplacement();
@@ -61,15 +61,13 @@ private Personnages HeroClass;
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 
-
-		
-		
 //		List<SimpleEntry<Integer, Integer>> bannedList = (60);
 //		Iterator<Integer> bannedIterator = bannedList.iterator();
 //		SimpleEntry<Integer, Integer> vars2 = new SimpleEntry<Integer, Integer>(60, 180);
 		
-		System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println("Coordonï¿½es du tabl (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println("Coin supï¿½rieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
+
 		if (list.contains(vars)) {
 			
 			position.translateX(tab[2] - position.getX());
@@ -77,10 +75,7 @@ private Personnages HeroClass;
 			posX = (int) position.getX();
 			posY = (int) position.getY();
 
-			System.out.println(
-					"Classe : " + getHeroClass().getName() +
-					"\nPV : " + getHeroClass().getPv() + "/" + getHeroClass().getPvMax());
-			System.out.println("Coordonées player X Y (" + posX + " , " + posY + ") \n\n");
+			System.out.println("Coordonï¿½es player X Y (" + posX + " , " + posY + ") \n\n");
 
 		} else {
 			System.out.println("pas de deplacement");
