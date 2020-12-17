@@ -42,13 +42,13 @@ private Personnages HeroClass;
 	}
 
 	public void move(Point2D direction) {
-		System.out.println(position.getX() + " " + position.getY());
 
 		int posX = (int) position.getX();
 		int posY = (int) position.getY();
 
 		int casePlayerX = (int) (posX / 60);
 		int casePlayerY = (int) (posY / 60);
+		System.out.println("Coordonées player pixels ("  + position.getX() + " , " + position.getY() + ")");
 		System.out.println("Coordonées player case (" + casePlayerX + " , " + casePlayerY + ")");
 
 		int tab[] = new Click().cases(((int) direction.getX()), ((int) direction.getY()));
@@ -57,17 +57,14 @@ private Personnages HeroClass;
 		move.calculateDiag(2, casePlayerX, casePlayerY);
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
-		System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
 		if (list.contains(vars)) {
 
 			position.translateX(tab[2] - position.getX());
 			position.translateY(tab[3] - position.getY());
 			posX = (int) position.getX();
 			posY = (int) position.getY();
-			System.out.println("Coordonées player X Y (" + posX + " , " + posY + ")");
-			System.out.println(
-					"Classe : " + getHeroClass().getName() +
-					"\nPV : " + getHeroClass().getPv() + "/" + getHeroClass().getPvMax());
+			System.out.println("Coordonées player X Y (" + posX + " , " + posY + ") \n\n");
 		} else {
 			System.out.println("pas de deplacement");
 		}

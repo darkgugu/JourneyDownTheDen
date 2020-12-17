@@ -11,10 +11,10 @@ public abstract class SkillSlot {
 		 	200 = xmax des coords de la barre de sort
 		 	300 & 400 = y min & max des sorts
 		 */
-		if(y >= 640 && y <= 680) {
+		if(y >= 900 && y <= 960) {
 		
-			if(x >= 580 && x <= 620) skillSlot = 0;
-//			if(x >= 41 && x <= 80) skillSlot = 1;
+			if(x >= 840 && x <= 900) skillSlot = 0;
+//			if(x >= 580 && x <= 620) skillSlot = 1;
 //			if(x >= 300 && x <= 400) skillSlot = 2;
 //			if(x >= 300 && x <= 400) skillSlot = 3;
 //			if(x >= 300 && x <= 400) skillSlot = 4;
