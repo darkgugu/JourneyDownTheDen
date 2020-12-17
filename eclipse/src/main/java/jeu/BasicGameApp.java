@@ -245,10 +245,11 @@ public class BasicGameApp extends GameApplication {
 //					if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
 ////					System.out.println("printed !");
 //
-//						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 180, pY - 180));
+//						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(caseCursorX - 60, caseCursorY - 60));
 //					
 //					} else { 
 //						if(rangeTwo != null){
+////							rangeTwo.setUpdateEnabled(true);
 //							rangeTwo.removeFromWorld();
 //						}
 //					}

@@ -11,7 +11,7 @@ import com.almasb.fxgl.extra.entity.components.OffscreenCleanComponent;
 
 import jeu.EntityType;
 
-public class UIEntity extends Component implements EntityFactory {
+public class UIEntity implements EntityFactory {
 	
 	@Spawns("rangeTwo")
 	public Entity newRangeTwo(SpawnData data) {

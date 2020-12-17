@@ -63,7 +63,7 @@ private Personnages HeroClass;
 
 		
 		
-//		List<SimpleEntry<Integer, Integer>> bannedList = (60), (60);
+//		List<SimpleEntry<Integer, Integer>> bannedList = (60);
 //		Iterator<Integer> bannedIterator = bannedList.iterator();
 //		SimpleEntry<Integer, Integer> vars2 = new SimpleEntry<Integer, Integer>(60, 180);
 		

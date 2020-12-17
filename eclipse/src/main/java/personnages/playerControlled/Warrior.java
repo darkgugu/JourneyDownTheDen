@@ -4,7 +4,7 @@ public class Warrior extends Personnages{
 
 
 	public Warrior() {
-		super(100, "Warrior", 10, 50, 20, 5, 10);
+		super(100, "Warrior", 10, 50, 20, 5, 2);
 
 	}
 
