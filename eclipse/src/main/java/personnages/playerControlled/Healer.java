@@ -1,26 +1,17 @@
 package personnages.playerControlled;
 
-import capacites.Capacites;
+import capacites.Fireball;
+import capacites.Soin;
 
 public class Healer extends Personnages{
-
-	private Capacites skills[] = new Capacites[10];
 	
-	public Capacites[] getSkills() {
-		return skills;
-	}
-
-
-	public void setSkills(Capacites a, Capacites b) {
-		this.skills[0] = a;
-		this.skills[1] = b;
-	}
-
 	public Healer() {
 		super(95, "Healer", 10, 20, 10, 10, 10);
-
+		skills[0] = new Fireball();
+		skills[1] = new Fireball();
 	}
 
+	
 	@Override
 	public String toString() {
 		

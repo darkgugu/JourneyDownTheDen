@@ -1,5 +1,7 @@
 package personnages;
 
+import capacites.Capacites;
+
 public class Unites {
 
 	private int pv;
@@ -10,6 +12,8 @@ public class Unites {
 	protected int actionPoint, actionPointMax;
 	protected int movePoint, movePointMax;
 	private int pvMax;
+	protected Capacites skills[];
+
 
 	
 	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint, int movePoint) {
@@ -24,6 +28,7 @@ public class Unites {
 		this.movePoint = movePoint;
 		this.movePointMax = movePoint;		
 		this.setPvMax(pv);
+		this.skills = new Capacites[10];
 	}
 
 	public void setActionPointToMax() {
@@ -91,6 +96,17 @@ public class Unites {
 	public void setPvMax(int pvMax) {
 		this.pvMax = pvMax;
 	}
+	
+	public Capacites[] getSkills() {
+		return skills;
+	}
+
+
+	public void setSkills(Capacites skill, int i) {
+		this.skills[i] = skill;
+	}
+
+	
 	
 	
 	
