@@ -136,22 +136,6 @@ public class BasicGameApp extends GameApplication {
 			
 		}, KeyCode.F);
 	}
-
-	/*
-	 * LOGGER
-	 */
-
-//    private void initLogger(ReadOnlyGameSettings settings) {
-//        // we write all logs to file but adjust console log level based on app mode
-//        if (settings.isFileSystemWriteAllowed() && settings.isDesktop() && !settings.isExperimentalNative()) {
-//            Logger.addOutput(new FileOutput("FXGL"), LoggerLevel.DEBUG);
-//        }
-//        Logger.addOutput(new ConsoleOutput(), settings.getApplicationMode().getLoggerLevel());
-//
-//        Logger.configure(new LoggerConfig());
-//
-//        log.debug("Logging settings\n" + settings);
-//    }
     
 	@Override
 	protected void initUI() {
@@ -264,10 +248,11 @@ public class BasicGameApp extends GameApplication {
 //					if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
 ////					System.out.println("printed !");
 //
-//						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 180, pY - 180));
+//						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(caseCursorX - 60, caseCursorY - 60));
 //					
 //					} else { 
 //						if(rangeTwo != null){
+////							rangeTwo.setUpdateEnabled(true);
 //							rangeTwo.removeFromWorld();
 //						}
 //					}
