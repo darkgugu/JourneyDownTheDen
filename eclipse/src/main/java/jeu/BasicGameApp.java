@@ -21,7 +21,6 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
-import com.almasb.fxgl.parser.tiled.Tileset;
 import com.almasb.fxgl.settings.GameSettings;
 import com.almasb.fxgl.settings.ReadOnlyGameSettings;
 
@@ -55,6 +54,10 @@ public class BasicGameApp extends GameApplication {
 	boolean rangeTwoState = false;
 	boolean activeSkillOk = false;
 
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 	@Override
 	protected void initSettings(GameSettings settings) {
 		settings.setWidth(1920);
@@ -74,7 +77,6 @@ public class BasicGameApp extends GameApplication {
 	protected void initGame() {
 		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
 		getGameWorld().setLevelFromMap(map1);
-
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
@@ -131,6 +133,7 @@ public class BasicGameApp extends GameApplication {
 					gridState = false;
 				}
 			}
+
 		}, KeyCode.F);
 	}
 
@@ -218,7 +221,6 @@ public class BasicGameApp extends GameApplication {
 		/*
 		 * AFFICHAGE DES CASES ADJACENTES
 		 */
-
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -271,11 +273,5 @@ public class BasicGameApp extends GameApplication {
 				}
 			}
 		});
-
 	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
 }
