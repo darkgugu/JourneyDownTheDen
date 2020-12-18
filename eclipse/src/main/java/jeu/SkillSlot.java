@@ -16,7 +16,6 @@ public abstract class SkillSlot {
 		
 		if(tab[1] == 15) {
 			for (int i = 0; i < 10; i++) {
-				//System.out.println(i);
 				if(slotsCoord.get(i) == tab[0]) return i;
 			}
 		}
