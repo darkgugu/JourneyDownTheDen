@@ -7,19 +7,19 @@ import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.entity.component.Component;
-import com.almasb.fxgl.extra.entity.components.OffscreenCleanComponent;
 
 import jeu.EntityType;
 
-public class UIEntity extends Component implements EntityFactory {
+public class UIEntity implements EntityFactory {
 	
 	@Spawns("rangeTwo")
 	public Entity newRangeTwo(SpawnData data) {
 		return Entities.builder()
-		.from(data)
-		.type(EntityType.RANGE_TWO)
-		.viewFromTexture("rangeUnit.png")
-		.build();
+				.from(data)
+				.type(EntityType.RANGE_TWO)
+				.viewFromTexture("rangeUnit.png")
+//				.collidable()
+				.build();
 	}
 
 	@Spawns("spell1")

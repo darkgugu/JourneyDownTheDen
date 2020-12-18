@@ -34,7 +34,7 @@ public abstract class CharInfoView extends Application {
 //		textCharInfo.setFont(Font.loadFont("file:resources/assets/ui/fonts/font.ttf", 30));
 
 		/*
-		 * Texte générique
+		 * Texte gï¿½nï¿½rique
 		 */
 		textCharInfo.setFont(Font.font("Verdana", 15));
 		textCharInfo.setFill(Color.BLACK);
