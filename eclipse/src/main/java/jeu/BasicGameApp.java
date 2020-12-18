@@ -110,7 +110,17 @@ public class BasicGameApp extends GameApplication {
 
 		InfoUI = Entities.builder().at(5, 901).viewFromTexture("UI.png").buildAndAttach(getGameWorld());
 		
+		SpellUI= Entities.builder().at(720, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(780, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
 		SpellUI= Entities.builder().at(840, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(900, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(960, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(1020, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(1080, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(1140, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(1200, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+		SpellUI= Entities.builder().at(1260, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+
 
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
