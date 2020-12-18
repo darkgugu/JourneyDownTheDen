@@ -6,7 +6,9 @@
 package jeu;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
+import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.core.logging.ConsoleOutput;
 import com.almasb.fxgl.core.logging.FileOutput;
@@ -83,16 +85,14 @@ public class BasicGameApp extends GameApplication {
 		blueHeroComponent.setName("blue");
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
-		selectedUnit = redHeroComponent;
 
 		getGameWorld().addEntityFactory(new UIEntity());
-		
 
 //		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 //		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 //		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
 //		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
-		//System.out.println(redHeroComponent.getHeroClass());
+		// System.out.println(redHeroComponent.getHeroClass());
 
 		// System.out.println(greenHeroComponent.getHeroClass());
 		// new BouleDeFeu().cast(redHeroComponent.getHeroClass(),
@@ -100,17 +100,17 @@ public class BasicGameApp extends GameApplication {
 		// System.out.println("Green Hero PV : " +
 		// greenHeroComponent.getHeroClass().getPv());
 
-		lineOfUI = Entities.builder().at(0, 900).viewFromNode(new Rectangle(1920, 180, Color.GREY)).buildAndAttach(getGameWorld());
+		lineOfUI = Entities.builder().at(0, 900).viewFromNode(new Rectangle(1920, 180, Color.GREY))
+				.buildAndAttach(getGameWorld());
 
 //		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
 //		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
 //		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
 //		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
 
-
 		InfoUI = Entities.builder().at(5, 901).viewFromTexture("UI.png").buildAndAttach(getGameWorld());
-		
-		SpellUI= Entities.builder().at(840, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
+
+		SpellUI = Entities.builder().at(840, 901).viewFromTexture("spells.png").buildAndAttach(getGameWorld());
 
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
@@ -133,7 +133,7 @@ public class BasicGameApp extends GameApplication {
 			}
 		}, KeyCode.F);
 	}
-    
+
 	@Override
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
@@ -141,125 +141,136 @@ public class BasicGameApp extends GameApplication {
 		CharInfoView.charInfoUI(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent);
 
 		getGameScene().setCursor("cursor.png", hotspot);
+//		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
+//
+//			@Override
+//			public void handle(MouseEvent event) {
+//				int x = (int) event.getSceneX();
+//				int y = (int) event.getSceneY();
+//
+//				Fireball activeSkill = new Fireball();
+//				int skillSlot = SkillSlot.isSkillSlot(x, y);
+//
+//				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
+//				Player[] persos = new Player[3];
+//				persos[0] = redHeroComponent;
+//				persos[1] = blueHeroComponent;
+//				persos[2] = greenHeroComponent;
+//
+//				if (skillSlot != -1) {
+//
+//					if (selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Boule de Feu") {
+//
+//						// Fireball activeSkill = new Fireball();
+//						activeSkillOk = true;
+//						System.out.println("Fireball");
+//
+//						// .cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
+//					}
+//					if (selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Soin") {
+//
+//						System.out.println("Pas encore implémenté");
+//						// Soin activeSkill = new Soin();
+//						// activeSkillOk = true;
+//						// .cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
+//					}
+//
+//					// Introspection
+////					try {
+////						Capacites ent = (Capacites) Class.forName("capacites.Fireball").newInstance();
+////						ent.cast(selectedUnit.getHeroClass());
+////					} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+////						// TODO Auto-generated catch block
+////						e.printStackTrace();
+////					}
+//
+//				}
+//
+//				if (event.getButton() == MouseButton.SECONDARY) {
+//					for (int i = 0; i < persos.length; i++) {
+//						int pX = (int) persos[i].getPosition().getX();
+//						int pY = (int) persos[i].getPosition().getY();
+//						int[] tabPerso = Click.cases(pX, pY);
+//						int[] tabClick = Click.cases(x, y);
+//
+//						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
+//
+//							if (activeSkillOk) {
+//
+//								activeSkill.cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
+//								System.out.println("Target : " + persos[i].getName());
+//								activeSkillOk = false;
+//
+//							} else {
+//
+//								selectedUnit = persos[i];
+//								System.out.println(selectedUnit.getName());
+//
+//							}
+//						}
+//					}
+//				} else {
+//					selectedUnit.move(new Point2D(x, y));
+//				}
+//			}
+//		});
+
+		/*
+		 * AFFICHAGE DES CASES ADJACENTES
+		 */
+
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
-				
-				Fireball activeSkill = new Fireball();
-				int skillSlot = SkillSlot.isSkillSlot(x, y);
-				
-				System.out.println("Coordonées cursor pixel (" + x + " , " + y + ")");
-				Player[] persos = new Player[3];
-				persos[0] = redHeroComponent;
-				persos[1] = blueHeroComponent;
-				persos[2] = greenHeroComponent;
-
-				if(skillSlot != -1) {
-					
-					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Boule de Feu") {
-						
-						//Fireball activeSkill = new Fireball();
-						activeSkillOk = true;
-						System.out.println("Fireball");
-						
-						//.cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
-					}
-					if(selectedUnit.getHeroClass().getSkills()[skillSlot].getName() == "Soin") {
-						
-						System.out.println("Pas encore implémenté");
-						//Soin activeSkill = new Soin();
-						//activeSkillOk = true;
-						//.cast(selectedUnit.getHeroClass(), selectedUnit.getHeroClass());
-					}
-					
-					
-					//Introspection
-//					try {
-//						Capacites ent = (Capacites) Class.forName("capacites.Fireball").newInstance();
-//						ent.cast(selectedUnit.getHeroClass());
-//					} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-
-				}
-
+				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE_TWO);
 				if (event.getButton() == MouseButton.SECONDARY) {
+
+					Player[] persos = new Player[3];
+					persos[0] = redHeroComponent;
+					persos[1] = blueHeroComponent;
+					persos[2] = greenHeroComponent;
+
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
 						int[] tabPerso = Click.cases(pX, pY);
 						int[] tabClick = Click.cases(x, y);
-
+						System.out.println(pX + "  " + pY);
+						System.out.println(pX + "  " + pY);
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
-							
-							if(activeSkillOk) {
-								
-								activeSkill.cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-								System.out.println("Target : " + persos[i].getName());
-								activeSkillOk = false;
-								
-							}
-							else {
-							
+							if (selectedUnit == null) {
 								selectedUnit = persos[i];
-								System.out.println(selectedUnit.getName());
-								
-							}							
+								rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 120, pY - 120));
+							} else {
+								for (Entity entity : list) {
+									entity.removeFromWorld();
+								}
+								if (persos[i] == selectedUnit) {
+									selectedUnit = null;
+								} else {
+									selectedUnit = persos[i];
+									rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 120, pY - 120));
+								}
+							}
+
+						} else {
+
 						}
 					}
 				} else {
-					selectedUnit.move(new Point2D(x, y));
+					if (selectedUnit != null) {
+						for (Entity entity : list) {
+							entity.removeFromWorld();
+						}
+						System.out.println("move");
+						selectedUnit.move(new Point2D(x, y));
+					}
 				}
 			}
 		});
-
-		/*
-		 * AFFICHAGE DES CASES ADJACENTES
-		 */
-
-//		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
-//
-//			@Override
-//			public void handle(MouseEvent event) {
-//				int x = (int) event.getSceneX();
-//				int y = (int) event.getSceneY();
-//				int caseCursorX = ((int) event.getSceneX() / 60);
-//				int caseCursorY = ((int) event.getSceneY() / 60);
-//				int casePlayerX = (int) (selectedUnit.getPosition().getX() / 60);
-//				int casePlayerY = (int) (selectedUnit.getPosition().getY() / 60);
-//
-//				Player[] persos = new Player[3];
-//				persos[0] = redHeroComponent;
-//				persos[1] = blueHeroComponent;
-//				persos[2] = greenHeroComponent;
-//
-//				for (int i = 0; i < persos.length; i++) {
-//					int pX = (int) persos[i].getPosition().getX();
-//					int pY = (int) persos[i].getPosition().getY();
-//					new Click();
-//					int tab[] = Click.cases(x, y);
-//					if ((caseCursorX == casePlayerX) && (caseCursorY == casePlayerY)) {
-////					System.out.println("printed !");
-//
-//						rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(caseCursorX - 60, caseCursorY - 60));
-//					
-//					} else { 
-//						if(rangeTwo != null){
-////							rangeTwo.setUpdateEnabled(true);
-//							rangeTwo.removeFromWorld();
-//						}
-//					}
-//				}
-//
-////				System.out.println("Coordonées du tabl (" + tab[2] + " , " + tab[3] + ")");
-////				System.out.println("Coordonées du joueur (" + casePlayerX + " , " + casePlayerY + ")");
-//
-//			}
-//		});
 
 	}
 
