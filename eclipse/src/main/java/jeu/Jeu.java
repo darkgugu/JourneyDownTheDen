@@ -19,13 +19,16 @@ public class Jeu{
 	
 
 	public static void main(String[] args) {
-		
+	
+//		int x = 1344;
+//		int y = 931;
+//		System.out.println(SkillSlot.isSkillSlot(x, y));
 //		Deplacement depl = new Deplacement();
 //		
 //		depl.calculateCross(3, 4, 4);
 //		depl.calculateDiag(3, 4, 4);
 //		new Click();
-//		int[] tab = Click.cases(1053, 502);
+//		int[] tab = Click.cases(885, 920);		
 //		
 //		List<SimpleEntry<Integer, Integer>> list = depl.list;
 //		
