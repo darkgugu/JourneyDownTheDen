@@ -9,13 +9,15 @@ import com.almasb.fxgl.core.collection.Grid;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.entity.components.PositionComponent;
 
+import capacites.Capacites;
 import javafx.geometry.Point2D;
 import personnages.playerControlled.Personnages;
 
 public class Player extends Component {
 	private PositionComponent position;
 	private String name;
-private Personnages HeroClass;
+	private Personnages HeroClass;
+	private Capacites activeSkill;
 	
 	
 	public Player(Personnages heroClass) {
@@ -80,5 +82,11 @@ private Personnages HeroClass;
 		} else {
 			System.out.println("pas de deplacement");
 		}
+	}
+	public Capacites getActiveSkill() {
+		return activeSkill;
+	}
+	public void setActiveSkill(Capacites activeSkill) {
+		this.activeSkill = activeSkill;
 	}
 }
