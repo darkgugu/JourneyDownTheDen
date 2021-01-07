@@ -53,8 +53,8 @@ public class Player extends Component {
 
 		int casePlayerX = (int) (posX / 60);
 		int casePlayerY = (int) (posY / 60);
-		System.out.println("Coordonï¿½es player pixels ("  + position.getX() + " , " + position.getY() + ")");
-		System.out.println("Coordonï¿½es player case (" + casePlayerX + " , " + casePlayerY + ")");
+		System.out.println("Coordonnées player pixels ("  + position.getX() + " , " + position.getY() + ")");
+		System.out.println("Coordonnées player case (" + casePlayerX + " , " + casePlayerY + ")");
 
 		int tab[] = new Click().cases(((int) direction.getX()), ((int) direction.getY()));
 		Deplacement move = new Deplacement();
@@ -67,8 +67,8 @@ public class Player extends Component {
 //		Iterator<Integer> bannedIterator = bannedList.iterator();
 //		SimpleEntry<Integer, Integer> vars2 = new SimpleEntry<Integer, Integer>(60, 180);
 		
-		System.out.println("Coordonï¿½es du tabl (" + tab[2] + " , " + tab[3] + ")");
-		System.out.println("Coin supï¿½rieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
 
 		if (list.contains(vars)) {
 			
@@ -77,7 +77,7 @@ public class Player extends Component {
 			posX = (int) position.getX();
 			posY = (int) position.getY();
 
-			System.out.println("Coordonï¿½es player X Y (" + posX + " , " + posY + ") \n\n");
+			System.out.println("Coordonnées player X Y (" + posX + " , " + posY + ") \n\n");
 
 		} else {
 			System.out.println("pas de deplacement");

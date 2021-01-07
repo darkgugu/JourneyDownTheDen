@@ -90,18 +90,6 @@ public class BasicGameApp extends GameApplication {
 
 		getGameWorld().addEntityFactory(new UIEntity());
 
-//		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
-//		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
-//		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
-//		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
-		// System.out.println(redHeroComponent.getHeroClass());
-
-		// System.out.println(greenHeroComponent.getHeroClass());
-		// new BouleDeFeu().cast(redHeroComponent.getHeroClass(),
-		// greenHeroComponent.getHeroClass());
-		// System.out.println("Green Hero PV : " +
-		// greenHeroComponent.getHeroClass().getPv());
-
 		lineOfUI = Entities.builder().at(0, 900).viewFromNode(new Rectangle(1920, 180, Color.GREY))
 				.buildAndAttach(getGameWorld());
 
@@ -174,6 +162,8 @@ public class BasicGameApp extends GameApplication {
 
 						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
 						selectedUnit.setActiveSkill(skill);
+						activeSkillOk = true;
+						System.out.println("Active Skill : " + skill.getName());
 					}
 					else {
 						
