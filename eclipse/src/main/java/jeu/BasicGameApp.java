@@ -168,8 +168,24 @@ public class BasicGameApp extends GameApplication {
 				int y = (int) event.getSceneY();
 				System.out.println(x + " " + y);
 				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE_TWO);
-				List<Entity> listBlock = getGameWorld().getEntitiesByType(EntityType.BLOCK);
 				int[] tabClick = Click.cases(x, y);
+				
+				int skillSlot = SkillSlot.isSkillSlot(x, y);
+				if (skillSlot != -1) {
+
+					if(selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
+
+						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
+						selectedUnit.setActiveSkill(skill);
+						activeSkillOk = true;
+						System.out.println("Active Skill : " + skill.getName());
+					}
+					else {
+						
+						System.out.println("Il n'y à aucun sort dans cet emplacement !");
+					}
+
+				}
 				
 				if (event.getButton() == MouseButton.PRIMARY && activeSkillOk) {
 					
@@ -195,22 +211,7 @@ public class BasicGameApp extends GameApplication {
 //				if (event.getButton() == MouseButton.SECONDARY) {
 
 //
-//				int skillSlot = SkillSlot.isSkillSlot(x, y);
-//				if (skillSlot != -1) {
-//
-//					if(selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
-//
-//						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
-//						selectedUnit.setActiveSkill(skill);
-//						activeSkillOk = true;
-//						System.out.println("Active Skill : " + skill.getName());
-//					}
-//					else {
-//						
-//						System.out.println("Il n'y à aucun sort dans cet emplacement !");
-//					}
-//
-//				}
+
 				
 				if (event.getButton() == MouseButton.SECONDARY) {
 
