@@ -45,11 +45,12 @@ public class BasicGameApp extends GameApplication {
 	private Entity rangeTwo;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
+	
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
 	@Override
 	protected void initSettings(GameSettings settings) {
 		settings.setWidth(1920);
@@ -101,6 +102,9 @@ public class BasicGameApp extends GameApplication {
 		Entity SpellUI8 = getGameWorld().spawn("spell8", new Point2D(1140, 901));
 		Entity SpellUI9 = getGameWorld().spawn("spell9", new Point2D(1200, 901));
 		Entity SpellUI10 = getGameWorld().spawn("spell10", new Point2D(1260, 901));
+		
+		Entity SkipButton = getGameWorld().spawn("spell10", new Point2D(1380, 901));
+
 
 
 //		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
@@ -159,6 +163,7 @@ public class BasicGameApp extends GameApplication {
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
 		CharInfoView.charInfoUI(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent);
+		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -171,6 +176,13 @@ public class BasicGameApp extends GameApplication {
 				int[] tabClick = Click.cases(x, y);
 				
 				int skillSlot = SkillSlot.isSkillSlot(x, y);
+				
+				if(tabClick[0] == 23 && tabClick[1] == 15) {
+
+					tour.debut();
+					selectedUnit.getHeroClass().setDidMove(false);
+				}
+				
 				if (skillSlot != -1) {
 
 					if(selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
@@ -208,11 +220,7 @@ public class BasicGameApp extends GameApplication {
 					}
 				}
 				
-//				if (event.getButton() == MouseButton.SECONDARY) {
-
-//
-
-				
+	
 				if (event.getButton() == MouseButton.SECONDARY) {
 
 					Player[] persos = new Player[3];
@@ -264,12 +272,13 @@ public class BasicGameApp extends GameApplication {
 						}
 					}
 
-					if (selectedUnit != null) {
+					if (selectedUnit != null && selectedUnit.getHeroClass().isDidMove() == false) {
 						for (Entity entity : list) {
 							entity.removeFromWorld();
 						}
 						System.out.println("move");
 						selectedUnit.move(new Point2D(x, y));
+						selectedUnit.getHeroClass().setDidMove(true);
 					}
 				}
 			}

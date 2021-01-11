@@ -13,9 +13,9 @@ public class Unites {
 	protected int movePoint, movePointMax;
 	private int pvMax;
 	protected Capacites skills[];
+	protected boolean didMove = false;
 
 
-	
 	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint, int movePoint) {
 		super();
 		this.pv = pv;
@@ -106,7 +106,13 @@ public class Unites {
 		this.skills[i] = skill;
 	}
 
-	
+	public boolean isDidMove() {
+		return didMove;
+	}
+
+	public void setDidMove(boolean didMove) {
+		this.didMove = didMove;
+	}
 	
 	
 	

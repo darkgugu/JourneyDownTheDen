@@ -7,18 +7,21 @@ public class Tour {
 	private Personnages persos[] = new Personnages[3];
 	private int nbTour = 0;
 
-	public Tour(Personnages[] persos) {
+	public Tour(Personnages perso0, Personnages perso1, Personnages perso2) {
 		super();
-		this.persos = persos;
+		persos[0] = perso0;
+		persos[1] = perso1;
+		persos[2] = perso2;
 	}
 	
 	public void debut() {
 		
 		for (int i = 0; i < persos.length; i++) {
-			
-			setNbTour(getNbTour() + 1);
-			persos[i].setActionPointToMax();
-			persos[i].setMovePointToMax();
+
+			//setNbTour(getNbTour() + 1);
+			//persos[i].setActionPointToMax();
+			//persos[i].setMovePointToMax();
+			persos[i].setDidMove(false);
 		}
 	}
 	
