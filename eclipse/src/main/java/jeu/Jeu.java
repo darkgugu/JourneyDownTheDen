@@ -19,33 +19,13 @@ public class Jeu{
 	
 
 	public static void main(String[] args) {
-	
+			
 //		int x = 1344;
 //		int y = 931;
 //		System.out.println(SkillSlot.isSkillSlot(x, y));
-//		Deplacement depl = new Deplacement();
-//		
-//		depl.calculateCross(3, 4, 4);
-//		depl.calculateDiag(3, 4, 4);
-//		new Click();
-//		int[] tab = Click.cases(885, 920);		
-//		
-//		List<SimpleEntry<Integer, Integer>> list = depl.list;
-//		
-//		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(4, 8);
 //
-//		
-//		if(list.contains(vars)) {
-//			
-//			System.out.println("ok");
-//		}
-//		
-//		System.out.println(tab[0] + "," + tab[1]);
-//
+		
 //		Healer healer = new Healer();
-//		Magician magician = new Magician();
-//		Gobelin gobelin = new Gobelin();
-//		Warrior warrior = new Warrior();
 //		
 //		Personnages persos[] = new Personnages[3];
 //		
@@ -78,7 +58,6 @@ public class Jeu{
 //		}
 //	
 //		BouleDeFeu bdf = new BouleDeFeu();
-//		Soin soin = new Soin();
 //		
 //		Pregame team = new Pregame();
 //		
@@ -98,11 +77,5 @@ public class Jeu{
 //		System.out.println("Gobelin HP : " + gobelin.getPv() + "/" + gobelin.getPvMax());
 //		
 //		System.out.println(healer);
-		
-//		BasicGameApp game = new BasicGameApp();
-		
-//		game.initGameVars(healer.getPv(), healer.getPvMax());
-		
-//		game.main(args);
 	}
 }

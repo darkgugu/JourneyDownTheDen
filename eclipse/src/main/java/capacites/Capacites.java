@@ -2,7 +2,7 @@ package capacites;
 
 import personnages.Unites;
 
-public class Capacites implements ICast{
+public abstract class Capacites implements ICast{
 
 	protected DamageElement type;
 	protected int range;
@@ -29,6 +29,8 @@ public class Capacites implements ICast{
 		System.out.println(caster.getName() + " lance " + getName());
 		return 0;
 	}
+	
+	public abstract int cast(Unites caster, Unites cible);
 
 	@Override
 	public void death(Unites killer, Unites cible) {
