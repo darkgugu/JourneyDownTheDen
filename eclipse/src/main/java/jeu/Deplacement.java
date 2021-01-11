@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deplacement {
-
+	
+	ObstacleReader obstacles = new ObstacleReader();
+	
 	public List<SimpleEntry<Integer, Integer>> list = new ArrayList<SimpleEntry<Integer, Integer>>();
 
 	public void calculateCross(int pm, int casePlayerX, int casePlayerY) {
@@ -38,7 +40,13 @@ public class Deplacement {
 
 	public void add(int x, int y) {
 
-		list.add(new SimpleEntry<Integer, Integer>(x, y));
+		obstacles.reader();
+		
+		if(!obstacles.map_obstacle.contains(new SimpleEntry<Integer, Integer>(x, y))) {
+			
+			list.add(new SimpleEntry<Integer, Integer>(x, y));
+		}
+		
 
 	}
 }

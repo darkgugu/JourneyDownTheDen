@@ -12,6 +12,8 @@ import personnages.playerControlled.Warrior;
 
 import java.util.AbstractMap.SimpleEntry;
 
+import jeu.ObstacleReader;
+
 
 
 @SuppressWarnings("unused")
@@ -19,7 +21,10 @@ public class Jeu{
 	
 
 	public static void main(String[] args) {
-			
+		
+
+		//ObstacleReader.reader();
+		
 //		int x = 1344;
 //		int y = 931;
 //		System.out.println(SkillSlot.isSkillSlot(x, y));
