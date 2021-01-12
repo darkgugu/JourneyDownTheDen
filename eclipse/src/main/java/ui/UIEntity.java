@@ -61,14 +61,27 @@ public class UIEntity implements EntityFactory {
 	/*
 	 * Declared entities of type SPELL
 	 */
-	@Spawns("spell1")
-	public Entity newSpell1(SpawnData data) {
+	
+	
+	@Spawns("spellBorder")
+	public Entity newSpellBorder(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
 				.viewFromTexture("spells.png")
 				.build();
 	}
+	
+	@Spawns("spell1")
+	public Entity newSpell1(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.SPELL)
+				.viewFromTexture("feu.png")
+				.build();
+	}
+	
+	
 	@Spawns("spell2")
 	public Entity newSpell2(SpawnData data) {
 		return Entities.builder()

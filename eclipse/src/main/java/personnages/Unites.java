@@ -13,8 +13,7 @@ public class Unites {
 	protected int movePoint, movePointMax;
 	private int pvMax;
 	protected Capacites skills[];
-
-
+	
 	
 	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint, int movePoint) {
 		super();

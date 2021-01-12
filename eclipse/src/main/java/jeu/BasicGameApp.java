@@ -30,6 +30,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import ui.CharInfoView;
 import ui.UIEntity;
 
@@ -45,7 +46,7 @@ public class BasicGameApp extends GameApplication {
 	private Entity rangeTwo;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -59,7 +60,7 @@ public class BasicGameApp extends GameApplication {
 		settings.setTitle("Journey down the den");
 		settings.setVersion("0.5");
 		settings.setAppIcon("JDTD_icon.png");
-		settings.setProfilingEnabled(true);
+//		settings.setProfilingEnabled(true);
 
 //To implement later
 //		settings.setIntroEnabled(true);
@@ -91,7 +92,8 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		Entity InfoUI = getGameWorld().spawn("infoUI", new Point2D(5, 901));
-		Entity SpellUI1 = getGameWorld().spawn("spell1", new Point2D(720, 901));
+		Entity SpellBorder = getGameWorld().spawn("spellBorder", new Point2D(720, 901));
+		Entity SpellUI1 = getGameWorld().spawn("spell1", new Point2D(725, 906));
 		Entity SpellUI2 = getGameWorld().spawn("spell2", new Point2D(780, 901));
 		Entity SpellUI3 = getGameWorld().spawn("spell3", new Point2D(840, 901));
 		Entity SpellUI4 = getGameWorld().spawn("spell4", new Point2D(900, 901));
@@ -158,7 +160,7 @@ public class BasicGameApp extends GameApplication {
 	@Override
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
-		CharInfoView.charInfoUI(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent);
+		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent );
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -170,6 +172,25 @@ public class BasicGameApp extends GameApplication {
 				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE_TWO);
 				List<Entity> listBlock = getGameWorld().getEntitiesByType(EntityType.BLOCK);
 				int[] tabClick = Click.cases(x, y);
+				
+				int skillSlot = SkillSlot.isSkillSlot(x, y);
+
+
+				if (skillSlot != -1) {
+
+					if(selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
+
+						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
+						selectedUnit.setActiveSkill(skill);
+						activeSkillOk = true;
+						System.out.println("Active Skill : " + skill.getName());
+					}
+					else {
+						
+						System.out.println("Il n'y a aucun sort dans cet emplacement !");
+					}
+
+				}
 				
 				if (event.getButton() == MouseButton.PRIMARY && activeSkillOk) {
 					
@@ -186,31 +207,12 @@ public class BasicGameApp extends GameApplication {
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
 							selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-							System.out.println("Target : " + persos[i].getName());
+							System.out.println("Target : "  + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent);
 							activeSkillOk = false;
 						}
 					}
 				}
-				
-//				if (event.getButton() == MouseButton.SECONDARY) {
-
-//
-//				int skillSlot = SkillSlot.isSkillSlot(x, y);
-//				if (skillSlot != -1) {
-//
-//					if(selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
-//
-//						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
-//						selectedUnit.setActiveSkill(skill);
-//						activeSkillOk = true;
-//						System.out.println("Active Skill : " + skill.getName());
-//					}
-//					else {
-//						
-//						System.out.println("Il n'y à aucun sort dans cet emplacement !");
-//					}
-//
-//				}
 				
 				if (event.getButton() == MouseButton.SECONDARY) {
 
@@ -225,8 +227,7 @@ public class BasicGameApp extends GameApplication {
 						int[] tabPerso = Click.cases(pX, pY);
 						System.out.println(pX + "  " + pY);
 						System.out.println(pX + "  " + pY);
-						// si tabClick == caseNonValide alors pas de déplacement
-//						if (tabClick[0] != tabCasesNonValides[0] && tabClick[1] != tabCasesNonValides[1]) {
+
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							if (selectedUnit == null) {
 								selectedUnit = persos[i];
@@ -250,9 +251,7 @@ public class BasicGameApp extends GameApplication {
 						} else {
 
 						}
-//						} else {
-//							System.out.println("dont move");
-//						}
+
 
 					}
 				} else {
