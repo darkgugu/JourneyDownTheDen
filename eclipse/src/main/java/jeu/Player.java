@@ -70,12 +70,13 @@ public class Player extends Component {
 		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
 		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
 
-		if (list.contains(vars)) {
+		if (list.contains(vars) && HeroClass.isDidMove() == false) {
 			
 			position.translateX(tab[2] - position.getX());
 			position.translateY(tab[3] - position.getY());
 			posX = (int) position.getX();
 			posY = (int) position.getY();
+			HeroClass.setDidMove(true);
 
 			System.out.println("Coordonnées player X Y (" + posX + " , " + posY + ") \n\n");
 
