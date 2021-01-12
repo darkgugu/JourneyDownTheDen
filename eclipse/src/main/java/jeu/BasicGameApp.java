@@ -46,7 +46,7 @@ public class BasicGameApp extends GameApplication {
 	private Entity rangeTwo;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -104,6 +104,7 @@ public class BasicGameApp extends GameApplication {
 		Entity SpellUI9 = getGameWorld().spawn("spell9", new Point2D(1200, 901));
 		Entity SpellUI10 = getGameWorld().spawn("spell10", new Point2D(1260, 901));
 
+		Entity SkipButton = getGameWorld().spawn("spell10", new Point2D(1380, 901));
 
 //		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 //		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
@@ -116,7 +117,6 @@ public class BasicGameApp extends GameApplication {
 		// greenHeroComponent.getHeroClass());
 		// System.out.println("Green Hero PV : " +
 		// greenHeroComponent.getHeroClass().getPv());
-
 
 //		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
 //		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
@@ -160,7 +160,12 @@ public class BasicGameApp extends GameApplication {
 	@Override
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent );
+
+		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent);
+
+		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
+				greenHeroComponent.getHeroClass());
+
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -170,35 +175,41 @@ public class BasicGameApp extends GameApplication {
 				int y = (int) event.getSceneY();
 				System.out.println(x + " " + y);
 				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE_TWO);
-				List<Entity> listBlock = getGameWorld().getEntitiesByType(EntityType.BLOCK);
 				int[] tabClick = Click.cases(x, y);
-				
+
 				int skillSlot = SkillSlot.isSkillSlot(x, y);
 
+				if (tabClick[0] == 23 && tabClick[1] == 15) {
+
+					tour.debut();
+					selectedUnit.getHeroClass().setDidMove(false);
+				}
 
 				if (skillSlot != -1) {
 
-					if(selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
+					if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
 
 						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
 						selectedUnit.setActiveSkill(skill);
 						activeSkillOk = true;
 						System.out.println("Active Skill : " + skill.getName());
-					}
-					else {
-						
+					} else {
+
 						System.out.println("Il n'y a aucun sort dans cet emplacement !");
+
+						System.out.println("Il n'y à aucun sort dans cet emplacement !");
+
 					}
 
 				}
-				
+
 				if (event.getButton() == MouseButton.PRIMARY && activeSkillOk) {
-					
+
 					Player[] persos = new Player[3];
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
-					
+
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
@@ -207,20 +218,21 @@ public class BasicGameApp extends GameApplication {
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
 							selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-							System.out.println("Target : "  + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+							System.out.println(
+									"Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
 							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent);
 							activeSkillOk = false;
 						}
 					}
 				}
-				
+
 				if (event.getButton() == MouseButton.SECONDARY) {
 
 					Player[] persos = new Player[3];
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
-					
+
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
@@ -252,22 +264,22 @@ public class BasicGameApp extends GameApplication {
 
 						}
 
-
 					}
 				} else {
 					List<Entity> target = getGameWorld().getEntitiesAt(new Point2D(x, y));
 					for (Entity t : target) {
 						if (t.getTypeComponent().isType(EntityType.BLOCK)) {
-							return ;
+							return;
 						}
 					}
 
-					if (selectedUnit != null) {
+					if (selectedUnit != null && selectedUnit.getHeroClass().isDidMove() == false) {
 						for (Entity entity : list) {
 							entity.removeFromWorld();
 						}
 						System.out.println("move");
 						selectedUnit.move(new Point2D(x, y));
+						selectedUnit.getHeroClass().setDidMove(true);
 					}
 				}
 			}
