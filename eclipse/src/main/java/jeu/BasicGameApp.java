@@ -145,18 +145,6 @@ public class BasicGameApp extends GameApplication {
 		}, KeyCode.F);
 	}
 
-//	@Override
-//	protected void initPhysics() {
-//		FXGL.getPhysicsWorld().addCollisionHandler(new CollisionHandler(EntityType.PLAYERCOMPONENT, EntityType.BLOCK) {
-//			// order of types is the same as passed into the constructor
-//			@Override
-//			protected void onCollisionBegin(Entity player, Entity block) {
-//				player.removeFromWorld();
-//
-//			}
-//		});
-//	}
-
 	@Override
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
