@@ -180,7 +180,6 @@ public class BasicGameApp extends GameApplication {
 				if(tabClick[0] == 23 && tabClick[1] == 15) {
 
 					tour.debut();
-					selectedUnit.getHeroClass().setDidMove(false);
 				}
 				
 				if (skillSlot != -1) {
@@ -272,13 +271,12 @@ public class BasicGameApp extends GameApplication {
 						}
 					}
 
-					if (selectedUnit != null && selectedUnit.getHeroClass().isDidMove() == false) {
+					if (selectedUnit != null) {
 						for (Entity entity : list) {
 							entity.removeFromWorld();
 						}
 						System.out.println("move");
 						selectedUnit.move(new Point2D(x, y));
-						selectedUnit.getHeroClass().setDidMove(true);
 					}
 				}
 			}
