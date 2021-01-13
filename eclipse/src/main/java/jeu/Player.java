@@ -62,10 +62,6 @@ public class Player extends Component {
 		move.calculateDiag(2, casePlayerX, casePlayerY);
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
-
-//		List<SimpleEntry<Integer, Integer>> bannedList = (60);
-//		Iterator<Integer> bannedIterator = bannedList.iterator();
-//		SimpleEntry<Integer, Integer> vars2 = new SimpleEntry<Integer, Integer>(60, 180);
 		
 		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
 		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");

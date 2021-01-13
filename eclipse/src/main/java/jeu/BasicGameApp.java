@@ -5,32 +5,24 @@
  */
 package jeu;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.components.PositionComponent;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
-import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.box2d.collision.ContactID.Type;
 import com.almasb.fxgl.settings.GameSettings;
-import com.almasb.fxgl.settings.ReadOnlyGameSettings;
 
 import capacites.Fireball;
 import capacites.Capacites;
 import capacites.Soin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Tab;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import ui.CharInfoView;
 import ui.UIEntity;
 
@@ -40,8 +32,9 @@ public class BasicGameApp extends GameApplication {
 	private Player blueHeroComponent;
 	private Player greenHeroComponent;
 	private Player selectedUnit;
-	private Entity Block;
+
 	// Fake Entities, for UI
+	private Entity Block;
 	private Entity grid;
 	private Entity rangeTwo;
 	boolean gridState = false;
@@ -58,8 +51,9 @@ public class BasicGameApp extends GameApplication {
 		settings.setFullScreenAllowed(true);
 		settings.setManualResizeEnabled(true);
 		settings.setTitle("Journey down the den");
-		settings.setVersion("0.5");
+		settings.setVersion("0.8");
 		settings.setAppIcon("JDTD_icon.png");
+		settings.setMenuEnabled(true);
 //		settings.setProfilingEnabled(true);
 
 //To implement later
@@ -161,7 +155,8 @@ public class BasicGameApp extends GameApplication {
 			public void handle(MouseEvent event) {
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
-				System.out.println(x + " " + y);
+
+				System.out.println(y + " " + y);
 				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE_TWO);
 				int[] tabClick = Click.cases(x, y);
 

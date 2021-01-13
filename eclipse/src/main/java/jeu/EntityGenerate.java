@@ -19,7 +19,6 @@ public class EntityGenerate implements EntityFactory {
 				.from(data)
 				.type(EntityType.PLAYER_RED)
 				.viewFromTexture("redHero.png")
-		        .with(new CollidableComponent(true))
 				.with(new Player(new Healer()))
 				.build();
 	}
@@ -30,7 +29,6 @@ public class EntityGenerate implements EntityFactory {
 				.from(data)
 				.type(EntityType.PLAYER_GREEN)
 				.viewFromTexture("greenHero.png")
-		        .with(new CollidableComponent(true))
 				.with(new Player(new Warrior()))
 				.build();
 	}
@@ -41,7 +39,6 @@ public class EntityGenerate implements EntityFactory {
 				.from(data)
 				.type(EntityType.PLAYER_BLUE)
 				.viewFromTexture("blueHero.png")
-		        .with(new CollidableComponent(true))
 				.with(new Player(new Magician()))
 				.build();
 	}

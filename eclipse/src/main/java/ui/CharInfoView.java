@@ -16,6 +16,7 @@ import javafx.scene.text.Font;
 
 public class CharInfoView {
 	private Text textCharInfo;
+	private Text textSkip;
 	private Text textHelpInfo;
 	private Text textRedInfo;
 	private Text textGreenInfo;
@@ -27,6 +28,14 @@ public class CharInfoView {
 		/*
 		 * Descriptive text
 		 */
+		
+		textSkip = new Text();
+		textSkip.setFont(Font.font("Verdana", 20));
+		textSkip.setFill(Color.BLACK);
+		textSkip.setTranslateX(1390);
+		textSkip.setTranslateY(936);
+		textSkip.setText("END");
+		
 		textHelpInfo = new Text();
 		textHelpInfo.setFont(Font.font("Verdana", 20));
 		textHelpInfo.setFill(Color.BLACK);
@@ -73,7 +82,7 @@ public class CharInfoView {
 						+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
 
 		
-		gameScene.addUINodes(textCharInfo, textHelpInfo, textRedInfo, textBlueInfo, textGreenInfo);
+		gameScene.addUINodes(textSkip, textCharInfo, textHelpInfo, textRedInfo, textBlueInfo, textGreenInfo);
 	}
 
 	//Update of units characteristics
