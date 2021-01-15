@@ -23,6 +23,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import ui.CharInfoView;
 import ui.UIEntity;
 
@@ -39,11 +40,13 @@ public class BasicGameApp extends GameApplication {
 	private Entity rangeTwo;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
+	private String gameLog = "Début du Log\n";
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
+	
 	@Override
 	protected void initSettings(GameSettings settings) {
 		settings.setWidth(1920);
@@ -119,6 +122,8 @@ public class BasicGameApp extends GameApplication {
 
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
+		
+
 	}
 
 	@Override
@@ -143,10 +148,9 @@ public class BasicGameApp extends GameApplication {
 	protected void initUI() {
 		Point2D hotspot = Point2D.ZERO;
 
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent);
+		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, gameLog);
 
-		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
-				greenHeroComponent.getHeroClass());
+		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -200,9 +204,9 @@ public class BasicGameApp extends GameApplication {
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
 							selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-							System.out.println(
-									"Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
-							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent);
+							System.out.println("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+							gameLog = gameLog + "Sort de " + selectedUnit.getHeroClass().getName() + "\n";
+							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, gameLog);
 							activeSkillOk = false;
 						}
 					}
@@ -261,6 +265,7 @@ public class BasicGameApp extends GameApplication {
 						}
 						System.out.println("move");
 						selectedUnit.move(new Point2D(x, y));
+						
 					}
 				}
 			}

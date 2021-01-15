@@ -1,17 +1,16 @@
 package ui;
 
 import com.almasb.fxgl.scene.GameScene;
-
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import jeu.Player;
 import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
-import personnages.Unites;
 import javafx.scene.text.Font;
 
 public class CharInfoView {
@@ -21,13 +20,31 @@ public class CharInfoView {
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
+    private ScrollPane test;
+    private Text logTest;
 
-	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue) {
+
+
+	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
 
 		/*
 		 * Descriptive text
 		 */
+		
+		logTest = new Text();
+		logTest.setFont(Font.font("Verdana", 20));
+		logTest.setFill(Color.BLACK);
+		logTest.setText(gameLog);
+
+		test = new ScrollPane();
+		test.setPrefWidth(450);
+		test.setPrefHeight(150);
+		test.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		test.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		test.setTranslateX(1440);
+		test.setTranslateY(901);
+		test.setContent(logTest);
 		
 		textSkip = new Text();
 		textSkip.setFont(Font.font("Verdana", 20));
@@ -36,13 +53,13 @@ public class CharInfoView {
 		textSkip.setTranslateY(936);
 		textSkip.setText("END");
 		
-		textHelpInfo = new Text();
-		textHelpInfo.setFont(Font.font("Verdana", 20));
-		textHelpInfo.setFill(Color.BLACK);
-		textHelpInfo.setTranslateX(1450);
-		textHelpInfo.setTranslateY(923);
-		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" 
-											 + newLine + "Clic droit : selectioner une unité");
+//		textHelpInfo = new Text();
+//		textHelpInfo.setFont(Font.font("Verdana", 20));
+//		textHelpInfo.setFill(Color.BLACK);
+//		textHelpInfo.setTranslateX(1450);
+//		textHelpInfo.setTranslateY(923);
+//		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" 
+//											 + newLine + "Clic droit : selectioner une unité");
 
 		textCharInfo = new Text();
 		textCharInfo.setFont(Font.font("Verdana", 15));
@@ -82,11 +99,11 @@ public class CharInfoView {
 						+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
 
 		
-		gameScene.addUINodes(textSkip, textCharInfo, textHelpInfo, textRedInfo, textBlueInfo, textGreenInfo);
+		gameScene.addUINodes(textSkip, textCharInfo, /*textHelpInfo,*/ textRedInfo, textBlueInfo, textGreenInfo, test, logTest);
 	}
 
 	//Update of units characteristics
-	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen) {
+	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog) {
 		
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
@@ -99,6 +116,9 @@ public class CharInfoView {
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 							+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
 							+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
+		
+		logTest.setText(gameLog);
+		test.setContent(logTest);
 		
 	}
 }
