@@ -12,13 +12,16 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.VBox;
+import javafx.application.Application;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import jeu.Player;
 import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
-import personnages.Unites;
 import javafx.scene.text.Font;
 
 public class CharInfoView {
@@ -28,21 +31,36 @@ public class CharInfoView {
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
-	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue) {
+    private ScrollPane scrollPane;
+    private Text log;
+
+	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
-		
 
 		/*
 		 * Descriptive text
 		 */
+		
+		log = new Text();
+		log.setFont(Font.font("Helvetica", 16));
+		log.setFill(Color.BLACK);
+		log.setText(gameLog);
 
+		scrollPane = new ScrollPane();
+		scrollPane.setPrefWidth(450);
+		scrollPane.setPrefHeight(150);
+		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		scrollPane.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		scrollPane.setTranslateX(1440);
+		scrollPane.setTranslateY(901);
+		scrollPane.setContent(log);
+		
 		textSkip = new Text();
 		textSkip.setFont(Font.font("Verdana", 20));
 		textSkip.setFill(Color.BLACK);
 		textSkip.setTranslateX(1390);
 		textSkip.setTranslateY(936);
 		textSkip.setText("END");
-		
 //		button = new Button("My Button");
 //        button.setPrefSize(400, 300);
 		
@@ -71,7 +89,7 @@ public class CharInfoView {
 		textRedInfo.setTranslateY(955);
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName());
+							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName() + "   " + playerRed.getHeroClass().getActionPoint());
 
 		textGreenInfo = new Text();
 		textGreenInfo.setFont(Font.font("Verdana", 15));
@@ -92,15 +110,15 @@ public class CharInfoView {
 						+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
  
 		
-		gameScene.addUINodes(textSkip, textCharInfo, textRedInfo, textBlueInfo, textGreenInfo);
+		gameScene.addUINodes(textSkip, textCharInfo,textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log);
 	}
 
 	//Update of units characteristics
-	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen) {
+	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog) {
 		
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName());
+							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName() + "   " + playerRed.getHeroClass().getActionPoint());
 		
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
 							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
@@ -109,6 +127,10 @@ public class CharInfoView {
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 							+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
 							+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
+		
+		log.setText(gameLog);
+		scrollPane.setContent(log);
+		scrollPane.setVvalue(scrollPane.getVmax());
 		
 	}
 }
