@@ -15,17 +15,15 @@ import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.settings.GameSettings;
 
-import capacites.Fireball;
 import capacites.Capacites;
-import capacites.Soin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import ui.CharInfoView;
 import ui.UIEntity;
+import ui.GameLog;
 
 public class BasicGameApp extends GameApplication {
 	// Playable Entities
@@ -40,7 +38,7 @@ public class BasicGameApp extends GameApplication {
 	private Entity rangeTwo;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-	private String gameLog = "Début du Log\n";
+	//public static String gameLog = "Début du Log\n";
 
 	public static void main(String[] args) {
 		launch(args);
@@ -146,10 +144,10 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initUI() {
+		
+
 		Point2D hotspot = Point2D.ZERO;
-
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, gameLog);
-
+		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
 		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
 
 		getGameScene().setCursor("cursor.png", hotspot);
@@ -169,6 +167,7 @@ public class BasicGameApp extends GameApplication {
 				if (tabClick[0] == 23 && tabClick[1] == 15) {
 
 					tour.debut();
+					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog());
 				}
 
 				if (skillSlot != -1) {
@@ -181,10 +180,7 @@ public class BasicGameApp extends GameApplication {
 						System.out.println("Active Skill : " + skill.getName());
 					} else {
 
-						System.out.println("Il n'y a aucun sort dans cet emplacement !");
-
-						System.out.println("Il n'y à aucun sort dans cet emplacement !");
-
+						GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
 					}
 
 				}
@@ -203,10 +199,16 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-							System.out.println("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
-							gameLog = gameLog + "Sort de " + selectedUnit.getHeroClass().getName() + "\n";
-							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, gameLog);
+							if (selectedUnit.getActiveSkill().getCost() <= selectedUnit.getHeroClass().getActionPoint()){
+							
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
+								System.out.println("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+							}
+							else {
+								
+								GameLog.setGameLog("Pas assez de points d'actions");
+							}
+							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog());
 							activeSkillOk = false;
 						}
 					}
