@@ -191,6 +191,8 @@ public class BasicGameApp extends GameApplication {
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
+					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(), (int) selectedUnit.getPosition().getY());
+
 
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
@@ -199,14 +201,14 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							if (selectedUnit.getActiveSkill().getCost() <= selectedUnit.getHeroClass().getActionPoint()){
+							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick) == "OK"){
 							
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-								System.out.println("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+								GameLog.setGameLog("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
 							}
 							else {
 								
-								GameLog.setGameLog("Pas assez de points d'actions");
+								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick));
 							}
 							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog());
 							activeSkillOk = false;
