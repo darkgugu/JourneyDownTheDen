@@ -74,9 +74,9 @@ public class BasicGameApp extends GameApplication {
 		/*
 		 * UNITS
 		 */
-		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
-		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
-		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
+		Entity redHero = getGameWorld().spawn("redHero", new Point2D(120, 360));
+		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(420, 360));
+		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(720, 360));
 		redHeroComponent = redHero.getComponent(Player.class);
 		redHeroComponent.setName("red");
 		blueHeroComponent = blueHero.getComponent(Player.class);
@@ -278,16 +278,14 @@ public class BasicGameApp extends GameApplication {
 		});
 	}
 
-	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
-			int pY) {
+	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX, int pY) {
 		List<Entity> adjacent = getGameWorld().getEntitiesAt(new Point2D(pX, pY));
 		if (!map_obstacle.contains(new SimpleEntry<Integer, Integer>(caseX, caseY)) && adjacent.isEmpty()) {
 				range = getGameWorld().spawn("range", new Point2D(pX, pY));
 		}
 	}
 
-	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
-			int pY) {
+	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX, int pY) {
 
 		showAdjacentCase(map_obstacle, caseX + 1, caseY + 1, pX + 60, pY + 60);
 		showAdjacentCase(map_obstacle, caseX + 1, caseY, pX + 60, pY);
