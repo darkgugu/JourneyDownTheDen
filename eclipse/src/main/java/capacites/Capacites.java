@@ -1,6 +1,7 @@
 package capacites;
 
 import personnages.Unites;
+import ui.GameLog;
 
 public abstract class Capacites implements ICast{
 
@@ -23,7 +24,7 @@ public abstract class Capacites implements ICast{
 		this.cost = cost;
 		this.name = name;
 	}
-	
+
 	public int cast(Unites caster) {
 		caster.setActionPoint(caster.getActionPoint() - cost);
 		System.out.println(caster.getName() + " lance " + getName());
@@ -35,15 +36,26 @@ public abstract class Capacites implements ICast{
 	@Override
 	public void death(Unites killer, Unites cible) {
 		
-		System.out.println(
-					killer.getClass().getSimpleName() + 
-					" à tué " +
-					cible.getClass().getSimpleName() +
-					" avec " +
-					getName());
+		GameLog.setGameLog(
+				killer.getClass().getSimpleName() + 
+				" à tué " +
+				cible.getClass().getSimpleName() +
+				" avec " +
+				getName());
+		
+//		System.out.println(
+//					killer.getClass().getSimpleName() + 
+//					" à tué " +
+//					cible.getClass().getSimpleName() +
+//					" avec " +
+//					getName());
 	}
 
 	public String getName() {
 		return name;
+	}
+	
+	public int getCost() {
+		return cost;
 	}
 }

@@ -20,8 +20,8 @@ public class CharInfoView {
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
-    private ScrollPane test;
-    private Text logTest;
+    private ScrollPane scrollPane;
+    private Text log;
 
 
 
@@ -32,19 +32,19 @@ public class CharInfoView {
 		 * Descriptive text
 		 */
 		
-		logTest = new Text();
-		logTest.setFont(Font.font("Verdana", 20));
-		logTest.setFill(Color.BLACK);
-		logTest.setText(gameLog);
+		log = new Text();
+		log.setFont(Font.font("Helvetica", 16));
+		log.setFill(Color.BLACK);
+		log.setText(gameLog);
 
-		test = new ScrollPane();
-		test.setPrefWidth(450);
-		test.setPrefHeight(150);
-		test.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		test.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
-		test.setTranslateX(1440);
-		test.setTranslateY(901);
-		test.setContent(logTest);
+		scrollPane = new ScrollPane();
+		scrollPane.setPrefWidth(450);
+		scrollPane.setPrefHeight(150);
+		scrollPane.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		scrollPane.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		scrollPane.setTranslateX(1440);
+		scrollPane.setTranslateY(901);
+		scrollPane.setContent(log);
 		
 		textSkip = new Text();
 		textSkip.setFont(Font.font("Verdana", 20));
@@ -78,7 +78,7 @@ public class CharInfoView {
 		textRedInfo.setTranslateY(955);
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName());
+							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName() + "   " + playerRed.getHeroClass().getActionPoint());
 
 		textGreenInfo = new Text();
 		textGreenInfo.setFont(Font.font("Verdana", 15));
@@ -99,7 +99,7 @@ public class CharInfoView {
 						+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
 
 		
-		gameScene.addUINodes(textSkip, textCharInfo, /*textHelpInfo,*/ textRedInfo, textBlueInfo, textGreenInfo, test, logTest);
+		gameScene.addUINodes(textSkip, textCharInfo, /*textHelpInfo,*/ textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log);
 	}
 
 	//Update of units characteristics
@@ -107,7 +107,7 @@ public class CharInfoView {
 		
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName());
+							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName() + "   " + playerRed.getHeroClass().getActionPoint());
 		
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
 							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
@@ -117,8 +117,9 @@ public class CharInfoView {
 							+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
 							+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
 		
-		logTest.setText(gameLog);
-		test.setContent(logTest);
+		log.setText(gameLog);
+		scrollPane.setContent(log);
+		scrollPane.setVvalue(scrollPane.getVmax());
 		
 	}
 }

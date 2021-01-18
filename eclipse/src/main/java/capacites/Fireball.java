@@ -1,6 +1,7 @@
 package capacites;
 
 import personnages.Unites;
+import ui.GameLog;
 
 public class Fireball extends Capacites{
 		
@@ -16,6 +17,7 @@ public class Fireball extends Capacites{
 		
 		super.cast(caster);
 		finalDamages = damage * caster.getMagicalBaseDamage();
+		GameLog.setGameLog("Dégats : " + finalDamages);
 		System.out.println("Dégats : " + finalDamages);
 		if(cible.setPv(finalDamages)) {
 
