@@ -42,12 +42,12 @@ public class UIEntity implements EntityFactory {
 	/*
 	 * Declared entities for range
 	 */
-	@Spawns("rangeTwo")
-	public Entity newRangeTwo(SpawnData data) {
+	@Spawns("range")
+	public Entity newRange(SpawnData data) {
 		return Entities.builder()
 				.from(data)
-				.type(EntityType.RANGE_TWO)
-				.viewFromTexture("rangeUnit.png")
+				.type(EntityType.RANGE)
+				.viewFromTexture("range.png")
 				.build();
 	}
 	

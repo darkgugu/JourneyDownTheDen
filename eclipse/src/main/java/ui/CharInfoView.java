@@ -1,10 +1,17 @@
 package ui;
 
 import com.almasb.fxgl.scene.GameScene;
+import com.almasb.fxgl.ui.FXGLButton;
+import com.almasb.fxgl.ui.FXGLScrollPane;
+import com.almasb.fxgl.ui.FXGLTextFlow;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.geometry.Pos;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,20 +28,23 @@ public class CharInfoView {
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
-
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue) {
 		String newLine = System.getProperty("line.separator");
+		
 
 		/*
 		 * Descriptive text
 		 */
-		
+
 		textSkip = new Text();
 		textSkip.setFont(Font.font("Verdana", 20));
 		textSkip.setFill(Color.BLACK);
 		textSkip.setTranslateX(1390);
 		textSkip.setTranslateY(936);
 		textSkip.setText("END");
+		
+//		button = new Button("My Button");
+//        button.setPrefSize(400, 300);
 		
 		textHelpInfo = new Text();
 		textHelpInfo.setFont(Font.font("Verdana", 20));
@@ -80,9 +90,9 @@ public class CharInfoView {
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 						+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
 						+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
-
+ 
 		
-		gameScene.addUINodes(textSkip, textCharInfo, textHelpInfo, textRedInfo, textBlueInfo, textGreenInfo);
+		gameScene.addUINodes(textSkip, textCharInfo, textRedInfo, textBlueInfo, textGreenInfo);
 	}
 
 	//Update of units characteristics
