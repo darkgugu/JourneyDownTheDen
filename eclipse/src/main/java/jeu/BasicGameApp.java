@@ -6,6 +6,7 @@
 package jeu;
 
 import java.util.List;
+import java.util.AbstractMap.SimpleEntry;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
@@ -35,7 +36,7 @@ public class BasicGameApp extends GameApplication {
 	// Fake Entities, for UI
 	private Entity Block;
 	private Entity grid;
-	private Entity rangeTwo;
+	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
 	//public static String gameLog = "Début du Log\n";
@@ -73,9 +74,9 @@ public class BasicGameApp extends GameApplication {
 		/*
 		 * UNITS
 		 */
-		Entity redHero = getGameWorld().spawn("redHero", new Point2D(0, 0));
-		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(60, 0));
-		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(120, 0));
+		Entity redHero = getGameWorld().spawn("redHero", new Point2D(120, 360));
+		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(420, 360));
+		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(720, 360));
 		redHeroComponent = redHero.getComponent(Player.class);
 		redHeroComponent.setName("red");
 		blueHeroComponent = blueHero.getComponent(Player.class);
@@ -159,7 +160,7 @@ public class BasicGameApp extends GameApplication {
 				int y = (int) event.getSceneY();
 
 				System.out.println(y + " " + y);
-				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE_TWO);
+				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE);
 				int[] tabClick = Click.cases(x, y);
 
 				int skillSlot = SkillSlot.isSkillSlot(x, y);
@@ -226,28 +227,31 @@ public class BasicGameApp extends GameApplication {
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
+						int caseX = pX / 60;
+						int caseY = pY / 60;
+
 						int[] tabPerso = Click.cases(pX, pY);
 						System.out.println(pX + "  " + pY);
 						System.out.println(pX + "  " + pY);
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
+							ObstacleReader obstacles = new ObstacleReader();
+							obstacles.reader();
 							if (selectedUnit == null) {
 								selectedUnit = persos[i];
-								/*
-								 * for(int i = 0; i < nbr de cases valides (jusqu'à 4) < i++) { afficher case a
-								 * emplacement valide etc etc }
-								 * 
-								 */
-								rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 120, pY - 120));
+								showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
+
 							} else {
 								for (Entity entity : list) {
 									entity.removeFromWorld();
+
 								}
 								if (persos[i] == selectedUnit) {
+
 									selectedUnit = null;
 								} else {
 									selectedUnit = persos[i];
-									rangeTwo = getGameWorld().spawn("rangeTwo", new Point2D(pX - 120, pY - 120));
+									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 								}
 							}
 						} else {
@@ -274,5 +278,24 @@ public class BasicGameApp extends GameApplication {
 				}
 			}
 		});
+	}
+
+	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX, int pY) {
+		List<Entity> adjacent = getGameWorld().getEntitiesAt(new Point2D(pX, pY));
+		if (!map_obstacle.contains(new SimpleEntry<Integer, Integer>(caseX, caseY)) && adjacent.isEmpty()) {
+				range = getGameWorld().spawn("range", new Point2D(pX, pY));
+		}
+	}
+
+	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX, int pY) {
+
+		showAdjacentCase(map_obstacle, caseX + 1, caseY + 1, pX + 60, pY + 60);
+		showAdjacentCase(map_obstacle, caseX + 1, caseY, pX + 60, pY);
+		showAdjacentCase(map_obstacle, caseX, caseY + 1, pX, pY + 60);
+		showAdjacentCase(map_obstacle, caseX - 1, caseY - 1, pX - 60, pY - 60);
+		showAdjacentCase(map_obstacle, caseX - 1, caseY, pX - 60, pY);
+		showAdjacentCase(map_obstacle, caseX, caseY - 1, pX, pY - 60);
+		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
+		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
 	}
 }

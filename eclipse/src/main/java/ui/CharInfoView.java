@@ -1,6 +1,17 @@
 package ui;
 
 import com.almasb.fxgl.scene.GameScene;
+import com.almasb.fxgl.ui.FXGLButton;
+import com.almasb.fxgl.ui.FXGLScrollPane;
+import com.almasb.fxgl.ui.FXGLTextFlow;
+
+import javafx.application.Application;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.geometry.Pos;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.VBox;
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,8 +32,6 @@ public class CharInfoView {
 	private Text textBlueInfo;
     private ScrollPane scrollPane;
     private Text log;
-
-
 
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
@@ -51,14 +60,16 @@ public class CharInfoView {
 		textSkip.setTranslateX(1390);
 		textSkip.setTranslateY(936);
 		textSkip.setText("END");
+//		button = new Button("My Button");
+//        button.setPrefSize(400, 300);
 		
-//		textHelpInfo = new Text();
-//		textHelpInfo.setFont(Font.font("Verdana", 20));
-//		textHelpInfo.setFill(Color.BLACK);
-//		textHelpInfo.setTranslateX(1450);
-//		textHelpInfo.setTranslateY(923);
-//		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" 
-//											 + newLine + "Clic droit : selectioner une unité");
+		textHelpInfo = new Text();
+		textHelpInfo.setFont(Font.font("Verdana", 20));
+		textHelpInfo.setFill(Color.BLACK);
+		textHelpInfo.setTranslateX(1450);
+		textHelpInfo.setTranslateY(923);
+		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" 
+											 + newLine + "Clic droit : selectioner une unitï¿½");
 
 		textCharInfo = new Text();
 		textCharInfo.setFont(Font.font("Verdana", 15));
@@ -98,7 +109,7 @@ public class CharInfoView {
 						+ playerBlue.getHeroClass().getMovePoint() + "          "  + playerBlue.getHeroClass().getActionPoint() + "   " + playerBlue.getName());
 
 		
-		gameScene.addUINodes(textSkip, textCharInfo, /*textHelpInfo,*/ textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log);
+		gameScene.addUINodes(textSkip, textCharInfo,textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log);
 	}
 
 	//Update of units characteristics
