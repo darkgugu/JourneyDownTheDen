@@ -7,6 +7,7 @@ package jeu;
 
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.Iterator;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
@@ -92,41 +93,31 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		Entity InfoUI = getGameWorld().spawn("infoUI", new Point2D(5, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(720, 901));
-		//System.out.println(redHeroComponent.getHeroClass().getSkills()[0].getClass().getSimpleName());
-		getGameWorld().spawn(redHeroComponent.getHeroClass().getSkills()[0].getClass().getSimpleName(), new Point2D(725, 906));
-		getGameWorld().spawn(redHeroComponent.getHeroClass().getSkills()[1].getClass().getSimpleName(), new Point2D(785, 906));
-		getGameWorld().spawn("spellBorder", new Point2D(780, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(840, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(900, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(960, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(1020, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(1080, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(1140, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(1200, 901));
-		getGameWorld().spawn("spellBorder", new Point2D(1260, 901));
-		getGameWorld().spawn("spell10", new Point2D(1380, 901));
+		
+		for (int i = 0; i < 10; i++) {
+		
+			int x = 720 + (60*i);
+			int y = 901;
+			getGameWorld().spawn("spellBorder", new Point2D(x, y));
+		}
 
-//		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
-//		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
-//		redHeroComponent.getHeroClass().setSkillsI(new Soin(), 0);
-//		redHeroComponent.getHeroClass().setSkills(new Soin(), 1);
-		// System.out.println(redHeroComponent.getHeroClass());
-
-		// System.out.println(greenHeroComponent.getHeroClass());
-		// new BouleDeFeu().cast(redHeroComponent.getHeroClass(),
-		// greenHeroComponent.getHeroClass());
-		// System.out.println("Green Hero PV : " +
-		// greenHeroComponent.getHeroClass().getPv());
-
-//		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
-//		new Fireball().cast(redHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
-//		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
-//		System.out.println("Red Hero PA " + redHeroComponent.getHeroClass().getActionPoint());
-
+		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
+		
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
 
+	}
+	
+	protected void updateSkillsUI(Player selectedUnit) {
+		
+		for (int i = 0;i != 10;i++) {
+			
+			int x = 725 + (60*i);
+			int y = 906;
+			if(selectedUnit.getHeroClass().getSkills()[i] != null) {
+				getGameWorld().spawn(selectedUnit.getHeroClass().getSkills()[i].getClass().getSimpleName(), new Point2D(x, y));
+			}
+		}
 	}
 
 	@Override
@@ -181,9 +172,9 @@ public class BasicGameApp extends GameApplication {
 				if (tabClick[0] == 23 && tabClick[1] == 15) {
 
 					tour.debut();
-					System.out.println("TOUR" + tour.getNbTour());
 					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 							GameLog.getGameLog(), tour.getNbTour());
+
 				}
 
 				if (skillSlot != -1) {
@@ -255,6 +246,7 @@ public class BasicGameApp extends GameApplication {
 							obstacles.reader();
 							if (selectedUnit == null) {
 								selectedUnit = persos[i];
+								updateSkillsUI(selectedUnit);
 //								if(selectedUnit.getHeroClass().getMovePoint() == 2) {
 //									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 //								}
@@ -270,6 +262,7 @@ public class BasicGameApp extends GameApplication {
 									selectedUnit = null;
 								} else {
 									selectedUnit = persos[i];
+									updateSkillsUI(selectedUnit);
 									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 								}
 							}
