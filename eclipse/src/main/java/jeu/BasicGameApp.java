@@ -88,19 +88,20 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		Entity InfoUI = getGameWorld().spawn("infoUI", new Point2D(5, 901));
-		Entity SpellBorder = getGameWorld().spawn("spellBorder", new Point2D(720, 901));
-		Entity SpellUI1 = getGameWorld().spawn("spell1", new Point2D(725, 906));
-		Entity SpellUI2 = getGameWorld().spawn("spell2", new Point2D(780, 901));
-		Entity SpellUI3 = getGameWorld().spawn("spell3", new Point2D(840, 901));
-		Entity SpellUI4 = getGameWorld().spawn("spell4", new Point2D(900, 901));
-		Entity SpellUI5 = getGameWorld().spawn("spell5", new Point2D(960, 901));
-		Entity SpellUI6 = getGameWorld().spawn("spell6", new Point2D(1020, 901));
-		Entity SpellUI7 = getGameWorld().spawn("spell7", new Point2D(1080, 901));
-		Entity SpellUI8 = getGameWorld().spawn("spell8", new Point2D(1140, 901));
-		Entity SpellUI9 = getGameWorld().spawn("spell9", new Point2D(1200, 901));
-		Entity SpellUI10 = getGameWorld().spawn("spell10", new Point2D(1260, 901));
-
-		Entity SkipButton = getGameWorld().spawn("spell10", new Point2D(1380, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(720, 901));
+		//System.out.println(redHeroComponent.getHeroClass().getSkills()[0].getClass().getSimpleName());
+		getGameWorld().spawn(redHeroComponent.getHeroClass().getSkills()[0].getClass().getSimpleName(), new Point2D(725, 906));
+		getGameWorld().spawn(redHeroComponent.getHeroClass().getSkills()[1].getClass().getSimpleName(), new Point2D(785, 906));
+		getGameWorld().spawn("spellBorder", new Point2D(780, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(840, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(900, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(960, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(1020, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(1080, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(1140, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(1200, 901));
+		getGameWorld().spawn("spellBorder", new Point2D(1260, 901));
+		getGameWorld().spawn("spell10", new Point2D(1380, 901));
 
 //		System.out.println("Red Hero Class : " + redHeroComponent.getHeroClass().getName());
 //		System.out.println("Green Hero PV : " + greenHeroComponent.getHeroClass().getPv());
