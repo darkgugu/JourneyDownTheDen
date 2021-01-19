@@ -145,16 +145,24 @@ public class BasicGameApp extends GameApplication {
 				}
 			}
 		}, KeyCode.F);
+		
+		input.addAction(new UserAction ("End/Skip"){
+			@Override
+			protected void onAction() {
+				
+			}
+		}, KeyCode.S);
 	}
 
 	@Override
 	protected void initUI() {
 
 		Point2D hotspot = Point2D.ZERO;
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
-				GameLog.getGameLog());
 		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
 				greenHeroComponent.getHeroClass());
+		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
+				GameLog.getGameLog());
+		
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -173,8 +181,9 @@ public class BasicGameApp extends GameApplication {
 				if (tabClick[0] == 23 && tabClick[1] == 15) {
 
 					tour.debut();
+					System.out.println("TOUR" + tour.getNbTour());
 					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-							GameLog.getGameLog());
+							GameLog.getGameLog(), tour.getNbTour());
 				}
 
 				if (skillSlot != -1) {
@@ -218,7 +227,7 @@ public class BasicGameApp extends GameApplication {
 								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick));
 							}
 							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-									GameLog.getGameLog());
+									GameLog.getGameLog(), tour.getNbTour());
 							activeSkillOk = false;
 						}
 					}

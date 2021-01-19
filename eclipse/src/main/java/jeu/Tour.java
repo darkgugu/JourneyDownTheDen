@@ -15,10 +15,10 @@ public class Tour {
 	}
 	
 	public void debut() {
-		
+		setNbTour(getNbTour() + 1);
+
 		for (int i = 0; i < persos.length; i++) {
 
-			setNbTour(getNbTour() + 1);
 			persos[i].setActionPointToMax();
 			//persos[i].setMovePointToMax();
 			persos[i].setDidMove(false);
