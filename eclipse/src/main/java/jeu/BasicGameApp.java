@@ -22,6 +22,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import personnages.Unites;
 import ui.CharInfoView;
 import ui.UIEntity;
 import ui.GameLog;
@@ -39,13 +40,12 @@ public class BasicGameApp extends GameApplication {
 	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-	//public static String gameLog = "Début du Log\n";
+	// public static String gameLog = "Début du Log\n";
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	
+
 	@Override
 	protected void initSettings(GameSettings settings) {
 		settings.setWidth(1920);
@@ -121,7 +121,6 @@ public class BasicGameApp extends GameApplication {
 
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
-		
 
 	}
 
@@ -145,11 +144,12 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initUI() {
-		
 
 		Point2D hotspot = Point2D.ZERO;
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
-		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(), greenHeroComponent.getHeroClass());
+		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
+				GameLog.getGameLog());
+		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
+				greenHeroComponent.getHeroClass());
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -168,7 +168,8 @@ public class BasicGameApp extends GameApplication {
 				if (tabClick[0] == 23 && tabClick[1] == 15) {
 
 					tour.debut();
-					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog());
+					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
+							GameLog.getGameLog());
 				}
 
 				if (skillSlot != -1) {
@@ -200,16 +201,19 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							if (selectedUnit.getActiveSkill().getCost() <= selectedUnit.getHeroClass().getActionPoint()){
-							
-								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-								System.out.println("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
-							}
-							else {
-								
+							if (selectedUnit.getActiveSkill().getCost() <= selectedUnit.getHeroClass()
+									.getActionPoint()) {
+
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
+										persos[i].getHeroClass());
+								System.out.println(
+										"Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+							} else {
+
 								GameLog.setGameLog("Pas assez de points d'actions");
 							}
-							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog());
+							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
+									GameLog.getGameLog());
 							activeSkillOk = false;
 						}
 					}
@@ -237,6 +241,9 @@ public class BasicGameApp extends GameApplication {
 							obstacles.reader();
 							if (selectedUnit == null) {
 								selectedUnit = persos[i];
+//								if(selectedUnit.getHeroClass().getMovePoint() == 2) {
+//									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
+//								}
 								showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 
 							} else {
@@ -271,21 +278,23 @@ public class BasicGameApp extends GameApplication {
 						}
 						System.out.println("move");
 						selectedUnit.move(new Point2D(x, y));
-						
+
 					}
 				}
 			}
 		});
 	}
 
-	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX, int pY) {
+	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
+			int pY) {
 		List<Entity> adjacent = getGameWorld().getEntitiesAt(new Point2D(pX, pY));
 		if (!map_obstacle.contains(new SimpleEntry<Integer, Integer>(caseX, caseY)) && adjacent.isEmpty()) {
-				range = getGameWorld().spawn("range", new Point2D(pX, pY));
+			range = getGameWorld().spawn("range", new Point2D(pX, pY));
 		}
 	}
 
-	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX, int pY) {
+	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
+			int pY) {
 
 		showAdjacentCase(map_obstacle, caseX + 1, caseY + 1, pX + 60, pY + 60);
 		showAdjacentCase(map_obstacle, caseX + 1, caseY, pX + 60, pY);
@@ -295,5 +304,13 @@ public class BasicGameApp extends GameApplication {
 		showAdjacentCase(map_obstacle, caseX, caseY - 1, pX, pY - 60);
 		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
 		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
+		if(selectedUnit.getHeroClass().getMovePoint() == 2) {
+			System.out.println("MOVE POINT : " + selectedUnit.getHeroClass().getMovePoint());
+			showAdjacentCase(map_obstacle, caseX + 2, caseY, pX + 120, pY);
+			showAdjacentCase(map_obstacle, caseX - 2, caseY, pX - 120, pY);
+			showAdjacentCase(map_obstacle, caseX, caseY - 2, pX, pY - 120);
+			showAdjacentCase(map_obstacle, caseX, caseY + 2, pX, pY + 120);
+		}
+
 	}
 }
