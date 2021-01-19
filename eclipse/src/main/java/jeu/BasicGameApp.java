@@ -42,7 +42,9 @@ public class BasicGameApp extends GameApplication {
 	boolean gridState = false;
 	boolean activeSkillOk = false;
 	// public static String gameLog = "D�but du Log\n";
-
+	
+	private Tour tour;
+	private CharInfoView view;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -84,6 +86,7 @@ public class BasicGameApp extends GameApplication {
 		blueHeroComponent.setName("blue");
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
+		
 		/*
 		 * MOBS
 		 */
@@ -93,6 +96,7 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		Entity InfoUI = getGameWorld().spawn("infoUI", new Point2D(5, 901));
+		
 		
 		for (int i = 0; i < 10; i++) {
 		
@@ -123,10 +127,11 @@ public class BasicGameApp extends GameApplication {
 	@Override
 	protected void initInput() {
 		Input input = getInput();
-
+		
+		
 		input.addAction(new UserAction("Show grid") {
 			@Override
-			protected void onAction() {
+			protected void onActionBegin() {
 				if (gridState == false) {
 					grid = Entities.builder().at(0, 0).viewFromTexture("grid.png").buildAndAttach(getGameWorld());
 					gridState = true;
@@ -139,8 +144,10 @@ public class BasicGameApp extends GameApplication {
 		
 		input.addAction(new UserAction ("End/Skip"){
 			@Override
-			protected void onAction() {
-				
+			protected void onActionBegin() {
+				tour.debut();
+				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
+						GameLog.getGameLog(), tour.getNbTour());
 			}
 		}, KeyCode.S);
 	}
@@ -149,11 +156,10 @@ public class BasicGameApp extends GameApplication {
 	protected void initUI() {
 
 		Point2D hotspot = Point2D.ZERO;
-		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
+		 tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
 				greenHeroComponent.getHeroClass());
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
+		 view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
 				GameLog.getGameLog());
-		
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
