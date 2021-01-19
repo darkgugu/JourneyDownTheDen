@@ -84,6 +84,10 @@ public class BasicGameApp extends GameApplication {
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
 		/*
+		 * MOBS
+		 */
+		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 60));
+		/*
 		 * UI
 		 */
 		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
@@ -306,7 +310,6 @@ public class BasicGameApp extends GameApplication {
 		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
 		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
 		if(selectedUnit.getHeroClass().getMovePoint() == 2) {
-			System.out.println("MOVE POINT : " + selectedUnit.getHeroClass().getMovePoint());
 			showAdjacentCase(map_obstacle, caseX + 2, caseY, pX + 120, pY);
 			showAdjacentCase(map_obstacle, caseX - 2, caseY, pX - 120, pY);
 			showAdjacentCase(map_obstacle, caseX, caseY - 2, pX, pY - 120);
