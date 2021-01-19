@@ -22,7 +22,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import jeu.Player;
 import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
-import javafx.scene.text.Font;
 
 public class CharInfoView {
 	private Text textCharInfo;
@@ -70,14 +69,14 @@ public class CharInfoView {
 		textHelpInfo.setTranslateX(1450);
 		textHelpInfo.setTranslateY(923);
 		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" 
-											 + newLine + "Clic droit : selectioner une unité");
+											 + newLine + "Clic droit : selectioner une unitï¿½");
 
 		textCharInfo = new Text();
 		textCharInfo.setFont(Font.font("Verdana", 15));
 		textCharInfo.setFill(Color.BLACK);
 		textCharInfo.setTranslateX(20);
 		textCharInfo.setTranslateY(923);
-		textCharInfo.setText("HP            " + "ATK        " + "MVT");
+		textCharInfo.setText("HP            " + "ATK        " + "MVT     PA");
 		
 		/*
 		 * Units characteristics
@@ -89,7 +88,7 @@ public class CharInfoView {
 		textRedInfo.setTranslateY(955);
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName() + "   " + playerRed.getHeroClass().getActionPoint());
+							+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint() + "               " + playerRed.getName());
 
 		textGreenInfo = new Text();
 		textGreenInfo.setFont(Font.font("Verdana", 15));
@@ -98,7 +97,7 @@ public class CharInfoView {
 		textGreenInfo.setTranslateY(1000);
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
 							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerGreen.getHeroClass().getMovePoint() + "               " + playerGreen.getName());
+							+ playerGreen.getHeroClass().getMovePoint() + "          " + playerGreen.getHeroClass().getActionPoint() + "   " + playerGreen.getName());
 
 		textBlueInfo = new Text();
 		textBlueInfo.setFont(Font.font("Verdana", 15));
@@ -107,8 +106,8 @@ public class CharInfoView {
 		textBlueInfo.setTranslateY(1050);
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 						+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
-						+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
- 
+						+ playerBlue.getHeroClass().getMovePoint() + "          "  + playerBlue.getHeroClass().getActionPoint() + "   " + playerBlue.getName());
+
 		
 		gameScene.addUINodes(textSkip, textCharInfo,textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log);
 	}
@@ -118,15 +117,21 @@ public class CharInfoView {
 		
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "               " + playerRed.getName() + "   " + playerRed.getHeroClass().getActionPoint());
+							+ playerRed.getHeroClass().getMovePoint() + "         " 
+							+ playerRed.getHeroClass().getActionPoint() +"               " 
+							+ playerRed.getName());
 		
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
 							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerGreen.getHeroClass().getMovePoint() + "               " + playerGreen.getName());
+							+ playerGreen.getHeroClass().getMovePoint() + "         " 
+							+ playerGreen.getHeroClass().getActionPoint() +"               " 
+							+ playerGreen.getName());
 		
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 							+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerBlue.getHeroClass().getMovePoint() + "               " + playerBlue.getName());
+							+ playerBlue.getHeroClass().getMovePoint() + "         " 
+							+ playerBlue.getHeroClass().getActionPoint() +"               " 
+							+ playerBlue.getName());
 		
 		log.setText(gameLog);
 		scrollPane.setContent(log);

@@ -1,5 +1,9 @@
 package capacites;
 
+import java.util.List;
+import java.util.AbstractMap.SimpleEntry;
+
+import jeu.Deplacement;
 import personnages.Unites;
 import ui.GameLog;
 
@@ -49,6 +53,35 @@ public abstract class Capacites implements ICast{
 //					cible.getClass().getSimpleName() +
 //					" avec " +
 //					getName());
+	}
+	
+	public String castOK(Unites caster, Unites target, int[] pos, int[] click) {
+	
+		String validateCast = null;
+		Deplacement calcRange = new Deplacement();
+		calcRange.calculateCross(range, pos[0], pos[1]);
+		calcRange.calculateDiag(range, pos[0], pos[1]);
+		List<SimpleEntry<Integer, Integer>> list = calcRange.list;
+		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(click[0], click[1]);
+		
+		if (cost < caster.getActionPoint()) {
+
+			validateCast = "OK";
+		}
+		else {
+			
+			return "Pas assez de points d'actions !";
+		}
+		if(list.contains(vars)) {
+			
+			validateCast = "OK";
+		}
+		else {
+			
+			return "Le sort n'a pas une portée suffisante !";
+		}
+		
+		return validateCast;
 	}
 
 	public String getName() {

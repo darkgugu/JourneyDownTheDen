@@ -58,8 +58,8 @@ public class Player extends Component {
 
 		int tab[] = new Click().cases(((int) direction.getX()), ((int) direction.getY()));
 		Deplacement move = new Deplacement();
-		move.calculateCross(2, casePlayerX, casePlayerY);
-		move.calculateDiag(2, casePlayerX, casePlayerY);
+		move.calculateCross(HeroClass.getMovePoint(), casePlayerX, casePlayerY);
+		move.calculateDiag(HeroClass.getMovePoint(), casePlayerX, casePlayerY);
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 		
