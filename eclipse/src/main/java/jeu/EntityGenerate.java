@@ -43,4 +43,12 @@ public class EntityGenerate implements EntityFactory {
 				.build();
 	}
 
+	@Spawns("goblin")
+	public Entity newGoblin(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.GOBLIN)
+				.viewFromTexture("goblin.png")
+				.build();
+	}
 }
