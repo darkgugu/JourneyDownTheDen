@@ -1,8 +1,6 @@
 package ui;
 
 import com.almasb.fxgl.scene.GameScene;
-import com.almasb.fxgl.ui.FXGLButton;
-import com.almasb.fxgl.ui.FXGLScrollPane;
 import com.almasb.fxgl.ui.FXGLTextFlow;
 
 import javafx.application.Application;
@@ -15,8 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
