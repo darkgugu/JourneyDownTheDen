@@ -72,22 +72,22 @@ public class UIEntity implements EntityFactory {
 				.build();
 	}
 	
-	@Spawns("spell1")
+	@Spawns("Fireball")
 	public Entity newSpell1(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("feu.png")
+				.viewFromTexture("Fireball.png")
 				.build();
 	}
 	
 	
-	@Spawns("spell2")
+	@Spawns("Soin")
 	public Entity newSpell2(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("spells.png")
+				.viewFromTexture("Soin.png")
 				.build();
 	}
 	@Spawns("spell3")
