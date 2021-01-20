@@ -5,8 +5,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.entity.components.CollidableComponent;
-
+import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
 import personnages.playerControlled.Warrior;
@@ -49,6 +48,7 @@ public class EntityGenerate implements EntityFactory {
 				.from(data)
 				.type(EntityType.GOBLIN)
 				.viewFromTexture("goblin.png")
+				.with(new IAControlledEntity(new Gobelin()))
 				.build();
 	}
 }
