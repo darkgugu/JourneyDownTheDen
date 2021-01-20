@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Iterator;
 
+import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
@@ -23,6 +24,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import personnages.Unites;
 import ui.CharInfoView;
 import ui.UIEntity;
@@ -45,7 +48,8 @@ public class BasicGameApp extends GameApplication {
 
 	private Tour tour;
 	private CharInfoView view;
-
+	private Animation<?> animation;
+		
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -154,6 +158,13 @@ public class BasicGameApp extends GameApplication {
 	@Override
 	protected void initUI() {
 
+//		Text text = new Text("Flammes");
+//		text.setTranslateX(800);
+//		text.setTranslateY(800);
+//		text.setFont(Font.font(46));
+//		getGameScene().addUINode(text);
+//		animation = getUIFactory().translate(text, )
+		
 		Point2D hotspot = Point2D.ZERO;
 		tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
 				greenHeroComponent.getHeroClass());
@@ -161,6 +172,41 @@ public class BasicGameApp extends GameApplication {
 				GameLog.getGameLog());
 
 		getGameScene().setCursor("cursor.png", hotspot);
+		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+//				int x = (int) event.getSceneX();
+//				int y = (int) event.getSceneY();
+//				int caseX = x / 60;
+//				int caseY = y / 60;
+//				
+////				System.out.println(caseX + "    " + caseY);
+//				List<Entity> spell = getGameWorld().getEntitiesAt(new Point2D(caseX, caseY));
+//				for (Entity s : spell) {
+//					if (s.getTypeComponent().isType(EntityType.SPELL)) {
+//						System.out.println("spell");
+//					}
+//				}
+				
+//				switch (caseX & caseY) {
+//				case (12 & 15) :
+//					System.out.println("spell1");
+//					break;
+//				case (13 & 15) :
+//					System.out.println("spell2");
+//					break;
+//				
+//				}
+				
+//				if((caseX == 12 ) && (caseY == 15)) {
+//					System.out.println(x + "       " + y);
+//					System.out.println("TARGET");
+
+//				}
+			}
+			
+		});
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -194,7 +240,6 @@ public class BasicGameApp extends GameApplication {
 					}
 
 				}
-
 				if (event.getButton() == MouseButton.PRIMARY && activeSkillOk) {
 
 					Player[] persos = new Player[3];
@@ -300,7 +345,6 @@ public class BasicGameApp extends GameApplication {
 			}
 		});
 	}
-
 	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
 			int pY) {
 		List<Entity> adjacent = getGameWorld().getEntitiesAt(new Point2D(pX, pY));
