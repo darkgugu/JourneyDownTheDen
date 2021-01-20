@@ -13,6 +13,7 @@ import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
@@ -49,7 +50,7 @@ public class BasicGameApp extends GameApplication {
 	private Tour tour;
 	private CharInfoView view;
 	private Animation<?> animation;
-		
+	private KillUnit killUnit;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -153,6 +154,8 @@ public class BasicGameApp extends GameApplication {
 				tour.debut();
 				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 						GameLog.getGameLog(), tour.getNbTour());
+				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent , greenHeroComponent, selectedUnit);
+
 			}
 		}, KeyCode.S);
 	}
@@ -170,6 +173,8 @@ public class BasicGameApp extends GameApplication {
 		Point2D hotspot = Point2D.ZERO;
 		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
+		killUnit = new KillUnit(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent);	
+
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -224,6 +229,8 @@ public class BasicGameApp extends GameApplication {
 					tour.debut();
 					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 							GameLog.getGameLog(), tour.getNbTour());
+					killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent , greenHeroComponent, selectedUnit);
+
 				}
 
 				if (skillSlot != -1) {
@@ -374,7 +381,7 @@ public class BasicGameApp extends GameApplication {
 		showAdjacentCase(map_obstacle, caseX, caseY - 1, pX, pY - 60);
 		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
 		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
-		if (selectedUnit.getHeroClass().getMovePoint() == 2) {
+		if (selectedUnit.getHeroClass().getMovePoint() >= 2) {
 			showAdjacentCase(map_obstacle, caseX + 2, caseY, pX + 120, pY);
 			showAdjacentCase(map_obstacle, caseX - 2, caseY, pX - 120, pY);
 			showAdjacentCase(map_obstacle, caseX, caseY - 2, pX, pY - 120);
@@ -382,4 +389,5 @@ public class BasicGameApp extends GameApplication {
 		}
 
 	}
+	
 }

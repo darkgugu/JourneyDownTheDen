@@ -87,5 +87,4 @@ public class Player extends Component {
 	public void setActiveSkill(Capacites activeSkill) {
 		this.activeSkill = activeSkill;
 	}
-
 }
