@@ -33,8 +33,8 @@ public class BasicGameApp extends GameApplication {
 	private Player redHeroComponent;
 	private Player blueHeroComponent;
 	private Player greenHeroComponent;
-	private Player selectedUnit;
 	private IAControlledEntity gobelin;
+	public Player selectedUnit;
 
 	// Fake Entities, for UI
 	private Entity Block;
@@ -42,6 +42,9 @@ public class BasicGameApp extends GameApplication {
 	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
+
+	private Tour tour;
+	private CharInfoView view;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -84,6 +87,7 @@ public class BasicGameApp extends GameApplication {
 		blueHeroComponent.setName("blue");
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
+
 		/*
 		 * MOBS
 		 */
@@ -95,29 +99,30 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		Entity InfoUI = getGameWorld().spawn("infoUI", new Point2D(5, 901));
-		
+
 		for (int i = 0; i < 10; i++) {
-		
-			int x = 720 + (60*i);
+
+			int x = 720 + (60 * i);
 			int y = 901;
 			getGameWorld().spawn("spellBorder", new Point2D(x, y));
 		}
 
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
-		
+
 // 		Repeatable theme
 //		getAudioPlayer().loopBGM("town_theme.mp3");
 
 	}
-	
+
 	protected void updateSkillsUI(Player selectedUnit) {
-		
-		for (int i = 0;i != 10;i++) {
-			
-			int x = 725 + (60*i);
+
+		for (int i = 0; i != 10; i++) {
+
+			int x = 725 + (60 * i);
 			int y = 906;
-			if(selectedUnit.getHeroClass().getSkills()[i] != null) {
-				getGameWorld().spawn(selectedUnit.getHeroClass().getSkills()[i].getClass().getSimpleName(), new Point2D(x, y));
+			if (selectedUnit.getHeroClass().getSkills()[i] != null) {
+				getGameWorld().spawn(selectedUnit.getHeroClass().getSkills()[i].getClass().getSimpleName(),
+						new Point2D(x, y));
 			}
 		}
 	}
@@ -125,10 +130,9 @@ public class BasicGameApp extends GameApplication {
 	@Override
 	protected void initInput() {
 		Input input = getInput();
-
 		input.addAction(new UserAction("Show grid") {
 			@Override
-			protected void onAction() {
+			protected void onActionBegin() {
 				if (gridState == false) {
 					grid = Entities.builder().at(0, 0).viewFromTexture("grid.png").buildAndAttach(getGameWorld());
 					gridState = true;
@@ -138,15 +142,23 @@ public class BasicGameApp extends GameApplication {
 				}
 			}
 		}, KeyCode.F);
+
+		input.addAction(new UserAction("End/Skip") {
+			@Override
+			protected void onActionBegin() {
+				tour.debut();
+				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
+						GameLog.getGameLog(), tour.getNbTour());
+			}
+		}, KeyCode.S);
 	}
 
 	@Override
 	protected void initUI() {
 
 		Point2D hotspot = Point2D.ZERO;
-		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
-				GameLog.getGameLog());
-		Tour tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
+		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
+		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -163,9 +175,9 @@ public class BasicGameApp extends GameApplication {
 				int skillSlot = SkillSlot.isSkillSlot(x, y);
 
 				if (tabClick[0] == 23 && tabClick[1] == 15) {
-
 					tour.debut();
-					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog());
+					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
+							GameLog.getGameLog(), tour.getNbTour());
 				}
 
 				if (skillSlot != -1) {
@@ -189,8 +201,8 @@ public class BasicGameApp extends GameApplication {
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
-					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(), (int) selectedUnit.getPosition().getY());
-
+					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
+							(int) selectedUnit.getPosition().getY());
 
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
@@ -199,17 +211,20 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick) == "OK"){
-							
-								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-								GameLog.setGameLog("Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
-							}
-							else {
-								
-								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick));
+							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
+									persos[i].getHeroClass(), caster, tabClick) == "OK") {
+
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
+										persos[i].getHeroClass());
+								GameLog.setGameLog(
+										"Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
+							} else {
+
+								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
+										persos[i].getHeroClass(), caster, tabClick));
 							}
 							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-									GameLog.getGameLog());
+									GameLog.getGameLog(), tour.getNbTour());
 							activeSkillOk = false;
 						}
 					}
@@ -224,7 +239,10 @@ public class BasicGameApp extends GameApplication {
 
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
+						System.out.println("perso " + i + " X " + pX);
 						int pY = (int) persos[i].getPosition().getY();
+						System.out.println("perso " + i + " X " + pY);
+
 						int caseX = pX / 60;
 						int caseY = pY / 60;
 
@@ -275,8 +293,8 @@ public class BasicGameApp extends GameApplication {
 							entity.removeFromWorld();
 						}
 						System.out.println("move");
-						selectedUnit.move(new Point2D(x, y));
-
+						
+						selectedUnit.move(new Point2D(x, y), getGameWorld());
 					}
 				}
 			}
@@ -302,7 +320,7 @@ public class BasicGameApp extends GameApplication {
 		showAdjacentCase(map_obstacle, caseX, caseY - 1, pX, pY - 60);
 		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
 		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
-		if(selectedUnit.getHeroClass().getMovePoint() == 2) {
+		if (selectedUnit.getHeroClass().getMovePoint() == 2) {
 			showAdjacentCase(map_obstacle, caseX + 2, caseY, pX + 120, pY);
 			showAdjacentCase(map_obstacle, caseX - 2, caseY, pX - 120, pY);
 			showAdjacentCase(map_obstacle, caseX, caseY - 2, pX, pY - 120);

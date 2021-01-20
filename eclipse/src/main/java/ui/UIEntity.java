@@ -78,9 +78,7 @@ public class UIEntity implements EntityFactory {
 				.viewFromTexture("Fireball.png")
 				.build();
 	}
-	
-	
-	@Spawns("Soin")
+		@Spawns("Soin")
 	public Entity newSpell2(SpawnData data) {
 		return Entities.builder()
 				.from(data)

@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import jeu.Player;
+import jeu.Tour;
 import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
 
 public class CharInfoView {
@@ -28,14 +29,13 @@ public class CharInfoView {
 	private Text textBlueInfo;
     private ScrollPane scrollPane;
     private Text log;
-
+    private Text textTour;
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
 
 		/*
 		 * Descriptive text
 		 */
-		
 		log = new Text();
 		log.setFont(Font.font("Helvetica", 16));
 		log.setFill(Color.BLACK);
@@ -74,6 +74,12 @@ public class CharInfoView {
 		textCharInfo.setTranslateY(923);
 		textCharInfo.setText("HP            " + "ATK        " + "MVT     PA");
 		
+		textTour = new Text();
+		textTour.setFont(Font.font("Verdana", 20));
+		textTour.setFill(Color.BLACK);
+		textTour.setTranslateX(400);
+		textTour.setTranslateY(920);
+		textTour.setText("Tour : 0");
 		/*
 		 * Units characteristics
 		 */
@@ -105,11 +111,11 @@ public class CharInfoView {
 						+ playerBlue.getHeroClass().getMovePoint() + "          "  + playerBlue.getHeroClass().getActionPoint() + "   " + playerBlue.getName());
 
 		
-		gameScene.addUINodes(textSkip, textCharInfo,textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log);
+		gameScene.addUINodes(textSkip, textCharInfo,textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log, textTour);
 	}
 
 	//Update of units characteristics
-	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog) {
+	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog, int tour) {
 		
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
@@ -132,6 +138,8 @@ public class CharInfoView {
 		log.setText(gameLog);
 		scrollPane.setContent(log);
 		scrollPane.setVvalue(scrollPane.getVmax());
+		
+		textTour.setText("Tour : " + tour);
 		
 	}
 }
