@@ -36,6 +36,7 @@ public class BasicGameApp extends GameApplication {
 	private Player redHeroComponent;
 	private Player blueHeroComponent;
 	private Player greenHeroComponent;
+	private IAControlledEntity gobelin;
 	public Player selectedUnit;
 
 	// Fake Entities, for UI
@@ -44,7 +45,6 @@ public class BasicGameApp extends GameApplication {
 	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-	// public static String gameLog = "Dï¿½but du Log\n";
 
 	private Tour tour;
 	private CharInfoView view;
@@ -96,6 +96,8 @@ public class BasicGameApp extends GameApplication {
 		 * MOBS
 		 */
 		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 60));
+		gobelin = goblin1.getComponent(IAControlledEntity.class);
+		
 		/*
 		 * UI
 		 */
@@ -166,10 +168,8 @@ public class BasicGameApp extends GameApplication {
 //		animation = getUIFactory().translate(text, )
 		
 		Point2D hotspot = Point2D.ZERO;
-		tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
-				greenHeroComponent.getHeroClass());
-		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
-				GameLog.getGameLog());
+		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
+		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -228,15 +228,25 @@ public class BasicGameApp extends GameApplication {
 
 				if (skillSlot != -1) {
 
-					if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
-
-						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
-						selectedUnit.setActiveSkill(skill);
-						activeSkillOk = true;
-						System.out.println("Active Skill : " + skill.getName());
-					} else {
-
-						GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
+					if(selectedUnit != null) {
+						
+						
+						if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
+	
+							Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
+							selectedUnit.setActiveSkill(skill);
+							activeSkillOk = true;
+							System.out.println("Active Skill : " + skill.getName());
+						} else {
+	
+							GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
+							view.updateLog(GameLog.getGameLog());
+						}
+					}
+					else {
+						
+						GameLog.setGameLog("Selectionnez une unité !");
+						view.updateLog(GameLog.getGameLog());
 					}
 
 				}

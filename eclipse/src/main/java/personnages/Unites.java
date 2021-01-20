@@ -113,6 +113,14 @@ public class Unites {
 	public void setDidMove(boolean didMove) {
 		this.didMove = didMove;
 	}
+	public int getPhysicalBaseDamage() {
+		return physicalBaseDamage;
+	}
+
+	public void setPhysicalBaseDamage(int physicalBaseDamage) {
+		this.physicalBaseDamage = physicalBaseDamage;
+	}
+
 	
 	
 	

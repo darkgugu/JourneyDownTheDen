@@ -91,4 +91,8 @@ public abstract class Capacites implements ICast{
 	public int getCost() {
 		return cost;
 	}
+
+	public int getRange() {
+		return range;
+	}
 }

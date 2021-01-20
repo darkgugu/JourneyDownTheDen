@@ -1,28 +1,42 @@
 package jeu;
 
+import personnages.IAControlled.IABehaviour;
 import personnages.playerControlled.Personnages;
 
 public class Tour {
 	
+	private Player players[] = new Player[3];
 	private Personnages persos[] = new Personnages[3];
 	private int nbTour = 0;
+	private IAControlledEntity gobelin;
 
-	public Tour(Personnages perso0, Personnages perso1, Personnages perso2) {
+	public Tour(Player perso0, Player perso1, Player perso2, IAControlledEntity gobelin) {
 		super();
-		persos[0] = perso0;
-		persos[1] = perso1;
-		persos[2] = perso2;
+		players[0] = perso0;
+		players[1] = perso1;
+		players[2] = perso2;
+		
+		persos[0] = perso0.getHeroClass();
+		persos[1] = perso1.getHeroClass();
+		persos[2] = perso2.getHeroClass();
+		this.gobelin = gobelin;
 	}
 	
 	public void debut() {
+		
+		ennemyTurn();
 		setNbTour(getNbTour() + 1);
-
 		for (int i = 0; i < persos.length; i++) {
 
 			persos[i].setActionPointToMax();
 			//persos[i].setMovePointToMax();
 			persos[i].setDidMove(false);
 		}
+	}
+	
+	public void ennemyTurn() {
+		
+		IABehaviour.isRangeAgressiveSpell(gobelin, players);
 	}
 	
 	public boolean checkFin() {
