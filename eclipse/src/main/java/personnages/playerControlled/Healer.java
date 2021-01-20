@@ -10,13 +10,4 @@ public class Healer extends Personnages{
 		skills[0] = new Fireball();
 		skills[1] = new Soin();
 	}
-
-	
-	@Override
-	public String toString() {
-		
-		String spellBar = "Sort 1 : " + skills[0].getClass().getSimpleName() + "\nSort 2  : " + skills[1].getClass().getSimpleName();
-		return spellBar;
-	}
-
 }
