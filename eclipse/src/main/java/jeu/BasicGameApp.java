@@ -182,15 +182,25 @@ public class BasicGameApp extends GameApplication {
 
 				if (skillSlot != -1) {
 
-					if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
-
-						Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
-						selectedUnit.setActiveSkill(skill);
-						activeSkillOk = true;
-						System.out.println("Active Skill : " + skill.getName());
-					} else {
-
-						GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
+					if(selectedUnit != null) {
+						
+						
+						if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
+	
+							Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
+							selectedUnit.setActiveSkill(skill);
+							activeSkillOk = true;
+							System.out.println("Active Skill : " + skill.getName());
+						} else {
+	
+							GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
+							view.updateLog(GameLog.getGameLog());
+						}
+					}
+					else {
+						
+						GameLog.setGameLog("Selectionnez une unité !");
+						view.updateLog(GameLog.getGameLog());
 					}
 
 				}

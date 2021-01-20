@@ -142,4 +142,11 @@ public class CharInfoView {
 		textTour.setText("Tour : " + tour);
 		
 	}
+	
+	public void updateLog(String gameLog) {
+		
+		log.setText(gameLog);
+		scrollPane.setContent(log);
+		scrollPane.setVvalue(scrollPane.getVmax());
+	}
 }
