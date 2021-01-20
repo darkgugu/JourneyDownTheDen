@@ -26,7 +26,6 @@ public class KillUnit {
 					.getEntitiesAt(new Point2D(playerBlue.getPosition().getX(), playerBlue.getPosition().getY()));
 			for (Entity entity : target) {
 				entity.removeFromWorld();
-				entity.removeComponent(null);
 			}
 		}
 		if (playerGreen.getHeroClass().getPv() <= 0) {
