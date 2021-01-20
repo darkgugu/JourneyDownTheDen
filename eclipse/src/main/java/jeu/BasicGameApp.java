@@ -34,6 +34,7 @@ public class BasicGameApp extends GameApplication {
 	private Player blueHeroComponent;
 	private Player greenHeroComponent;
 	private Player selectedUnit;
+	private IAControlledEntity gobelin;
 
 	// Fake Entities, for UI
 	private Entity Block;
@@ -41,7 +42,6 @@ public class BasicGameApp extends GameApplication {
 	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-	// public static String gameLog = "D�but du Log\n";
 
 	public static void main(String[] args) {
 		launch(args);
@@ -88,6 +88,8 @@ public class BasicGameApp extends GameApplication {
 		 * MOBS
 		 */
 		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 60));
+		gobelin = goblin1.getComponent(IAControlledEntity.class);
+		
 		/*
 		 * UI
 		 */
@@ -144,8 +146,7 @@ public class BasicGameApp extends GameApplication {
 		Point2D hotspot = Point2D.ZERO;
 		CharInfoView view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
 				GameLog.getGameLog());
-		Tour tour = new Tour(redHeroComponent.getHeroClass(), blueHeroComponent.getHeroClass(),
-				greenHeroComponent.getHeroClass());
+		Tour tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
