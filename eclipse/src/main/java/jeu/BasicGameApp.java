@@ -9,9 +9,11 @@ import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Iterator;
 
+import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
@@ -23,6 +25,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import personnages.Unites;
 import ui.CharInfoView;
 import ui.UIEntity;
@@ -45,7 +49,8 @@ public class BasicGameApp extends GameApplication {
 
 	private Tour tour;
 	private CharInfoView view;
-
+	private Animation<?> animation;
+	private KillUnit killUnit;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -149,6 +154,8 @@ public class BasicGameApp extends GameApplication {
 				tour.debut();
 				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 						GameLog.getGameLog(), tour.getNbTour());
+				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent , greenHeroComponent, selectedUnit);
+
 			}
 		}, KeyCode.S);
 	}
@@ -156,11 +163,55 @@ public class BasicGameApp extends GameApplication {
 	@Override
 	protected void initUI() {
 
+//		Text text = new Text("Flammes");
+//		text.setTranslateX(800);
+//		text.setTranslateY(800);
+//		text.setFont(Font.font(46));
+//		getGameScene().addUINode(text);
+//		animation = getUIFactory().translate(text, )
+		
 		Point2D hotspot = Point2D.ZERO;
 		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
+		killUnit = new KillUnit(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent);	
+
 
 		getGameScene().setCursor("cursor.png", hotspot);
+		getGameScene().getContentRoot().setOnMouseMoved(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+//				int x = (int) event.getSceneX();
+//				int y = (int) event.getSceneY();
+//				int caseX = x / 60;
+//				int caseY = y / 60;
+//				
+////				System.out.println(caseX + "    " + caseY);
+//				List<Entity> spell = getGameWorld().getEntitiesAt(new Point2D(caseX, caseY));
+//				for (Entity s : spell) {
+//					if (s.getTypeComponent().isType(EntityType.SPELL)) {
+//						System.out.println("spell");
+//					}
+//				}
+				
+//				switch (caseX & caseY) {
+//				case (12 & 15) :
+//					System.out.println("spell1");
+//					break;
+//				case (13 & 15) :
+//					System.out.println("spell2");
+//					break;
+//				
+//				}
+				
+//				if((caseX == 12 ) && (caseY == 15)) {
+//					System.out.println(x + "       " + y);
+//					System.out.println("TARGET");
+
+//				}
+			}
+			
+		});
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -178,6 +229,8 @@ public class BasicGameApp extends GameApplication {
 					tour.debut();
 					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 							GameLog.getGameLog(), tour.getNbTour());
+					killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent , greenHeroComponent, selectedUnit);
+
 				}
 
 				if (skillSlot != -1) {
@@ -199,12 +252,11 @@ public class BasicGameApp extends GameApplication {
 					}
 					else {
 						
-						GameLog.setGameLog("Selectionnez une unité !");
+						GameLog.setGameLog("Selectionnez une unitï¿½ !");
 						view.updateLog(GameLog.getGameLog());
 					}
 
 				}
-
 				if (event.getButton() == MouseButton.PRIMARY && activeSkillOk) {
 
 					Player[] persos = new Player[3];
