@@ -14,6 +14,7 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 import capacites.Capacites;
 import javafx.geometry.Point2D;
 import personnages.playerControlled.Personnages;
+import ui.GameLog;
 
 public class Player extends Component {
 	private PositionComponent position;
@@ -81,6 +82,12 @@ public class Player extends Component {
 			System.out.println("pas de deplacement");
 		}
 	}
+	
+//	public void suppress() {
+//		
+//		move(new Point2D(-100, -100), getGameWorld());
+//	}
+	
 	public Capacites getActiveSkill() {
 		return activeSkill;
 	}

@@ -37,6 +37,7 @@ public class Tour {
 	public void ennemyTurn() {
 		
 		IABehaviour.isRangeAgressiveSpell(gobelin, players);
+		IABehaviour.closestPlayer(gobelin, IABehaviour.getDist(gobelin, players), players);
 	}
 	
 	public boolean checkFin() {

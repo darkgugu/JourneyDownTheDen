@@ -8,6 +8,7 @@ import jeu.Click;
 import jeu.Deplacement;
 import jeu.IAControlledEntity;
 import jeu.Player;
+import ui.GameLog;
 
 public class IABehaviour {
 	
@@ -33,5 +34,65 @@ public class IABehaviour {
 			}
 			
 		}
+	}
+	
+	public static double[] getDist(IAControlledEntity unit, Player[] players) {
+		
+		double[] posx = new double[3];
+		double[] posy = new double[3];
+		double[] dist = new double[3];
+		
+		for (int i = 0; i < 3; i++) {
+
+			posx[i] = players[i].getPosition().getX();
+			posy[i] = players[i].getPosition().getY();
+			
+			//GameLog.setGameLog("Player " + i + " position : " + posx[i] + "," + posy[i]);
+			
+			dist[i] = Math.sqrt(Math.pow((posx[i] - unit.getPosition().getX()), 2) + Math.pow((posy[i] - unit.getPosition().getY()), 2));
+			
+			//GameLog.setGameLog("Distance = " + dist[i]);
+		}
+		
+		return dist;
+	}
+	
+	public static void closestPlayer(IAControlledEntity unit, double dist[], Player[] players) {
+		
+		Player closePlayer = players[0];
+		double closeDist = dist[0];
+		double xdir;
+		double ydir;
+		
+		if(dist[0] <= dist[1] && dist[0] <= dist[2]) {
+			closePlayer = players[0];
+			closeDist = dist[0];
+		}
+		else if(dist[1] <= dist[2] && dist[1] <= dist[0]) {
+			closePlayer = players[1];
+			closeDist = dist[1];
+		}
+		else if(dist[2] <= dist[0] && dist[2] <= dist[1]) {
+			closePlayer = players[2];
+			closeDist = dist[2];
+		}
+		
+		GameLog.setGameLog("Le joueur le plus proche est " + closePlayer.getName());
+		
+		//return closePlayer;
+		
+		if(closeDist <= unit.getType().getAggroRange() * 60 && closeDist > 60) {
+			
+			GameLog.setGameLog(closePlayer.getName() + " est à portée de " + unit.getName() + " et n'est pas au cac");
+			if(unit.getPosition().getX() < closePlayer.getPosition().getX()) {
+				
+				
+			}
+		}
+	}
+	
+	public static void moveIA() {
+		
+		
 	}
 }
