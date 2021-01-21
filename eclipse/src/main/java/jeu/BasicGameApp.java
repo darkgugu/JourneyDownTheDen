@@ -269,7 +269,8 @@ public class BasicGameApp extends GameApplication {
 //								if(selectedUnit.getHeroClass().getMovePoint() == 2) {
 //									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 //								}
-								showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
+								//showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
+								proximityCases(selectedUnit);
 
 							} else {
 								for (Entity entity : list) {
@@ -282,7 +283,8 @@ public class BasicGameApp extends GameApplication {
 								} else {
 									selectedUnit = persos[i];
 									updateSkillsUI(selectedUnit);
-									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
+									//showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
+									proximityCases(selectedUnit);
 								}
 							}
 						} else {
@@ -310,32 +312,25 @@ public class BasicGameApp extends GameApplication {
 			}
 		});
 	}
-
-	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
-			int pY) {
-		List<Entity> adjacent = getGameWorld().getEntitiesAt(new Point2D(pX, pY));
-		if (!map_obstacle.contains(new SimpleEntry<Integer, Integer>(caseX, caseY)) && adjacent.isEmpty()) {
-			range = getGameWorld().spawn("range", new Point2D(pX, pY));
+	
+	private void proximityCases(Player player) {
+		
+		new Click();
+		int tab[] = Click.cases(((int) player.getPosition().getX()), ((int) player.getPosition().getY()));
+		Deplacement move = new Deplacement();
+		move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
+		move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
+		List<SimpleEntry<Integer, Integer>> list = move.list;
+		for (int i = 0; i < 31; i++) {
+			for (int j = 0; j < 14; j++) {
+				
+				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
+				if(list.contains(vars)) {
+					
+					range = getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
+				}
+			}
 		}
 	}
 
-	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
-			int pY) {
-
-		showAdjacentCase(map_obstacle, caseX + 1, caseY + 1, pX + 60, pY + 60);
-		showAdjacentCase(map_obstacle, caseX + 1, caseY, pX + 60, pY);
-		showAdjacentCase(map_obstacle, caseX, caseY + 1, pX, pY + 60);
-		showAdjacentCase(map_obstacle, caseX - 1, caseY - 1, pX - 60, pY - 60);
-		showAdjacentCase(map_obstacle, caseX - 1, caseY, pX - 60, pY);
-		showAdjacentCase(map_obstacle, caseX, caseY - 1, pX, pY - 60);
-		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
-		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
-		if (selectedUnit.getHeroClass().getMovePoint() == 2) {
-			showAdjacentCase(map_obstacle, caseX + 2, caseY, pX + 120, pY);
-			showAdjacentCase(map_obstacle, caseX - 2, caseY, pX - 120, pY);
-			showAdjacentCase(map_obstacle, caseX, caseY - 2, pX, pY - 120);
-			showAdjacentCase(map_obstacle, caseX, caseY + 2, pX, pY + 120);
-		}
-
-	}
 }

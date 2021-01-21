@@ -7,7 +7,7 @@ public class Magician extends Personnages{
 
 
 	public Magician() {
-		super(100, "Magician", 10, 50, 20, 5, 2);
+		super(100, "Magician", 10, 50, 20, 5, 1);
 		skills[0] = new Soin();
 		skills[1] = new Fireball();
 

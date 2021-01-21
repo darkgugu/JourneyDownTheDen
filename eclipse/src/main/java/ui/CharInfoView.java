@@ -30,6 +30,7 @@ public class CharInfoView {
     private ScrollPane scrollPane;
     private Text log;
     private Text textTour;
+    private Text errLog;
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
 
@@ -40,7 +41,7 @@ public class CharInfoView {
 		log.setFont(Font.font("Helvetica", 16));
 		log.setFill(Color.BLACK);
 		log.setText(gameLog);
-
+		
 		scrollPane = new ScrollPane();
 		scrollPane.setPrefWidth(450);
 		scrollPane.setPrefHeight(150);
