@@ -1,8 +1,10 @@
 package ui;
 
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.GameScene;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -13,10 +15,12 @@ import jeu.Player;
 public class Description extends BasicGameApp {
 	private Text descriSpell1;
 	private int i;
+	private Entity description;
 	public Description(GameScene gamescene) {
 		descriSpell1 = new Text();
-		descriSpell1.setFont(Font.font("Verdana", 30));
+		descriSpell1.setFont(Font.font("Verdana", 25));
 		gamescene.addUINodes(descriSpell1);
+		Entity description = getGameWorld().spawn("description", new Point2D(720, 953));
 	}
 
 	/*
@@ -33,10 +37,9 @@ public class Description extends BasicGameApp {
 	 * Affichage des 10 descriptions de spells en fonction du caster.
 	 */
 	public void updateDescriSpell(GameScene gamescene, Player selectedUnit) {
-		descriSpell1.setTranslateX(800);
-		descriSpell1.setTranslateY(800);
+		descriSpell1.setTranslateX(730);
+		descriSpell1.setTranslateY(980);
 		descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
-
 	}
 
 	public void mousePos(Player selectedUnit) {

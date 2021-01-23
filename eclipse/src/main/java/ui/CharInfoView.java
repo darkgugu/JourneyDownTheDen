@@ -15,6 +15,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import jeu.Player;
 import jeu.Tour;
@@ -42,6 +43,7 @@ public class CharInfoView {
 		log.setFill(Color.BLACK);
 		log.setText(gameLog);
 		
+		
 		scrollPane = new ScrollPane();
 		scrollPane.setPrefWidth(450);
 		scrollPane.setPrefHeight(150);
@@ -50,7 +52,8 @@ public class CharInfoView {
 		scrollPane.setTranslateX(1440);
 		scrollPane.setTranslateY(901);
 		scrollPane.setContent(log);
-		
+		scrollPane.setOpacity(0.6);
+
 		textSkip = new Text();
 		textSkip.setFont(Font.font("Verdana", 20));
 		textSkip.setFill(Color.BLACK);
@@ -150,6 +153,7 @@ public class CharInfoView {
 	public void updateLog(String gameLog) {
 		
 		log.setText(gameLog);
+		
 		scrollPane.setContent(log);
 		scrollPane.setVvalue(scrollPane.getVmax());
 	}

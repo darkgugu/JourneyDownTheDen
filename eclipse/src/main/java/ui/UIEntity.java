@@ -150,5 +150,13 @@ public class UIEntity implements EntityFactory {
 				.viewFromTexture("spells.png")
 				.build();
 	}
+	@Spawns("description")
+	public Entity newDescription(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.DESCRIPTION)
+				.viewFromTexture("describorder.png")
+				.build();
+	}
 	
 }
