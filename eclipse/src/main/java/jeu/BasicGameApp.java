@@ -96,7 +96,7 @@ public class BasicGameApp extends GameApplication {
 		/*
 		 * MOBS
 		 */
-		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 60));
+		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 180));
 		gobelin = goblin1.getComponent(IAControlledEntity.class);
 		
 		/*
