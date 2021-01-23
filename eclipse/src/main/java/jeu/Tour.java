@@ -1,5 +1,6 @@
 package jeu;
 
+import javafx.geometry.Point2D;
 import personnages.IAControlled.IABehaviour;
 import personnages.playerControlled.Personnages;
 
@@ -24,19 +25,20 @@ public class Tour {
 	
 	public void debut() {
 		
-		ennemyTurn();
+		double[] tar = ennemyTurn();
+		gobelin.move(new Point2D(tar[0], tar[1]));
 		setNbTour(getNbTour() + 1);
 		for (int i = 0; i < persos.length; i++) {
 
 			persos[i].setActionPointToMax();
-			//persos[i].setMovePointToMax();
 			persos[i].setDidMove(false);
 		}
 	}
 	
-	public void ennemyTurn() {
+	public double[] ennemyTurn() {
 		
 		IABehaviour.isRangeAgressiveSpell(gobelin, players);
+		return IABehaviour.getTar(gobelin, IABehaviour.getDist(gobelin, players), players);
 	}
 	
 	public boolean checkFin() {
