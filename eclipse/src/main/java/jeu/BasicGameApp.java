@@ -230,8 +230,11 @@ public class BasicGameApp extends GameApplication {
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
-					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
-							(int) selectedUnit.getPosition().getY());
+					
+					IAControlledEntity[] IA = new IAControlledEntity[1];
+					IA[0] = gobelin;
+				
+					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(), (int) selectedUnit.getPosition().getY());
 
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
@@ -255,6 +258,29 @@ public class BasicGameApp extends GameApplication {
 							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 									GameLog.getGameLog(), tour.getNbTour());
 
+							activeSkillOk = false;
+						}
+					}
+					
+					for (int i = 0; i < IA.length; i++) {
+						int pX = (int) IA[i].getPosition().getX();
+						int pY = (int) IA[i].getPosition().getY();
+						int[] tabPerso = Click.cases(pX, pY);
+
+						if(tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
+
+							if(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(), caster, tabClick) == "OK") {
+
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
+								GameLog.setGameLog("Target : " + IA[i].getName() + " " + IA[i].getType().getPv());
+								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
+							}
+							else{
+
+								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
+								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(), caster, tabClick));
+							}
+							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
 							activeSkillOk = false;
 						}
 					}
