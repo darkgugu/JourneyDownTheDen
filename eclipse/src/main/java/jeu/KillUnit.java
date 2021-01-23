@@ -5,6 +5,7 @@ import java.util.List;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
+
 import javafx.geometry.Point2D;
 
 public class KillUnit {
@@ -13,6 +14,8 @@ public class KillUnit {
 
 	public void checkKill(GameWorld gameWorld, Player playerRed, Player playerBlue, Player playerGreen,
 			Player playerSelected) {
+		
+		
 
 		if (playerRed.getHeroClass().getPv() <= 0) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -20,6 +23,7 @@ public class KillUnit {
 			for (Entity entity : target) {
 				entity.removeFromWorld();
 			}
+			
 		}
 		if (playerBlue.getHeroClass().getPv() <= 0) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -27,6 +31,7 @@ public class KillUnit {
 			for (Entity entity : target) {
 				entity.removeFromWorld();
 			}
+			
 		}
 		if (playerGreen.getHeroClass().getPv() <= 0) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
