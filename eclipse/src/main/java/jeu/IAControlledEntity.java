@@ -51,8 +51,6 @@ public class IAControlledEntity extends Component {
 
 		int casePlayerX = (int) (posX / 60);
 		int casePlayerY = (int) (posY / 60);
-		System.out.println("Coordonnées player pixels ("  + position.getX() + " , " + position.getY() + ")");
-		System.out.println("Coordonnées player case (" + casePlayerX + " , " + casePlayerY + ")");
 
 		new Click();
 		int tab[] = Click.cases(((int) direction.getX()), ((int) direction.getY()));
@@ -62,27 +60,12 @@ public class IAControlledEntity extends Component {
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 		
-		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
-		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
-
-		if (list.contains(vars) && type.isDidMove() == false) {
+		if (list.contains(vars)) {
 			
 			position.translateX(tab[2] - position.getX());
 			position.translateY(tab[3] - position.getY());
 			posX = (int) position.getX();
 			posY = (int) position.getY();
-			type.setDidMove(true);
-
-			System.out.println("Coordonnées player X Y (" + posX + " , " + posY + ") \n\n");
-
-		} else {
-			System.out.println("pas de deplacement");
 		}
 	}
-//	public Capacites getActiveSkill() {
-//		return activeSkill;
-//	}
-//	public void setActiveSkill(Capacites activeSkill) {
-//		this.activeSkill = activeSkill;
-//	}
 }

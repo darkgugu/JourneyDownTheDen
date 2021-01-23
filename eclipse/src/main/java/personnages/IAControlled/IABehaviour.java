@@ -57,12 +57,18 @@ public class IABehaviour {
 		return dist;
 	}
 	
-	public static void closestPlayer(IAControlledEntity unit, double dist[], Player[] players) {
+	public static double[] getTar(IAControlledEntity unit, double dist[], Player[] players) {
 		
 		Player closePlayer = players[0];
 		double closeDist = dist[0];
-		double xtar;
-		double ytar;
+		double xtar = unit.getPosition().getX();
+		double ytar = unit.getPosition().getY();
+		double[] tar = new double[2];
+		double X = unit.getPosition().getX();
+		double Y = unit.getPosition().getY();
+		int i = 1;
+		int iX = 1;
+		int iY = 1;
 		
 		if(dist[0] <= dist[1] && dist[0] <= dist[2]) {
 			closePlayer = players[0];
@@ -77,30 +83,72 @@ public class IABehaviour {
 			closeDist = dist[2];
 		}
 		
-		GameLog.setGameLog("Le joueur le plus proche est " + closePlayer.getName());
-		
-		//return closePlayer;
-		
+		double Xp = closePlayer.getPosition().getX();
+		double Yp = closePlayer.getPosition().getY();		
 		if(closeDist <= unit.getType().getAggroRange() * 60 && closeDist > 60) {
 			
 			GameLog.setGameLog(closePlayer.getName() + " est à portée de " + unit.getName() + " et n'est pas au cac");
-			if(unit.getPosition().getX() == closePlayer.getPosition().getX()) {
+			int pm = unit.getType().getMovePoint();
+
+			if(X == Xp) {
 				
-				xtar = unit.getPosition().getX();
-				double delta = closePlayer.getPosition().getY() - unit.getPosition().getY();
-				ytar = unit.getPosition().getY() + tar2(Math.abs(delta), unit.getType().getMovePoint());
+				xtar = X;
+				double delta = Yp - Y;
+				ytar = Y + tar2(Math.abs(delta), pm) * (delta/Math.abs(delta));
 				GameLog.setGameLog("Deplacement en case " + xtar/60 + "," + ytar/60);
+				tar[0] = xtar;
+				tar[1] = ytar;
+				return tar;
 				
 			}
-			if(unit.getPosition().getY() == closePlayer.getPosition().getY()) {
+			if(Y == Yp) {
 				
-				ytar = unit.getPosition().getY();
-				double delta = closePlayer.getPosition().getX() - unit.getPosition().getX();
-				xtar = unit.getPosition().getX() + tar2(Math.abs(delta), unit.getType().getMovePoint());
+				ytar = Y;
+				double delta = Xp - X;
+				xtar = X + tar2(Math.abs(delta), pm) * (delta/Math.abs(delta));
 				GameLog.setGameLog("Deplacement en case " + xtar/60 + "," + ytar/60);
+				tar[0] = xtar;
+				tar[1] = ytar;
+				return tar;
 			}
-			
+			while(pm != 0 && X != Xp && Y != Yp) {
+
+				if (i > 0) {
+				
+					double deltaX = Xp- X;
+					xtar = X + 60 * iX * (deltaX/Math.abs(deltaX));
+					i = -1;
+					pm--;
+					iX++;
+					//GameLog.setGameLog("Décalage (x) en " + xtar);
+				}
+				else if(i < 0){
+					
+					if(xtar != Xp || Math.abs(Xp - X) >= 60) {
+					
+						double deltaY = Yp- Y;
+						ytar = Y + 60 * iY * (deltaY/Math.abs(deltaY));
+					}
+					
+					i = 1;
+					pm--;
+					iY++;
+				}
+			}
+			if(xtar == Xp && ytar == Yp) {
+				
+				if((Yp - Y)/Math.abs((Yp - Y)) == 1) {
+					ytar -= 60;
+				}
+				else if((Yp - Y)/Math.abs((Yp - Y)) == -1){
+					ytar += 60;
+				}
+			}
+			tar[0] = xtar;
+			tar[1] = ytar;
+			return tar;
 		}
+		return tar;
 	}
 	
 	public static double tar2(double delta, int pm) {
