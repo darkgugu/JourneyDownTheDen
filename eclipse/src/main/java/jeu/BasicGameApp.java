@@ -72,7 +72,7 @@ public class BasicGameApp extends GameApplication {
 		settings.setVersion("0.8");
 		settings.setAppIcon("JDTD_icon.png");
 		settings.setMenuEnabled(true);
-		settings.setProfilingEnabled(true);
+//		settings.setProfilingEnabled(true);
 
 //To implement later
 //		settings.setIntroEnabled(true);
