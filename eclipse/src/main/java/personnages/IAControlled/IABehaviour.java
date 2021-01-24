@@ -3,7 +3,6 @@ package personnages.IAControlled;
 import java.util.List;
 
 import java.util.AbstractMap.SimpleEntry;
-
 import jeu.Click;
 import jeu.Deplacement;
 import jeu.IAControlledEntity;
@@ -13,6 +12,10 @@ import ui.GameLog;
 public class IABehaviour {
 	
 	public static void isRangeAgressiveSpell(IAControlledEntity unit, Player[] players) {
+		
+		//System.out.println("Size : " + reducePlayerTab(players).length);
+		
+		//players = reducePlayerTab(players);
 		
 		int range = unit.getType().getSkills()[0].getRange();
 		int tab[] = Click.cases(((int) unit.getPosition().getX()), ((int) unit.getPosition().getY()));
@@ -24,7 +27,7 @@ public class IABehaviour {
 		calcRange.calculateDiag(range, posx, posy);
 		List<SimpleEntry<Integer, Integer>> list = calcRange.list;
 	
-		for(int i = 0;i != 3;i++) {
+		for(int i = 0;i != players.length;i++) {
 			
 			int tabPlayer[] = Click.cases(((int) players[i].getPosition().getX()), ((int) players[i].getPosition().getY()));
 			
@@ -37,6 +40,8 @@ public class IABehaviour {
 	}
 	
 	public static double[] getDist(IAControlledEntity unit, Player[] players) {
+		
+		//players = reducePlayerTab(players);
 		
 		double[] posx = new double[3];
 		double[] posy = new double[3];
@@ -161,8 +166,46 @@ public class IABehaviour {
 		}
 	}
 	
-	public static void moveIA() {
+	public static Player[] reducePlayerTab(Player[] players) {
 		
+		Player[] playersTab2 = new Player[2];
+		Player[] playersTab1 = new Player[1];
 		
+		int k = 0;
+		int j = 0;
+		
+		for (int i = 0; i < players.length; i++) {
+			
+			if (players[i].getHeroClass().isDead()) {
+				players[i] = null;
+				k++;
+			}
+		}
+		for (int i = 0; i < players.length; i++) {
+			
+			if (players[i] != null) {
+				
+				if (k == 2) {
+				
+					playersTab1[j] = players[i];
+					j++;
+				}
+				else if (k == 1) {
+					
+					playersTab2[j] = players[i];
+					j++;
+				}
+			}
+		}
+		
+		if (k == 1) {
+			return playersTab2;
+		}
+		else if (k == 2) {
+			return playersTab1;
+		}
+		else {
+			return players;
+		}
 	}
 }
