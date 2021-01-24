@@ -57,7 +57,6 @@ public class BasicGameApp extends GameApplication {
 	private Tour tour;
 	private CharInfoView view;
 	private KillUnit killUnit;
-
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -392,7 +391,6 @@ public class BasicGameApp extends GameApplication {
 		proximityCases(selectedUnit);
 	}
 
-	
 	private void proximityCases(Player player) {
 		
 		new Click();
@@ -400,14 +398,25 @@ public class BasicGameApp extends GameApplication {
 		Deplacement move = new Deplacement();
 		move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
 		move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
+		int tabMob[] = Click.cases(((int) gobelin.getPosition().getX()), ((int) gobelin.getPosition().getY()));
+		int tabRedHero[] = Click.cases(((int) redHeroComponent.getPosition().getX()), ((int) redHeroComponent.getPosition().getY()));
+		int tabGreenHero[] = Click.cases(((int) greenHeroComponent.getPosition().getX()), ((int) greenHeroComponent.getPosition().getY()));
+		int tabBlueHero[] = Click.cases(((int) blueHeroComponent.getPosition().getX()), ((int) blueHeroComponent.getPosition().getY()));
+		
 		List<SimpleEntry<Integer, Integer>> list = move.list;
+		list.remove(new SimpleEntry<Integer, Integer>(tabMob[0], tabMob[1]));
+		list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
+		list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
+		list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
+
 		for (int i = 0; i < 31; i++) {
 			for (int j = 0; j < 14; j++) {
 				
 				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
+				
 				if(list.contains(vars)) {
-					
 					range = getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
+				
 				}
 			}
 		}
