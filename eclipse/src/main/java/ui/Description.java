@@ -39,7 +39,9 @@ public class Description extends BasicGameApp {
 	public void updateDescriSpell(GameScene gamescene, Player selectedUnit) {
 		descriSpell1.setTranslateX(730);
 		descriSpell1.setTranslateY(980);
-		descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
+		if(selectedUnit.getHeroClass().getSkills()[i] != null) {
+			descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
+		}
 	}
 
 	public void mousePos(Player selectedUnit) {
@@ -50,7 +52,7 @@ public class Description extends BasicGameApp {
 				int y = (int) event.getSceneY();
 				int[] tabClick = Click.cases(x, y);
 				int xy = tabClick[0] * 100 + tabClick[1];
-				System.out.println(xy);
+				//System.out.println(xy);
 
 				/*
 				 * Switch statement en fonction de la case ciblée par la souris
