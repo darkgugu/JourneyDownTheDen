@@ -86,28 +86,28 @@ public class UIEntity implements EntityFactory {
 				.viewFromTexture("Soin.png")
 				.build();
 	}
-	@Spawns("spell3")
+	@Spawns("Soin2")
 	public Entity newSpell3(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("spells.png")
+				.viewFromTexture("Soin2.png")
 				.build();
 	}
-	@Spawns("spell4")
+	@Spawns("MagicalDamageBuff")
 	public Entity newSpell4(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("spells.png")
+				.viewFromTexture("MagicalDamageBuff.png")
 				.build();
 	}
-	@Spawns("spell5")
+	@Spawns("Estoc")
 	public Entity newSpell5(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("spells.png")
+				.viewFromTexture("Estoc.png")
 				.build();
 	}
 	@Spawns("spell6")

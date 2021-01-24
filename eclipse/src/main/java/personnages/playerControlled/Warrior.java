@@ -1,18 +1,13 @@
 package personnages.playerControlled;
 
+import capacites.Estoc;
+
 public class Warrior extends Personnages{
 
 
 	public Warrior() {
-		super(100, "Warrior", 10, 50, 20, 5, 2);
-
+		super(100, "Warrior", 1, 5, 20, 5, 2);
+		skills[0] = new Estoc();
+		skills[1] = new Estoc();
 	}
-
-	@Override
-	public String toString() {
-		
-		String spellBar = "Sort 1 : " + skills[0].getClass().getSimpleName() + "\nSort 2  : " + skills[1].getClass().getSimpleName();
-		return spellBar;
-	}
-
 }
