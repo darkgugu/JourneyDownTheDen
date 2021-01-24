@@ -15,7 +15,6 @@ import jeu.Player;
 public class Description extends BasicGameApp {
 	private Text descriSpell1;
 	private int i;
-	private Entity description;
 	public Description(GameScene gamescene) {
 		descriSpell1 = new Text();
 		descriSpell1.setFont(Font.font("Verdana", 25));
@@ -50,7 +49,7 @@ public class Description extends BasicGameApp {
 				int y = (int) event.getSceneY();
 				int[] tabClick = Click.cases(x, y);
 				int xy = tabClick[0] * 100 + tabClick[1];
-				System.out.println(xy);
+				System.out.println(x + " " + y);
 
 				/*
 				 * Switch statement en fonction de la case ciblée par la souris

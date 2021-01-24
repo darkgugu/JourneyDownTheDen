@@ -72,7 +72,7 @@ public class BasicGameApp extends GameApplication {
 		settings.setVersion("0.8");
 		settings.setAppIcon("JDTD_icon.png");
 		settings.setMenuEnabled(true);
-//		settings.setProfilingEnabled(true);
+		settings.setProfilingEnabled(true);
 
 //To implement later
 //		settings.setIntroEnabled(true);
@@ -293,6 +293,7 @@ public class BasicGameApp extends GameApplication {
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
 
+					
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						System.out.println("perso " + i + " X " + pX);
@@ -301,18 +302,17 @@ public class BasicGameApp extends GameApplication {
 
 						int caseX = pX / 60;
 						int caseY = pY / 60;
-
+						
 						int[] tabPerso = Click.cases(pX, pY);
 						System.out.println(pX + "  " + pY);
 						System.out.println(pX + "  " + pY);
-
+						
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
 							obstacles.reader();
 							if (selectedUnit == null) {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
-
 								updateSkillsUI(selectedUnit);
 
 //								if(selectedUnit.getHeroClass().getMovePoint() == 2) {
