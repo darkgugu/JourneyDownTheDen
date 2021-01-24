@@ -12,12 +12,4 @@ public class Magician extends Personnages{
 		skills[1] = new Fireball();
 
 	}
-
-	@Override
-	public String toString() {
-		
-		String spellBar = "Sort 1 : " + skills[0].getClass().getSimpleName() + "\nSort 2  : " + skills[1].getClass().getSimpleName();
-		return spellBar;
-	}
-
 }
