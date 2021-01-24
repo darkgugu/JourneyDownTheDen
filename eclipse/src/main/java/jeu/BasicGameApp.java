@@ -227,16 +227,36 @@ public class BasicGameApp extends GameApplication {
 				if (event.getButton() == MouseButton.PRIMARY && activeSkillOk) {
 
 					Player[] persos = new Player[3];
-					persos[0] = redHeroComponent;
-					persos[1] = blueHeroComponent;
-					persos[2] = greenHeroComponent;
+					int j = 0;
+					int k = 0;
 					
+					if(!redHeroComponent.getHeroClass().isDead()) {
+						persos[j] = redHeroComponent;
+						j++;
+					}
+					else {
+						k++;
+					}
+					if(!greenHeroComponent.getHeroClass().isDead()) {
+						persos[j] = greenHeroComponent;
+						j++;
+					}
+					else {
+						k++;
+					}
+					if(!blueHeroComponent.getHeroClass().isDead()) {
+						persos[j] = blueHeroComponent;
+						j++;
+					}
+					else {
+						k++;
+					}
 					IAControlledEntity[] IA = new IAControlledEntity[1];
 					IA[0] = gobelin;
 				
 					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(), (int) selectedUnit.getPosition().getY());
 
-					for (int i = 0; i < persos.length; i++) {
+					for (int i = 0; i < persos.length - k; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
 						int[] tabPerso = Click.cases(pX, pY);
