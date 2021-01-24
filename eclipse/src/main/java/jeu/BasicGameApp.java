@@ -57,7 +57,6 @@ public class BasicGameApp extends GameApplication {
 	private Tour tour;
 	private CharInfoView view;
 	private KillUnit killUnit;
-
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -122,7 +121,7 @@ public class BasicGameApp extends GameApplication {
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
 
 // 		Repeatable theme
-//		getAudioPlayer().loopBGM("town_theme.mp3");
+		getAudioPlayer().loopBGM("town_theme.mp3");
 
 	}
 
@@ -313,6 +312,7 @@ public class BasicGameApp extends GameApplication {
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
 
+					
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						System.out.println("perso " + i + " X " + pX);
@@ -321,18 +321,17 @@ public class BasicGameApp extends GameApplication {
 
 						int caseX = pX / 60;
 						int caseY = pY / 60;
-
+						
 						int[] tabPerso = Click.cases(pX, pY);
 						System.out.println(pX + "  " + pY);
 						System.out.println(pX + "  " + pY);
-
+						
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
 							obstacles.reader();
 							if (selectedUnit == null) {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
-
 								updateSkillsUI(selectedUnit);
 
 //								if(selectedUnit.getHeroClass().getMovePoint() == 2) {
@@ -412,7 +411,6 @@ public class BasicGameApp extends GameApplication {
 		proximityCases(selectedUnit);
 	}
 
-	
 	private void proximityCases(Player player) {
 		
 		new Click();
@@ -420,14 +418,25 @@ public class BasicGameApp extends GameApplication {
 		Deplacement move = new Deplacement();
 		move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
 		move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
+		int tabMob[] = Click.cases((	(int) gobelin.getPosition().getX()), ((int) gobelin.getPosition().getY()));
+		int tabRedHero[] = Click.cases(((int) redHeroComponent.getPosition().getX()), ((int) redHeroComponent.getPosition().getY()));
+		int tabGreenHero[] = Click.cases(((int) greenHeroComponent.getPosition().getX()), ((int) greenHeroComponent.getPosition().getY()));
+		int tabBlueHero[] = Click.cases(((int) blueHeroComponent.getPosition().getX()), ((int) blueHeroComponent.getPosition().getY()));
+		
 		List<SimpleEntry<Integer, Integer>> list = move.list;
+		list.remove(new SimpleEntry<Integer, Integer>(tabMob[0], tabMob[1]));
+		list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
+		list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
+		list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
+
 		for (int i = 0; i < 31; i++) {
 			for (int j = 0; j < 14; j++) {
 				
 				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
+				
 				if(list.contains(vars)) {
-					
 					range = getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
+				
 				}
 			}
 		}

@@ -108,7 +108,7 @@ public class Unites {
 	public Capacites[] getSkills() {
 		return skills;
 	}
-
+	
 
 	public boolean isDead() {
 		return isDead;

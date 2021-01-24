@@ -16,9 +16,10 @@ public abstract class Capacites implements ICast{
 	protected int damage;
 	protected int cost;
 	protected String name;
+	protected String descri;
 //	protected int dotDamage;
 //	protected int dotDuration;
-	public Capacites(DamageElement type, int range, String damageType, int heal, int damage, int cost, String name) {
+	public Capacites(DamageElement type, int range, String damageType, int heal, int damage, int cost, String name, String descri) {
 		super();
 		this.type = type;
 		this.range = range;
@@ -27,6 +28,7 @@ public abstract class Capacites implements ICast{
 		this.damage = damage;
 		this.cost = cost;
 		this.name = name;
+		this.descri = descri;
 	}
 
 	public int cast(Unites caster) {
@@ -94,5 +96,8 @@ public abstract class Capacites implements ICast{
 
 	public int getRange() {
 		return range;
+	}
+	public String getDescri() {
+		return descri;
 	}
 }

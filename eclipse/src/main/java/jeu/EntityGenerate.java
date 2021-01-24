@@ -17,7 +17,7 @@ public class EntityGenerate implements EntityFactory {
 		return  Entities.builder()
 				.from(data)
 				.type(EntityType.PLAYER_RED)
-				.viewFromTexture("redHero.png")
+				.viewFromTexture("priest.png")
 				.with(new Player(new Healer()))
 				.build();
 	}
@@ -27,7 +27,7 @@ public class EntityGenerate implements EntityFactory {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.PLAYER_GREEN)
-				.viewFromTexture("greenHero.png")
+				.viewFromTexture("warrior.png")
 				.with(new Player(new Warrior()))
 				.build();
 	}
@@ -37,7 +37,7 @@ public class EntityGenerate implements EntityFactory {
 		return  Entities.builder()
 				.from(data)
 				.type(EntityType.PLAYER_BLUE)
-				.viewFromTexture("blueHero.png")
+				.viewFromTexture("magician.png")
 				.with(new Player(new Magician()))
 				.build();
 	}
@@ -49,6 +49,32 @@ public class EntityGenerate implements EntityFactory {
 				.type(EntityType.GOBLIN)
 				.viewFromTexture("goblin.png")
 				.with(new IAControlledEntity(new Gobelin()))
+				.build();
+	}
+	
+	@Spawns("priestFace")
+	public Entity newPriestFace(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.FACE)
+				.viewFromTexture("priestFace.png")
+				.build();
+	}
+	@Spawns("warriorFace")
+	public Entity newWarriorFace(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.FACE)
+				.viewFromTexture("warriorFace.png")
+				.build();
+	}
+	
+	@Spawns("magicianFace")
+	public Entity newMagicianFace(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.FACE)
+				.viewFromTexture("magicianFace.png")
 				.build();
 	}
 }

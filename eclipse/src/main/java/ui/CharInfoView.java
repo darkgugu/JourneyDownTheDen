@@ -1,11 +1,13 @@
 package ui;
 
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.GameScene;
 import com.almasb.fxgl.ui.FXGLTextFlow;
 
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -17,21 +19,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
+import jeu.BasicGameApp;
 import jeu.Player;
 import jeu.Tour;
 import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
 
-public class CharInfoView {
+public class CharInfoView extends BasicGameApp {
 	private Text textCharInfo;
 	private Text textSkip;
 	private Text textHelpInfo;
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
-    private ScrollPane scrollPane;
-    private Text log;
-    private Text textTour;
-    private Text errLog;
+	private ScrollPane scrollPane;
+	private Text log;
+	private Text textTour;
+	private Text errLog;
+
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
 
@@ -42,8 +46,7 @@ public class CharInfoView {
 		log.setFont(Font.font("Helvetica", 16));
 		log.setFill(Color.BLACK);
 		log.setText(gameLog);
-		
-		
+
 		scrollPane = new ScrollPane();
 		scrollPane.setPrefWidth(450);
 		scrollPane.setPrefHeight(150);
@@ -62,14 +65,14 @@ public class CharInfoView {
 		textSkip.setText("END");
 //		button = new Button("My Button");
 //        button.setPrefSize(400, 300);
-		
+
 		textHelpInfo = new Text();
 		textHelpInfo.setFont(Font.font("Verdana", 20));
 		textHelpInfo.setFill(Color.BLACK);
 		textHelpInfo.setTranslateX(1450);
 		textHelpInfo.setTranslateY(923);
-		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" 
-											 + newLine + "Clic droit : selectioner une unit�");
+		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" + newLine
+				+ "Clic droit : selectioner une unit�");
 
 		textCharInfo = new Text();
 		textCharInfo.setFont(Font.font("Verdana", 15));
@@ -77,7 +80,7 @@ public class CharInfoView {
 		textCharInfo.setTranslateX(20);
 		textCharInfo.setTranslateY(923);
 		textCharInfo.setText("HP            " + "ATK        " + "MVT     PA");
-		
+
 		textTour = new Text();
 		textTour.setFont(Font.font("Verdana", 20));
 		textTour.setFill(Color.BLACK);
@@ -93,8 +96,9 @@ public class CharInfoView {
 		textRedInfo.setTranslateX(20);
 		textRedInfo.setTranslateY(955);
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
-							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint() + "               " + playerRed.getName());
+				+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
+				+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint()
+				+ "   " + playerRed.getName());
 
 		textGreenInfo = new Text();
 		textGreenInfo.setFont(Font.font("Verdana", 15));
@@ -102,8 +106,9 @@ public class CharInfoView {
 		textGreenInfo.setTranslateX(20);
 		textGreenInfo.setTranslateY(1000);
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
-							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerGreen.getHeroClass().getMovePoint() + "          " + playerGreen.getHeroClass().getActionPoint() + "   " + playerGreen.getName());
+				+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
+				+ playerGreen.getHeroClass().getMovePoint() + "          " + playerGreen.getHeroClass().getActionPoint()
+				+ "   " + playerGreen.getName());
 
 		textBlueInfo = new Text();
 		textBlueInfo.setFont(Font.font("Verdana", 15));
@@ -111,50 +116,53 @@ public class CharInfoView {
 		textBlueInfo.setTranslateX(20);
 		textBlueInfo.setTranslateY(1050);
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
-						+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
-						+ playerBlue.getHeroClass().getMovePoint() + "          "  + playerBlue.getHeroClass().getActionPoint() + "   " + playerBlue.getName());
+				+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
+				+ playerBlue.getHeroClass().getMovePoint() + "          " + playerBlue.getHeroClass().getActionPoint()
+				+ "   " + playerBlue.getName());
 
-		
-		gameScene.addUINodes(textSkip, textCharInfo,textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log, textTour);
+		Entity priestFace = getGameWorld().spawn("priestFace", new Point2D(326, 945));
+		Entity warriorFace = getGameWorld().spawn("warriorFace", new Point2D(326, 1040));
+		Entity magicianFace = getGameWorld().spawn("magicianFace", new Point2D(326, 990));
+
+		gameScene.addUINodes(textSkip, textCharInfo, textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log,
+				textTour);
 	}
 
-	//Update of units characteristics
-	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog, int tour) {
-		
+	// Update of units characteristics
+	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog,
+			int tour) {
+
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
-							+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerRed.getHeroClass().getMovePoint() + "         " 
-							+ playerRed.getHeroClass().getActionPoint() +"               " 
-							+ playerRed.getName());
-		
+				+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
+				+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint()
+				+ "               " + playerRed.getName());
+
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
-							+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerGreen.getHeroClass().getMovePoint() + "         " 
-							+ playerGreen.getHeroClass().getActionPoint() +"               " 
-							+ playerGreen.getName());
-		
+				+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
+				+ playerGreen.getHeroClass().getMovePoint() + "         " + playerGreen.getHeroClass().getActionPoint()
+				+ "               " + playerGreen.getName());
+
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
-							+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
-							+ playerBlue.getHeroClass().getMovePoint() + "         " 
-							+ playerBlue.getHeroClass().getActionPoint() +"               " 
-							+ playerBlue.getName());
-		
+				+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
+				+ playerBlue.getHeroClass().getMovePoint() + "         " + playerBlue.getHeroClass().getActionPoint());
+
 		log.setText(gameLog);
 		scrollPane.setContent(log);
 		scrollPane.setVvalue(scrollPane.getVmax());
-		
+
 		textTour.setText("Tour : " + tour);
-		
+
 //		System.out.println(playerBlue.getHeroClass().isDead());
 //		if(playerBlue.getHeroClass().isDead()) playerBlue.suppress();
-		
+
 	}
-	
+
 	public void updateLog(String gameLog) {
-		
+
 		log.setText(gameLog);
-		
+
 		scrollPane.setContent(log);
 		scrollPane.setVvalue(scrollPane.getVmax());
 	}
+
 }
