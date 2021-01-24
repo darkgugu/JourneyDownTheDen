@@ -121,7 +121,7 @@ public class BasicGameApp extends GameApplication {
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
 
 // 		Repeatable theme
-//		getAudioPlayer().loopBGM("town_theme.mp3");
+		getAudioPlayer().loopBGM("town_theme.mp3");
 
 	}
 
@@ -398,7 +398,7 @@ public class BasicGameApp extends GameApplication {
 		Deplacement move = new Deplacement();
 		move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
 		move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
-		int tabMob[] = Click.cases(((int) gobelin.getPosition().getX()), ((int) gobelin.getPosition().getY()));
+		int tabMob[] = Click.cases((	(int) gobelin.getPosition().getX()), ((int) gobelin.getPosition().getY()));
 		int tabRedHero[] = Click.cases(((int) redHeroComponent.getPosition().getX()), ((int) redHeroComponent.getPosition().getY()));
 		int tabGreenHero[] = Click.cases(((int) greenHeroComponent.getPosition().getX()), ((int) greenHeroComponent.getPosition().getY()));
 		int tabBlueHero[] = Click.cases(((int) blueHeroComponent.getPosition().getX()), ((int) blueHeroComponent.getPosition().getY()));

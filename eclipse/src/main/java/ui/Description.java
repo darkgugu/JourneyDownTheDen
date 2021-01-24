@@ -19,7 +19,7 @@ public class Description extends BasicGameApp {
 		descriSpell1 = new Text();
 		descriSpell1.setFont(Font.font("Verdana", 25));
 		gamescene.addUINodes(descriSpell1);
-		Entity description = getGameWorld().spawn("description", new Point2D(720, 953));
+		Entity description = getGameWorld().spawn("description", new Point2D(720, 960));
 	}
 
 	/*
@@ -37,7 +37,7 @@ public class Description extends BasicGameApp {
 	 */
 	public void updateDescriSpell(GameScene gamescene, Player selectedUnit) {
 		descriSpell1.setTranslateX(730);
-		descriSpell1.setTranslateY(980);
+		descriSpell1.setTranslateY(985);
 		if(selectedUnit.getHeroClass().getSkills()[i] != null) {
 			descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
 		}
