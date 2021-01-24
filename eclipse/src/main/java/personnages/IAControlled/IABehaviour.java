@@ -31,7 +31,7 @@ public class IABehaviour {
 			
 			int tabPlayer[] = Click.cases(((int) players[i].getPosition().getX()), ((int) players[i].getPosition().getY()));
 			
-			if(list.contains(new SimpleEntry<Integer, Integer>(tabPlayer[0], tabPlayer[1]))) {
+			if(list.contains(new SimpleEntry<Integer, Integer>(tabPlayer[0], tabPlayer[1])) && players[i].getHeroClass().isDead() == false) {
 				
 				unit.getType().getSkills()[0].cast(unit.getType(), players[i].getHeroClass());
 			}
@@ -47,16 +47,12 @@ public class IABehaviour {
 		double[] posy = new double[3];
 		double[] dist = new double[3];
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < players.length; i++) {
 
 			posx[i] = players[i].getPosition().getX();
 			posy[i] = players[i].getPosition().getY();
 			
-			//GameLog.setGameLog("Player " + i + " position : " + posx[i] + "," + posy[i]);
-			
-			dist[i] = Math.sqrt(Math.pow((posx[i] - unit.getPosition().getX()), 2) + Math.pow((posy[i] - unit.getPosition().getY()), 2));
-			
-			//GameLog.setGameLog("Distance = " + dist[i]);
+			dist[i] = Math.sqrt(Math.pow((posx[i] - unit.getPosition().getX()), 2) + Math.pow((posy[i] - unit.getPosition().getY()), 2));			
 		}
 		
 		return dist;
@@ -74,6 +70,13 @@ public class IABehaviour {
 		int i = 1;
 		int iX = 1;
 		int iY = 1;
+		
+		for (int j = 0; j < players.length; j++) {
+			if (players[j].getHeroClass().isDead()) {
+				
+				dist[j] = 1000000;
+			}
+		}
 		
 		if(dist[0] <= dist[1] && dist[0] <= dist[2]) {
 			closePlayer = players[0];
