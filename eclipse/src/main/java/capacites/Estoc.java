@@ -8,7 +8,8 @@ public class Estoc extends Capacites{
 	private int finalDamages;
 
 	public Estoc() {
-		super(DamageElement.EARTH, 1, "physical", 0, 10, 3, "Coup d'Estoc");
+		super(DamageElement.EARTH, 1, "physical", 0, 10, 3, "Coup d'Estoc"
+				, "Frappe de toute sa force avec sa lame");
 	}
 
 	public int cast(Unites caster, Unites cible) {

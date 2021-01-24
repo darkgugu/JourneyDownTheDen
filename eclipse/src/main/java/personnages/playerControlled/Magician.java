@@ -10,6 +10,5 @@ public class Magician extends Personnages{
 		super(100, "Magician", 1, 5, 20, 5, 1);
 		skills[0] = new MagicalDamageBuff();
 		skills[1] = new Fireball();
-
 	}
 }

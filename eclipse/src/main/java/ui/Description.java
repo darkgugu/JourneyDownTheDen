@@ -14,32 +14,43 @@ import jeu.Player;
 
 public class Description extends BasicGameApp {
 	private Text descriSpell1;
+	private Text descri;
 	private int i;
 	public Description(GameScene gamescene) {
 		descriSpell1 = new Text();
 		descriSpell1.setFont(Font.font("Verdana", 25));
-		gamescene.addUINodes(descriSpell1);
+		descri = new Text();
+		descri.setFont(Font.font("Verdana", 20));
+		gamescene.addUINodes(descriSpell1, descri);
 		Entity description = getGameWorld().spawn("description", new Point2D(720, 960));
 	}
 
 	/*
-	 * Pas reussi à cacher le texte correctement donc on le déplace en dehors de
-	 * l'écran
+	 * On "nettoie" le cadre de description
+	 *
 	 */
 	public void clean(GameScene gamescene) {
 		descriSpell1.setTranslateX(-10);
 		descriSpell1.setTranslateY(-10);
-
+		descri.setTranslateX(-10);
+		descri.setTranslateY(-10);
 	}
 
 	/*
-	 * Affichage des 10 descriptions de spells en fonction du caster.
+	 * Affichage des 10 descriptions de spells en fonction du selectedUnit.
 	 */
 	public void updateDescriSpell(GameScene gamescene, Player selectedUnit) {
 		descriSpell1.setTranslateX(730);
 		descriSpell1.setTranslateY(985);
-		if(selectedUnit.getHeroClass().getSkills()[i] != null) {
-			descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
+		descri.setTranslateX(730);
+		descri.setTranslateY(1020);
+		if(selectedUnit == null) {
+			return;
+		} else {
+			if(selectedUnit.getHeroClass().getSkills()[i] != null) {
+				descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
+				descri.setText(selectedUnit.getHeroClass().getSkills()[i].getDescri());
+			}
 		}
 	}
 

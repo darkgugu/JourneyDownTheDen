@@ -8,7 +8,8 @@ public class GobelinSwordAttack extends Capacites{
 	private int finalDamages;
 
 	public GobelinSwordAttack() {
-		super(DamageElement.EARTH, 1, "physical", 0, 1, 5, "GobelinSwordAttack");
+		super(DamageElement.EARTH, 1, "physical", 0, 1, 5, "GobelinSwordAttack"
+				,"");
 	}
 
 	@Override

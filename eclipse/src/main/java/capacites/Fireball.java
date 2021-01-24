@@ -9,7 +9,8 @@ public class Fireball extends Capacites{
 	
 	
 	public Fireball() {
-		super(DamageElement.FIRE, 3, "magical", 0, 10, 4, "Boule de Feu");
+		super(DamageElement.FIRE, 3, "magical", 0, 10, 4, "Boule de Feu"
+				, "Envoie une puissante boule de feu");
 
 	}
 	
