@@ -3,6 +3,7 @@ package jeu;
 import javafx.geometry.Point2D;
 import personnages.IAControlled.IABehaviour;
 import personnages.playerControlled.Personnages;
+import ui.CharInfoView;
 import ui.GameLog;
 
 public class Tour {
@@ -11,8 +12,11 @@ public class Tour {
 	private Personnages persos[] = new Personnages[3];
 	private int nbTour = 0;
 	private IAControlledEntity gobelin;
+	private CharInfoView view;
+	private KillUnit killUnit;
+	private WinOrDefeat endGame;
 
-	public Tour(Player perso0, Player perso1, Player perso2, IAControlledEntity gobelin) {
+	public Tour(Player perso0, Player perso1, Player perso2, IAControlledEntity gobelin, CharInfoView view, KillUnit killUnit, WinOrDefeat endGame) {
 		super();
 		players[0] = perso0;
 		players[1] = perso1;
@@ -22,6 +26,10 @@ public class Tour {
 		persos[1] = perso1.getHeroClass();
 		persos[2] = perso2.getHeroClass();
 		this.gobelin = gobelin;
+		
+		this.view = view;
+		this.killUnit = killUnit;
+		this.endGame = endGame;
 	}
 	
 	public void debut() {
@@ -35,6 +43,9 @@ public class Tour {
 			persos[i].setActionPointToMax();
 			persos[i].setDidMove(false);
 		}
+		view.updateInfo(players[0], players[1], players[2], GameLog.getGameLog(), getNbTour());
+		killUnit.checkKill(players[0], players[1], players[2], gobelin);
+		endGame.gameState(players[0], players[1], players[2], gobelin);
 	}
 	
 	public double[] ennemyTurn() {

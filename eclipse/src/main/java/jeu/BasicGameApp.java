@@ -57,22 +57,18 @@ public class BasicGameApp extends GameApplication {
 		settings.setVersion("0.8");
 		settings.setAppIcon("JDTD_icon.png");
 		settings.setMenuEnabled(true);
-//		settings.setProfilingEnabled(true);
-
 	}
 
 	@Override
 	protected void initGame() {
-		/*
-		 * LEVELS
-		 */
+		
+		/*LEVELS*/
 		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		getGameWorld().addEntityFactory(new UIEntity());
 		getGameWorld().setLevelFromMap(map1);
-		/*
-		 * UNITS
-		 */
+		
+		/*UNITS*/
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(120, 360));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(420, 360));
 		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(720, 360));
@@ -83,16 +79,12 @@ public class BasicGameApp extends GameApplication {
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
 
-		/*
-		 * MOBS
-		 */
+		/*MOBS*/
 		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 180));
 		gobelin = goblin1.getComponent(IAControlledEntity.class);
 		gobelin.setName("Gob le gobelin");
 
-		/*
-		 * UI
-		 */
+		/*UI*/
 		getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		getGameWorld().spawn("infoUI", new Point2D(5, 901));
 
@@ -104,9 +96,7 @@ public class BasicGameApp extends GameApplication {
 		}
 
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
-
 		getAudioPlayer().loopBGM("town_theme.mp3");
-
 	}
 
 	protected void updateSkillsUI(Player selectedUnit) {
@@ -142,11 +132,6 @@ public class BasicGameApp extends GameApplication {
 			@Override
 			protected void onActionBegin() {
 				tour.debut();
-				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-						GameLog.getGameLog(), tour.getNbTour());
-				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-						selectedUnit, gobelin);
-				winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 			}
 		}, KeyCode.S);
 	}
@@ -155,15 +140,14 @@ public class BasicGameApp extends GameApplication {
 	protected void initUI() {
 
 		Point2D hotspot = Point2D.ZERO;
-		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
-		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
-				GameLog.getGameLog());
+		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
 		killUnit = new KillUnit(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent);
+		winOrDefeat = new WinOrDefeat(getGameScene());
+		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, view, killUnit, winOrDefeat);
 		description = new Description(getGameScene());
 		description.mousePos(selectedUnit);
-		winOrDefeat = new WinOrDefeat(getGameScene());
+		
 		getGameScene().setCursor("cursor.png", hotspot);
-
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -178,12 +162,6 @@ public class BasicGameApp extends GameApplication {
 
 				if (tabClick[0] == 23 && tabClick[1] == 15) {
 					tour.debut();
-					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-							GameLog.getGameLog(), tour.getNbTour());
-					killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-							selectedUnit, gobelin);
-					winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
-
 				}
 
 				if (skillSlot != -1) {
@@ -259,8 +237,7 @@ public class BasicGameApp extends GameApplication {
 								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
 										persos[i].getHeroClass(), caster, tabClick));
 							}
-							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-									GameLog.getGameLog(), tour.getNbTour());
+							view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
 
 							activeSkillOk = false;
 						}
@@ -284,7 +261,7 @@ public class BasicGameApp extends GameApplication {
 								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
 								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(), caster, tabClick));
 							}
-							view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
+							view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
 							activeSkillOk = false;
 						}
 					}

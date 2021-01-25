@@ -1,28 +1,14 @@
 package ui;
 
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.GameScene;
-import com.almasb.fxgl.ui.FXGLTextFlow;
-
-import javafx.application.Application;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.VBox;
-import javafx.application.Application;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import jeu.BasicGameApp;
 import jeu.Player;
-import jeu.Tour;
-import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
 
 public class CharInfoView extends BasicGameApp {
 	private Text textCharInfo;
@@ -34,7 +20,6 @@ public class CharInfoView extends BasicGameApp {
 	private ScrollPane scrollPane;
 	private Text log;
 	private Text textTour;
-	private Text errLog;
 
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
 		String newLine = System.getProperty("line.separator");
@@ -131,8 +116,7 @@ public class CharInfoView extends BasicGameApp {
 	}
 
 	// Update of units characteristics
-	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog,
-			int tour) {
+	public void updateInfo(Player playerRed, Player playerBlue, Player playerGreen, String gameLog, int tour) {
 
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "       "
 				+ playerRed.getHeroClass().getPhysicalBaseDamage() + "          "
