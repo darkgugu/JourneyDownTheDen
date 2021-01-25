@@ -147,9 +147,6 @@ public class CharInfoView extends BasicGameApp {
 
 		textTour.setText("Tour : " + tour);
 
-//		System.out.println(playerBlue.getHeroClass().isDead());
-//		if(playerBlue.getHeroClass().isDead()) playerBlue.suppress();
-
 	}
 
 	public void updateLog(String gameLog) {
