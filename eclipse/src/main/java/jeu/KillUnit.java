@@ -9,6 +9,7 @@ import com.almasb.fxgl.physics.box2d.dynamics.contacts.Position;
 import com.almasb.fxgl.scene.FXGLScene;
 
 import javafx.geometry.Point2D;
+import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 
 public class KillUnit extends BasicGameApp {
@@ -24,8 +25,6 @@ public class KillUnit extends BasicGameApp {
 			for (Entity entity : target) {
 				entity.removeFromWorld();
 			}
-			
-			
 		}
 		if (playerBlue.getHeroClass().getPv() <= 0) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -33,7 +32,6 @@ public class KillUnit extends BasicGameApp {
 			for (Entity entity : target) {
 				entity.removeFromWorld();
 			}
-			
 		}
 		if (playerGreen.getHeroClass().getPv() <= 0) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -41,9 +39,8 @@ public class KillUnit extends BasicGameApp {
 			for (Entity entity : target) {
 				entity.removeFromWorld();
 			}
-			
 		}
-
+		
 	}
 
 }
