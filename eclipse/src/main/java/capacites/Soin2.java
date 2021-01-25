@@ -8,7 +8,7 @@ public class Soin2 extends Capacites{
 	
 	public Soin2() {
 		super(DamageElement.LIGHT, 10, "magical", 20, 0, 8, "Double Soin"
-				,"Un soin puissant consommant beaucoup de mana");
+				,"Un soin soignant la cible et l'utilisateur");
 		
 	}
 	
