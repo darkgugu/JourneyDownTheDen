@@ -43,6 +43,7 @@ public class BasicGameApp extends GameApplication {
 	private CharInfoView view;
 	private KillUnit killUnit;
 	private WinOrDefeat winOrDefeat;
+	private ProximityCases proximityCases;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -99,18 +100,6 @@ public class BasicGameApp extends GameApplication {
 		getAudioPlayer().loopBGM("town_theme.mp3");
 	}
 
-	protected void updateSkillsUI(Player selectedUnit) {
-
-		for (int i = 0; i != 10; i++) {
-
-			int x = 725 + (60 * i);
-			int y = 906;
-			if (selectedUnit.getHeroClass().getSkills()[i] != null) {
-				getGameWorld().spawn(selectedUnit.getHeroClass().getSkills()[i].getClass().getSimpleName(),
-						new Point2D(x, y));
-			}
-		}
-	}
 
 	@Override
 	protected void initInput() {
@@ -146,7 +135,7 @@ public class BasicGameApp extends GameApplication {
 		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, view, killUnit, winOrDefeat);
 		description = new Description(getGameScene());
 		description.mousePos(selectedUnit);
-		
+		proximityCases = new ProximityCases();
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -183,7 +172,7 @@ public class BasicGameApp extends GameApplication {
 					} 
 					else {
 						
-						GameLog.setGameLog("Selectionnez une unité !");
+						GameLog.setGameLog("Selectionnez une unitï¿½ !");
 						view.updateLog(GameLog.getGameLog());
 					}
 
@@ -291,8 +280,8 @@ public class BasicGameApp extends GameApplication {
 							if (selectedUnit == null && persos[i].getHeroClass().isDead() == false) {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
-								updateSkillsUI(selectedUnit);
-								proximityCases(selectedUnit);
+								view.updateSkillsUI(selectedUnit);
+								proximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 
 							} else if (persos[i].getHeroClass().isDead() == false){
 								for (Entity entity : list) {
@@ -305,8 +294,8 @@ public class BasicGameApp extends GameApplication {
 								} else {
 									selectedUnit = persos[i];
 									description.mousePos(selectedUnit);
-									updateSkillsUI(selectedUnit);
-									proximityCases(selectedUnit);
+									view.updateSkillsUI(selectedUnit);
+									proximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 								}
 							}
 						} else {
@@ -335,35 +324,6 @@ public class BasicGameApp extends GameApplication {
 		});
 	}
 
-	private void proximityCases(Player player) {
-		
-		new Click();
-		int tab[] = Click.cases(((int) player.getPosition().getX()), ((int) player.getPosition().getY()));
-		Deplacement move = new Deplacement();
-		move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
-		move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
-		int tabMob[] = Click.cases((	(int) gobelin.getPosition().getX()), ((int) gobelin.getPosition().getY()));
-		int tabRedHero[] = Click.cases(((int) redHeroComponent.getPosition().getX()), ((int) redHeroComponent.getPosition().getY()));
-		int tabGreenHero[] = Click.cases(((int) greenHeroComponent.getPosition().getX()), ((int) greenHeroComponent.getPosition().getY()));
-		int tabBlueHero[] = Click.cases(((int) blueHeroComponent.getPosition().getX()), ((int) blueHeroComponent.getPosition().getY()));
-		
-		List<SimpleEntry<Integer, Integer>> list = move.list;
-		list.remove(new SimpleEntry<Integer, Integer>(tabMob[0], tabMob[1]));
-		if(!redHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
-		if(!greenHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
-		if(!blueHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
 
-		for (int i = 0; i < 31; i++) {
-			for (int j = 0; j < 14; j++) {
-				
-				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
-				
-				if(list.contains(vars)) {
-					getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
-				
-				}
-			}
-		}
-	}
 	
 }

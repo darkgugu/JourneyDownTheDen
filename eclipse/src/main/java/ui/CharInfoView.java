@@ -150,5 +150,18 @@ public class CharInfoView extends BasicGameApp {
 		scrollPane.setContent(log);
 		scrollPane.setVvalue(scrollPane.getVmax());
 	}
+	
+	public void updateSkillsUI(Player selectedUnit) {
+
+		for (int i = 0; i != 10; i++) {
+
+			int x = 725 + (60 * i);
+			int y = 906;
+			if (selectedUnit.getHeroClass().getSkills()[i] != null) {
+				getGameWorld().spawn(selectedUnit.getHeroClass().getSkills()[i].getClass().getSimpleName(),
+						new Point2D(x, y));
+			}
+		}
+	}
 
 }
