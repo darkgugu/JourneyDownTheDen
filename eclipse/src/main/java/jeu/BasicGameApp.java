@@ -104,6 +104,7 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 180));
 		gobelin = goblin1.getComponent(IAControlledEntity.class);
+		gobelin.setName("Gob le gobelin");
 
 		/*
 		 * UI
@@ -218,7 +219,7 @@ public class BasicGameApp extends GameApplication {
 					} 
 					else {
 						
-						GameLog.setGameLog("Selectionnez une unitï¿½ !");
+						GameLog.setGameLog("Selectionnez une unité !");
 						view.updateLog(GameLog.getGameLog());
 					}
 
@@ -267,8 +268,6 @@ public class BasicGameApp extends GameApplication {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
 										persos[i].getHeroClass());
-								GameLog.setGameLog(
-										"Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
 							} else {
 
 								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
@@ -319,9 +318,6 @@ public class BasicGameApp extends GameApplication {
 						int pY = (int) persos[i].getPosition().getY();
 						System.out.println("perso " + i + " X " + pY);
 
-						int caseX = pX / 60;
-						int caseY = pY / 60;
-						
 						int[] tabPerso = Click.cases(pX, pY);
 						System.out.println(pX + "  " + pY);
 						System.out.println(pX + "  " + pY);
@@ -329,18 +325,13 @@ public class BasicGameApp extends GameApplication {
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
 							obstacles.reader();
-							if (selectedUnit == null) {
+							if (selectedUnit == null && persos[i].getHeroClass().isDead() == false) {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
 								updateSkillsUI(selectedUnit);
-
-//								if(selectedUnit.getHeroClass().getMovePoint() == 2) {
-//									showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
-//								}
-								//showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 								proximityCases(selectedUnit);
 
-							} else {
+							} else if (persos[i].getHeroClass().isDead() == false){
 								for (Entity entity : list) {
 									entity.removeFromWorld();
 
@@ -352,7 +343,6 @@ public class BasicGameApp extends GameApplication {
 									selectedUnit = persos[i];
 									description.mousePos(selectedUnit);
 									updateSkillsUI(selectedUnit);
-									//showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 									proximityCases(selectedUnit);
 								}
 							}
@@ -382,35 +372,6 @@ public class BasicGameApp extends GameApplication {
 		});
 	}
 
-	private void showAdjacentCase(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
-			int pY) {
-//		List<Entity> adjacent = getGameWorld().getEntitiesAt(new Point2D(pX, pY));
-//		if (!map_obstacle.contains(new SimpleEntry<Integer, Integer>(caseX, caseY)) && adjacent.isEmpty()) {
-//			range = getGameWorld().spawn("range", new Point2D(pX, pY));
-//		}
-		proximityCases(selectedUnit);
-	}
-
-	private void showAdjacentCases(List<SimpleEntry<Integer, Integer>> map_obstacle, int caseX, int caseY, int pX,
-			int pY) {
-
-//		showAdjacentCase(map_obstacle, caseX + 1, caseY + 1, pX + 60, pY + 60);
-//		showAdjacentCase(map_obstacle, caseX + 1, caseY, pX + 60, pY);
-//		showAdjacentCase(map_obstacle, caseX, caseY + 1, pX, pY + 60);
-//		showAdjacentCase(map_obstacle, caseX - 1, caseY - 1, pX - 60, pY - 60);
-//		showAdjacentCase(map_obstacle, caseX - 1, caseY, pX - 60, pY);
-//		showAdjacentCase(map_obstacle, caseX, caseY - 1, pX, pY - 60);
-//		showAdjacentCase(map_obstacle, caseX + 1, caseY - 1, pX + 60, pY - 60);
-//		showAdjacentCase(map_obstacle, caseX - 1, caseY + 1, pX - 60, pY + 60);
-//		if (selectedUnit.getHeroClass().getMovePoint() >= 2) {
-//			showAdjacentCase(map_obstacle, caseX + 2, caseY, pX + 120, pY);
-//			showAdjacentCase(map_obstacle, caseX - 2, caseY, pX - 120, pY);
-//			showAdjacentCase(map_obstacle, caseX, caseY - 2, pX, pY - 120);
-//			showAdjacentCase(map_obstacle, caseX, caseY + 2, pX, pY + 120);
-//		}
-		proximityCases(selectedUnit);
-	}
-
 	private void proximityCases(Player player) {
 		
 		new Click();
@@ -425,9 +386,9 @@ public class BasicGameApp extends GameApplication {
 		
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		list.remove(new SimpleEntry<Integer, Integer>(tabMob[0], tabMob[1]));
-		list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
-		list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
-		list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
+		if(!redHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
+		if(!greenHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
+		if(!blueHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
 
 		for (int i = 0; i < 31; i++) {
 			for (int j = 0; j < 14; j++) {
