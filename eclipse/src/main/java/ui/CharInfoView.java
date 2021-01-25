@@ -134,13 +134,11 @@ public class CharInfoView extends BasicGameApp {
 
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 				+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-				+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint()
-				+ "               " + playerRed.getName());
+				+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint());
 
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
 				+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
-				+ playerGreen.getHeroClass().getMovePoint() + "         " + playerGreen.getHeroClass().getActionPoint()
-				+ "               " + playerGreen.getName());
+				+ playerGreen.getHeroClass().getMovePoint() + "         " + playerGreen.getHeroClass().getActionPoint());
 
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 				+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
