@@ -1,6 +1,5 @@
 package ui;
 
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.GameScene;
 
 import javafx.event.EventHandler;
@@ -28,7 +27,7 @@ public class Description extends BasicGameApp {
 		range = new Text();
 		range.setFont(Font.font("Verdana", 20));
 		gamescene.addUINodes(descriSpell1, descri, consoMana, range);
-		Entity description = getGameWorld().spawn("description", new Point2D(720, 960));
+		getGameWorld().spawn("description", new Point2D(720, 960));
 	}
 
 	/*

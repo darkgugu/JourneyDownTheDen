@@ -17,8 +17,8 @@ public class CharInfoView extends BasicGameApp {
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
-	private ScrollPane scrollPane;
-	private Text log;
+	private static ScrollPane scrollPane;
+	private static Text log;
 	private Text textTour;
 
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
@@ -143,7 +143,7 @@ public class CharInfoView extends BasicGameApp {
 
 	}
 
-	public void updateLog(String gameLog) {
+	public static void updateLog(String gameLog) {
 
 		log.setText(gameLog);
 

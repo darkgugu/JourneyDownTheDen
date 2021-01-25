@@ -1,11 +1,8 @@
 package jeu;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 
-import com.almasb.fxgl.core.collection.Grid;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
@@ -14,7 +11,6 @@ import com.almasb.fxgl.entity.components.PositionComponent;
 import capacites.Capacites;
 import javafx.geometry.Point2D;
 import personnages.playerControlled.Personnages;
-import ui.GameLog;
 
 public class Player extends Component {
 	private PositionComponent position;
@@ -59,7 +55,8 @@ public class Player extends Component {
 		System.out.println("Coordonnées player pixels ("  + position.getX() + " , " + position.getY() + ")");
 		System.out.println("Coordonnées player case (" + casePlayerX + " , " + casePlayerY + ")");
 
-		int tab[] = new Click().cases(((int) direction.getX()), ((int) direction.getY()));
+		new Click();
+		int tab[] = Click.cases(((int) direction.getX()), ((int) direction.getY()));
 		Deplacement move = new Deplacement();
 		move.calculateCross(HeroClass.getMovePoint(), casePlayerX, casePlayerY);
 		move.calculateDiag(HeroClass.getMovePoint(), casePlayerX, casePlayerY);

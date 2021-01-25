@@ -6,7 +6,6 @@
 package jeu;
 
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
@@ -25,6 +24,7 @@ import ui.CharInfoView;
 import ui.Description;
 import ui.UIEntity;
 import ui.GameLog;
+import ui.ProximityCases;
 
 public class BasicGameApp extends GameApplication {
 	// Playable Entities
@@ -43,7 +43,6 @@ public class BasicGameApp extends GameApplication {
 	private CharInfoView view;
 	private KillUnit killUnit;
 	private WinOrDefeat winOrDefeat;
-	private ProximityCases proximityCases;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -135,7 +134,6 @@ public class BasicGameApp extends GameApplication {
 		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, view, killUnit, winOrDefeat);
 		description = new Description(getGameScene());
 		description.mousePos(selectedUnit);
-		proximityCases = new ProximityCases();
 		getGameScene().setCursor("cursor.png", hotspot);
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -167,13 +165,11 @@ public class BasicGameApp extends GameApplication {
 						} else {
 
 							GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
-							view.updateLog(GameLog.getGameLog());
 						}
 					} 
 					else {
 						
-						GameLog.setGameLog("Selectionnez une unitï¿½ !");
-						view.updateLog(GameLog.getGameLog());
+						GameLog.setGameLog("Selectionnez une unité !");
 					}
 
 				}
@@ -216,15 +212,12 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
-									persos[i].getHeroClass(), caster, tabClick) == "OK") {
+							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick) == "OK") {
 
-								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
-										persos[i].getHeroClass());
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
 							} else {
 
-								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
-										persos[i].getHeroClass(), caster, tabClick));
+								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick));
 							}
 							view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
 
@@ -281,7 +274,7 @@ public class BasicGameApp extends GameApplication {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
 								view.updateSkillsUI(selectedUnit);
-								proximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
+								ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, getGameWorld());
 
 							} else if (persos[i].getHeroClass().isDead() == false){
 								for (Entity entity : list) {
@@ -295,7 +288,7 @@ public class BasicGameApp extends GameApplication {
 									selectedUnit = persos[i];
 									description.mousePos(selectedUnit);
 									view.updateSkillsUI(selectedUnit);
-									proximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
+									ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, getGameWorld());
 								}
 							}
 						} else {
@@ -323,7 +316,4 @@ public class BasicGameApp extends GameApplication {
 			}
 		});
 	}
-
-
-	
 }

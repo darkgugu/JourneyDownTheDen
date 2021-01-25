@@ -1,6 +1,5 @@
 package jeu;
 
-import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.scene.GameScene;
 
 import javafx.geometry.Point2D;
