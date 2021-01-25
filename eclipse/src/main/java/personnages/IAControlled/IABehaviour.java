@@ -95,7 +95,10 @@ public class IABehaviour {
 		double Yp = closePlayer.getPosition().getY();		
 		if(closeDist <= unit.getType().getAggroRange() * 60 && closeDist > 60) {
 			
-			GameLog.setGameLog(closePlayer.getName() + " est à portée de " + unit.getName() + " et n'est pas au cac");
+			if (unit.getType().getHasAggro() == false) {
+				unit.getType().setHasAggro(true);
+				GameLog.setGameLog(unit.getName() + " à reperé l'équipe !");
+			}
 			int pm = unit.getType().getMovePoint();
 
 			if(X == Xp) {
@@ -103,7 +106,6 @@ public class IABehaviour {
 				xtar = X;
 				double delta = Yp - Y;
 				ytar = Y + tar2(Math.abs(delta), pm) * (delta/Math.abs(delta));
-				GameLog.setGameLog("Deplacement en case " + xtar/60 + "," + ytar/60);
 				tar[0] = xtar;
 				tar[1] = ytar;
 				return tar;
@@ -114,7 +116,6 @@ public class IABehaviour {
 				ytar = Y;
 				double delta = Xp - X;
 				xtar = X + tar2(Math.abs(delta), pm) * (delta/Math.abs(delta));
-				GameLog.setGameLog("Deplacement en case " + xtar/60 + "," + ytar/60);
 				tar[0] = xtar;
 				tar[1] = ytar;
 				return tar;
@@ -128,7 +129,6 @@ public class IABehaviour {
 					i = -1;
 					pm--;
 					iX++;
-					//GameLog.setGameLog("Décalage (x) en " + xtar);
 				}
 				else if(i < 0){
 					

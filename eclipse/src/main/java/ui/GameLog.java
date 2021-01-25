@@ -2,7 +2,7 @@ package ui;
 
 public abstract class GameLog {
 	
-	private static String gameLog = "Début du log\n";
+	private static String gameLog = "Zone : Village\n";
 
 	public static String getGameLog() {
 		return gameLog;
