@@ -51,7 +51,7 @@ public class Tour {
 	public double[] ennemyTurn() {
 		
 		IABehaviour.isRangeAgressiveSpell(gobelin, players);
-		return IABehaviour.getTar(gobelin, IABehaviour.getDist(gobelin, players), players);
+		return IABehaviour.getTarCoor(gobelin, IABehaviour.getDist(gobelin, players), players);
 	}
 	
 	public boolean checkFin() {
