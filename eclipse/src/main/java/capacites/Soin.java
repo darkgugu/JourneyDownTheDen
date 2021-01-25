@@ -1,6 +1,7 @@
 package capacites;
 
 import personnages.Unites;
+import ui.GameLog;
 
 public class Soin extends Capacites{
 
@@ -17,8 +18,8 @@ public class Soin extends Capacites{
 		finalHeal = -1 * heal;
 		cible.setPv(finalHeal);
 		super.cast(caster);
-		System.out.println("Cible : " + cible.getName());
-		System.out.println("Soin : " + -finalHeal);
+		//System.out.println("Cible : " + cible.getName());
+		GameLog.setGameLog("Soin : " + -finalHeal);
 		return finalHeal;
 	}
 

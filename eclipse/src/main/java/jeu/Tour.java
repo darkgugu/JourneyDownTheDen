@@ -3,6 +3,7 @@ package jeu;
 import javafx.geometry.Point2D;
 import personnages.IAControlled.IABehaviour;
 import personnages.playerControlled.Personnages;
+import ui.GameLog;
 
 public class Tour {
 	
@@ -24,9 +25,10 @@ public class Tour {
 	}
 	
 	public void debut() {
-		
+		GameLog.setGameLog("==============/Tour    Ennemi/==============");
 		double[] tar = ennemyTurn();
 		gobelin.move(new Point2D(tar[0], tar[1]));
+		GameLog.setGameLog("==============/Nouveau Tour/==============");
 		setNbTour(getNbTour() + 1);
 		for (int i = 0; i < persos.length; i++) {
 

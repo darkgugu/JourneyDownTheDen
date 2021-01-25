@@ -7,8 +7,6 @@ package jeu;
 
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.Iterator;
-
 import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.app.GameApplication;
@@ -107,6 +105,7 @@ public class BasicGameApp extends GameApplication {
 		 */
 		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 180));
 		gobelin = goblin1.getComponent(IAControlledEntity.class);
+		gobelin.setName("Gob le gobelin");
 
 		/*
 		 * UI
@@ -123,7 +122,6 @@ public class BasicGameApp extends GameApplication {
 
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
 
-// 		Repeatable theme
 		getAudioPlayer().loopBGM("town_theme.mp3");
 
 	}
@@ -164,9 +162,10 @@ public class BasicGameApp extends GameApplication {
 				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 						GameLog.getGameLog(), tour.getNbTour());
 				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-						selectedUnit);
+						selectedUnit, gobelin);
 //				winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 
+						
 			}
 		}, KeyCode.S);
 	}
@@ -201,7 +200,7 @@ public class BasicGameApp extends GameApplication {
 					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 							GameLog.getGameLog(), tour.getNbTour());
 					killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-							selectedUnit);
+							selectedUnit, gobelin);
 //					winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent);
 
 				}
@@ -223,8 +222,8 @@ public class BasicGameApp extends GameApplication {
 							view.updateLog(GameLog.getGameLog());
 						}
 					} else {
-
-						GameLog.setGameLog("Selectionnez une unit� !");
+						
+						GameLog.setGameLog("Selectionnez une unite !");
 						view.updateLog(GameLog.getGameLog());
 					}
 
@@ -236,13 +235,38 @@ public class BasicGameApp extends GameApplication {
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
 
+					int j = 0;
+					int k = 0;
+					
+					if(!redHeroComponent.getHeroClass().isDead()) {
+						persos[j] = redHeroComponent;
+						j++;
+					}
+					else {
+						k++;
+					}
+					if(!greenHeroComponent.getHeroClass().isDead()) {
+						persos[j] = greenHeroComponent;
+						j++;
+					}
+					else {
+						k++;
+					}
+					if(!blueHeroComponent.getHeroClass().isDead()) {
+						persos[j] = blueHeroComponent;
+						j++;
+					}
+					else {
+						k++;
+					}
+					
 					IAControlledEntity[] IA = new IAControlledEntity[1];
 					IA[0] = gobelin;
 
 					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
 							(int) selectedUnit.getPosition().getY());
 
-					for (int i = 0; i < persos.length; i++) {
+					for (int i = 0; i < persos.length - k; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
 						int[] tabPerso = Click.cases(pX, pY);
@@ -254,8 +278,6 @@ public class BasicGameApp extends GameApplication {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
 										persos[i].getHeroClass());
-								GameLog.setGameLog(
-										"Target : " + persos[i].getName() + " " + persos[i].getHeroClass().getPv());
 							} else {
 
 								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
@@ -283,6 +305,10 @@ public class BasicGameApp extends GameApplication {
 								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/"
 										+ IA[i].getType().getPvMax());
 							} else {
+								GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
+								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
+							}
+							else{
 
 								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/"
 										+ IA[i].getType().getPvMax());
@@ -294,7 +320,6 @@ public class BasicGameApp extends GameApplication {
 							activeSkillOk = false;
 						}
 					}
-				}
 
 				if (event.getButton() == MouseButton.SECONDARY) {
 
@@ -319,7 +344,7 @@ public class BasicGameApp extends GameApplication {
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
 							obstacles.reader();
-							if (selectedUnit == null) {
+							if (selectedUnit == null && persos[i].getHeroClass().isDead() == false) {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
 								updateSkillsUI(selectedUnit);
@@ -330,7 +355,7 @@ public class BasicGameApp extends GameApplication {
 								// showAdjacentCases(obstacles.map_obstacle, caseX, caseY, pX, pY);
 								proximityCases(selectedUnit);
 
-							} else {
+							} else if (persos[i].getHeroClass().isDead() == false){
 								for (Entity entity : list) {
 									entity.removeFromWorld();
 
@@ -399,9 +424,9 @@ public class BasicGameApp extends GameApplication {
 
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		list.remove(new SimpleEntry<Integer, Integer>(tabMob[0], tabMob[1]));
-		list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
-		list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
-		list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
+		if(!redHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
+		if(!greenHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
+		if(!blueHeroComponent.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
 
 		for (int i = 0; i < 31; i++) {
 			for (int j = 0; j < 14; j++) {

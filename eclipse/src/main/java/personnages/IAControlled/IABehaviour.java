@@ -3,7 +3,6 @@ package personnages.IAControlled;
 import java.util.List;
 
 import java.util.AbstractMap.SimpleEntry;
-
 import jeu.Click;
 import jeu.Deplacement;
 import jeu.IAControlledEntity;
@@ -13,6 +12,10 @@ import ui.GameLog;
 public class IABehaviour {
 	
 	public static void isRangeAgressiveSpell(IAControlledEntity unit, Player[] players) {
+		
+		//System.out.println("Size : " + reducePlayerTab(players).length);
+		
+		//players = reducePlayerTab(players);
 		
 		int range = unit.getType().getSkills()[0].getRange();
 		int tab[] = Click.cases(((int) unit.getPosition().getX()), ((int) unit.getPosition().getY()));
@@ -24,11 +27,11 @@ public class IABehaviour {
 		calcRange.calculateDiag(range, posx, posy);
 		List<SimpleEntry<Integer, Integer>> list = calcRange.list;
 	
-		for(int i = 0;i != 3;i++) {
+		for(int i = 0;i != players.length;i++) {
 			
 			int tabPlayer[] = Click.cases(((int) players[i].getPosition().getX()), ((int) players[i].getPosition().getY()));
 			
-			if(list.contains(new SimpleEntry<Integer, Integer>(tabPlayer[0], tabPlayer[1]))) {
+			if(list.contains(new SimpleEntry<Integer, Integer>(tabPlayer[0], tabPlayer[1])) && players[i].getHeroClass().isDead() == false) {
 				
 				unit.getType().getSkills()[0].cast(unit.getType(), players[i].getHeroClass());
 			}
@@ -38,20 +41,18 @@ public class IABehaviour {
 	
 	public static double[] getDist(IAControlledEntity unit, Player[] players) {
 		
+		//players = reducePlayerTab(players);
+		
 		double[] posx = new double[3];
 		double[] posy = new double[3];
 		double[] dist = new double[3];
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < players.length; i++) {
 
 			posx[i] = players[i].getPosition().getX();
 			posy[i] = players[i].getPosition().getY();
 			
-			//GameLog.setGameLog("Player " + i + " position : " + posx[i] + "," + posy[i]);
-			
-			dist[i] = Math.sqrt(Math.pow((posx[i] - unit.getPosition().getX()), 2) + Math.pow((posy[i] - unit.getPosition().getY()), 2));
-			
-			//GameLog.setGameLog("Distance = " + dist[i]);
+			dist[i] = Math.sqrt(Math.pow((posx[i] - unit.getPosition().getX()), 2) + Math.pow((posy[i] - unit.getPosition().getY()), 2));			
 		}
 		
 		return dist;
@@ -70,6 +71,13 @@ public class IABehaviour {
 		int iX = 1;
 		int iY = 1;
 		
+		for (int j = 0; j < players.length; j++) {
+			if (players[j].getHeroClass().isDead()) {
+				
+				dist[j] = 1000000;
+			}
+		}
+		
 		if(dist[0] <= dist[1] && dist[0] <= dist[2]) {
 			closePlayer = players[0];
 			closeDist = dist[0];
@@ -87,7 +95,10 @@ public class IABehaviour {
 		double Yp = closePlayer.getPosition().getY();		
 		if(closeDist <= unit.getType().getAggroRange() * 60 && closeDist > 60) {
 			
-			GameLog.setGameLog(closePlayer.getName() + " est à portée de " + unit.getName() + " et n'est pas au cac");
+			if (unit.getType().getHasAggro() == false) {
+				unit.getType().setHasAggro(true);
+				GameLog.setGameLog(unit.getName() + " à reperé l'équipe !");
+			}
 			int pm = unit.getType().getMovePoint();
 
 			if(X == Xp) {
@@ -95,7 +106,6 @@ public class IABehaviour {
 				xtar = X;
 				double delta = Yp - Y;
 				ytar = Y + tar2(Math.abs(delta), pm) * (delta/Math.abs(delta));
-				GameLog.setGameLog("Deplacement en case " + xtar/60 + "," + ytar/60);
 				tar[0] = xtar;
 				tar[1] = ytar;
 				return tar;
@@ -106,7 +116,6 @@ public class IABehaviour {
 				ytar = Y;
 				double delta = Xp - X;
 				xtar = X + tar2(Math.abs(delta), pm) * (delta/Math.abs(delta));
-				GameLog.setGameLog("Deplacement en case " + xtar/60 + "," + ytar/60);
 				tar[0] = xtar;
 				tar[1] = ytar;
 				return tar;
@@ -120,7 +129,6 @@ public class IABehaviour {
 					i = -1;
 					pm--;
 					iX++;
-					//GameLog.setGameLog("Décalage (x) en " + xtar);
 				}
 				else if(i < 0){
 					
@@ -161,8 +169,46 @@ public class IABehaviour {
 		}
 	}
 	
-	public static void moveIA() {
+	public static Player[] reducePlayerTab(Player[] players) {
 		
+		Player[] playersTab2 = new Player[2];
+		Player[] playersTab1 = new Player[1];
 		
+		int k = 0;
+		int j = 0;
+		
+		for (int i = 0; i < players.length; i++) {
+			
+			if (players[i].getHeroClass().isDead()) {
+				players[i] = null;
+				k++;
+			}
+		}
+		for (int i = 0; i < players.length; i++) {
+			
+			if (players[i] != null) {
+				
+				if (k == 2) {
+				
+					playersTab1[j] = players[i];
+					j++;
+				}
+				else if (k == 1) {
+					
+					playersTab2[j] = players[i];
+					j++;
+				}
+			}
+		}
+		
+		if (k == 1) {
+			return playersTab2;
+		}
+		else if (k == 2) {
+			return playersTab1;
+		}
+		else {
+			return players;
+		}
 	}
 }

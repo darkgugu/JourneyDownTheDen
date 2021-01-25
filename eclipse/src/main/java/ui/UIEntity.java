@@ -94,12 +94,12 @@ public class UIEntity implements EntityFactory {
 				.viewFromTexture("Soin2.png")
 				.build();
 	}
-	@Spawns("MagicalDamageBuff")
+	@Spawns("PhysicalDamageBuff")
 	public Entity newSpell4(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("MagicalDamageBuff.png")
+				.viewFromTexture("PhysicalDamageBuff.png")
 				.build();
 	}
 	@Spawns("Estoc")
@@ -110,12 +110,12 @@ public class UIEntity implements EntityFactory {
 				.viewFromTexture("Estoc.png")
 				.build();
 	}
-	@Spawns("spell6")
+	@Spawns("Lance")
 	public Entity newSpell6(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.SPELL)
-				.viewFromTexture("spells.png")
+				.viewFromTexture("Lance.png")
 				.build();
 	}
 	@Spawns("spell7")

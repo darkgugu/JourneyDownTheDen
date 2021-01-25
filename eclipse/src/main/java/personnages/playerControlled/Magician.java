@@ -1,14 +1,14 @@
 package personnages.playerControlled;
 
 import capacites.Fireball;
-import capacites.MagicalDamageBuff;
+import capacites.PhysicalDamageBuff;
 
 public class Magician extends Personnages{
 
 
 	public Magician() {
-		super(100, "Magician", 1, 5, 20, 5, 8);
-		skills[0] = new MagicalDamageBuff();
+		super(100, "Magician", 1, 5, 20, 5, 1);
+		skills[0] = new PhysicalDamageBuff();
 		skills[1] = new Fireball();
 	}
 }

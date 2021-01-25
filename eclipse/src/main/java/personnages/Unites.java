@@ -83,7 +83,7 @@ public class Unites {
 			
 			this.pv = 0;
 			if(isDead == false) {
-				isDead = true;
+//				isDead = true;
 				return true;
 			}
 			else {
@@ -112,6 +112,10 @@ public class Unites {
 
 	public boolean isDead() {
 		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 	public void setSkills(Capacites skill, int i) {
