@@ -7,9 +7,7 @@ public class Soin2 extends Capacites{
 	private int finalHeal;
 	
 	public Soin2() {
-		super(DamageElement.LIGHT, 10, "magical", 20, 0, 8, "Double Soin"
-				,"Un soin soignant la cible et l'utilisateur");
-		
+		super(DamageElement.LIGHT, 10, "magical", 20, 0, 6, "Double Soin" ,"Un soin soignant la cible et l'utilisateur");	
 	}
 	
 	public int cast(Unites caster, Unites cible) {

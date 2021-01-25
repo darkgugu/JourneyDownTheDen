@@ -17,8 +17,6 @@ public abstract class Capacites implements ICast{
 	protected int cost;
 	protected String name;
 	protected String descri;
-//	protected int dotDamage;
-//	protected int dotDuration;
 	public Capacites(DamageElement type, int range, String damageType, int heal, int damage, int cost, String name, String descri) {
 		super();
 		this.type = type;
