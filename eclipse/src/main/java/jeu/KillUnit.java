@@ -5,19 +5,15 @@ import java.util.List;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
-import com.almasb.fxgl.physics.box2d.dynamics.contacts.Position;
-import com.almasb.fxgl.scene.FXGLScene;
-
 import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
-import personnages.playerControlled.Healer;
 import ui.GameLog;
 
 public class KillUnit extends BasicGameApp {
 	public KillUnit(GameWorld gameWorld, Player playerRed, Player playerBlue, Player playerGreen) {
 	}
 	
-	public void checkKill(GameWorld gameWorld, Player playerRed, Player playerBlue, Player playerGreen, Player playerSelected, IAControlledEntity gobelin) {
+	public void checkKill(Player playerRed, Player playerBlue, Player playerGreen, IAControlledEntity gobelin) {
 		
 
 		if (playerRed.getHeroClass().getPv() <= 0 && playerRed.getHeroClass().isDead() == false) {

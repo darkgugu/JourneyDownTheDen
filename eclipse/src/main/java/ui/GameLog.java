@@ -11,6 +11,8 @@ public abstract class GameLog {
 	public static void setGameLog(String addedLog) {
 		
 		gameLog += addedLog + "\n";
+		CharInfoView.updateLog(getGameLog());
+
 	}
 
 	

@@ -1,7 +1,6 @@
 package ui;
 
 import com.almasb.fxgl.scene.GameScene;
-
 import javafx.geometry.Point2D;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
@@ -17,8 +16,8 @@ public class CharInfoView extends BasicGameApp {
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
-	private ScrollPane scrollPane;
-	private Text log;
+	private static ScrollPane scrollPane;
+	private static Text log;
 	private Text textTour;
 
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
@@ -108,8 +107,7 @@ public class CharInfoView extends BasicGameApp {
 	}
 
 	// Update of units characteristics
-	public void updateInfo(GameScene gamescene, Player playerRed, Player playerBlue, Player playerGreen, String gameLog,
-			int tour) {
+	public void updateInfo(Player playerRed, Player playerBlue, Player playerGreen, String gameLog, int tour) {
 
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "       "
 				+ playerRed.getHeroClass().getPhysicalBaseDamage() + "          "
@@ -136,7 +134,7 @@ public class CharInfoView extends BasicGameApp {
 
 	}
 
-	public void updateLog(String gameLog) {
+	public static void updateLog(String gameLog) {
 
 		log.setText(gameLog);
 

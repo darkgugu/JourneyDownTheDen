@@ -1,13 +1,21 @@
-package jeu;
+package ui;
 
 import java.util.List;
+
+import com.almasb.fxgl.entity.GameWorld;
+
 import java.util.AbstractMap.SimpleEntry;
 
 import javafx.geometry.Point2D;
+import jeu.BasicGameApp;
+import jeu.Click;
+import jeu.Deplacement;
+import jeu.IAControlledEntity;
+import jeu.Player;
 
 public class ProximityCases extends BasicGameApp{
 
-	public void proxCases(Player player, Player redPlayer, Player bluePlayer, Player greenPlayer, IAControlledEntity gobelin) {
+	public static void proxCases(Player player, Player redPlayer, Player bluePlayer, Player greenPlayer, IAControlledEntity gobelin, GameWorld gameWorld) {
 		
 		new Click();
 		int tab[] = Click.cases(((int) player.getPosition().getX()), ((int) player.getPosition().getY()));
@@ -31,7 +39,7 @@ public class ProximityCases extends BasicGameApp{
 				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
 				
 				if(list.contains(vars)) {
-					getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
+					gameWorld.spawn("range", new Point2D(i * 60, j * 60));
 				
 				}
 			}

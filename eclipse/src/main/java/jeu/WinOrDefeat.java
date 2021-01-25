@@ -1,6 +1,5 @@
 package jeu;
 
-import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.scene.GameScene;
 
 import javafx.geometry.Point2D;
@@ -19,7 +18,7 @@ public class WinOrDefeat extends BasicGameApp {
 
 	}
 
-	public void gameState(GameWorld gameworld, Player redPlayer, Player bluePlayer, Player greenPlayer,
+	public void gameState(Player redPlayer, Player bluePlayer, Player greenPlayer,
 			IAControlledEntity gobelin) {
 		// Cas de defaite
 		if (redPlayer.getHeroClass().getPv() == 0 && bluePlayer.getHeroClass().getPv() == 0 && greenPlayer.getHeroClass().getPv() == 0) {
