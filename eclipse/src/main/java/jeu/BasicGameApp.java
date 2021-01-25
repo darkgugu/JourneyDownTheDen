@@ -141,7 +141,6 @@ public class BasicGameApp extends GameApplication {
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
 
-				System.out.println(y + " " + y);
 				List<Entity> list = getGameWorld().getEntitiesByType(EntityType.RANGE);
 				int[] tabClick = Click.cases(x, y);
 
@@ -161,7 +160,6 @@ public class BasicGameApp extends GameApplication {
 							selectedUnit.setActiveSkill(skill);
 
 							activeSkillOk = true;
-							System.out.println("Active Skill : " + skill.getName());
 						} else {
 
 							GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
@@ -259,13 +257,9 @@ public class BasicGameApp extends GameApplication {
 					
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
-						System.out.println("perso " + i + " X " + pX);
 						int pY = (int) persos[i].getPosition().getY();
-						System.out.println("perso " + i + " X " + pY);
 
 						int[] tabPerso = Click.cases(pX, pY);
-						System.out.println(pX + "  " + pY);
-						System.out.println(pX + "  " + pY);
 						
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
@@ -308,7 +302,6 @@ public class BasicGameApp extends GameApplication {
 						for (Entity entity : list) {
 							entity.removeFromWorld();
 						}
-						System.out.println("move");
 
 						selectedUnit.move(new Point2D(x, y), getGameWorld());
 					}

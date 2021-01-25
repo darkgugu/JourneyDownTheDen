@@ -63,7 +63,7 @@ public class Description extends BasicGameApp {
 			if(selectedUnit.getHeroClass().getSkills()[i] != null) {
 				descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
 				descri.setText(selectedUnit.getHeroClass().getSkills()[i].getDescri());
-				consoMana.setText("Mana: " + selectedUnit.getHeroClass().getSkills()[i].getCost());
+				consoMana.setText("PA: " + selectedUnit.getHeroClass().getSkills()[i].getCost());
 				range.setText("Portée: " + selectedUnit.getHeroClass().getSkills()[i].getRange());
 			}
 		}
