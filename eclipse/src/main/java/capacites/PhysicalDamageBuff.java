@@ -5,7 +5,7 @@ import personnages.Unites;
 public class PhysicalDamageBuff extends Capacites{
 
 	public PhysicalDamageBuff() {
-		super(DamageElement.LIGHT, 10, "magical", 20, 0, 3, "Augmentation Dégats Physiques"
+		super(DamageElement.LIGHT, 10, "magical", 20, 0, 3, "Boost Dégats Physiques"
 				,"Renforce la puissance des attaques physiques");
 		
 	}

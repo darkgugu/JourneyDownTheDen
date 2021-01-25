@@ -159,4 +159,13 @@ public class UIEntity implements EntityFactory {
 				.build();
 	}
 	
+	@Spawns("rectangle")
+	public Entity newRectangle(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.BLOCK)
+				.viewFromNode(new Rectangle(240, 60, Color.LIGHTGRAY))
+				.build();
+	}
+	
 }
