@@ -1,33 +1,19 @@
 package ui;
 
-import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.GameScene;
-import com.almasb.fxgl.ui.FXGLTextFlow;
 
-import javafx.application.Application;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.VBox;
-import javafx.application.Application;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.Text;
 import jeu.BasicGameApp;
 import jeu.Player;
-import jeu.Tour;
-import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver;
 
 public class CharInfoView extends BasicGameApp {
 	private Text textCharInfo;
 	private Text textSkip;
-	private Text textHelpInfo;
 	private Text textRedInfo;
 	private Text textGreenInfo;
 	private Text textBlueInfo;
@@ -36,7 +22,6 @@ public class CharInfoView extends BasicGameApp {
 	private Text textTour;
 
 	public CharInfoView(GameScene gameScene, Player playerRed, Player playerGreen, Player playerBlue, String gameLog) {
-		String newLine = System.getProperty("line.separator");
 
 		/*
 		 * Descriptive text
@@ -65,13 +50,6 @@ public class CharInfoView extends BasicGameApp {
 //		button = new Button("My Button");
 //        button.setPrefSize(400, 300);
 
-		textHelpInfo = new Text();
-		textHelpInfo.setFont(Font.font("Verdana", 20));
-		textHelpInfo.setFill(Color.BLACK);
-		textHelpInfo.setTranslateX(1450);
-		textHelpInfo.setTranslateY(923);
-		textHelpInfo.setText("~~Commandes~~" + newLine + "F : afficher/cacher la grille" + newLine
-				+ "Clic droit : selectioner une unit�");
 
 		textCharInfo = new Text();
 		textCharInfo.setFont(Font.font("Verdana", 15));
