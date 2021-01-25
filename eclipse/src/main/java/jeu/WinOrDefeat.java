@@ -21,13 +21,13 @@ public class WinOrDefeat extends BasicGameApp {
 	public void gameState(Player redPlayer, Player bluePlayer, Player greenPlayer,
 			IAControlledEntity gobelin) {
 		// Cas de defaite
-		if (redPlayer.getHeroClass().getPv() == 0 && bluePlayer.getHeroClass().getPv() == 0 && greenPlayer.getHeroClass().getPv() == 0) {
+		if (redPlayer.getHeroClass().isDead() == true && bluePlayer.getHeroClass().isDead() == true && greenPlayer.getHeroClass().isDead() == true) {
 			getGameWorld().spawn("rectangle", new Point2D(840, 380));
 			text.setText("DEFAITE");
 		}
 
 		// Cas de victoire
-		if (gobelin.getType().getPv() == 0) {
+		if (gobelin.getType().isDead() == true) {
 			System.out.println(gobelin.getType().getPv());
 			getGameWorld().spawn("rectangle", new Point2D(840, 380));
 			text.setText("VICTOIRE");
