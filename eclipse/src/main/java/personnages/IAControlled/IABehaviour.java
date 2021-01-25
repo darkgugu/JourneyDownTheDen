@@ -52,7 +52,7 @@ public class IABehaviour {
 		return dist;
 	}
 	
-	public static double[] getTar(IAControlledEntity unit, double dist[], Player[] players) {
+	public static double[] getTarCoor(IAControlledEntity unit, double dist[], Player[] players) {
 		
 		Player closePlayer = players[0];
 		double closeDist = dist[0];
