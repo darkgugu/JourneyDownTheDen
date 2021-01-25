@@ -7,8 +7,6 @@ package jeu;
 
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.Iterator;
-
 import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
@@ -30,10 +28,6 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import personnages.Unites;
 import ui.CharInfoView;
 import ui.Description;
 import ui.UIEntity;
@@ -121,7 +115,6 @@ public class BasicGameApp extends GameApplication {
 
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
 
-// 		Repeatable theme
 		getAudioPlayer().loopBGM("town_theme.mp3");
 
 	}
@@ -162,7 +155,7 @@ public class BasicGameApp extends GameApplication {
 				view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 						GameLog.getGameLog(), tour.getNbTour());
 				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-						selectedUnit);
+						selectedUnit, gobelin);
 			}
 		}, KeyCode.S);
 	}
@@ -196,7 +189,7 @@ public class BasicGameApp extends GameApplication {
 					view.updateInfo(getGameScene(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 							GameLog.getGameLog(), tour.getNbTour());
 					killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
-							selectedUnit);
+							selectedUnit, gobelin);
 
 				}
 
@@ -290,7 +283,7 @@ public class BasicGameApp extends GameApplication {
 							if(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(), caster, tabClick) == "OK") {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
-								GameLog.setGameLog("Target : " + IA[i].getName() + " " + IA[i].getType().getPv());
+								GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
 								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
 							}
 							else{
