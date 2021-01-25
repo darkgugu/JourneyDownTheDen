@@ -32,8 +32,8 @@ public abstract class Capacites implements ICast{
 	}
 
 	public int cast(Unites caster) {
+		GameLog.setGameLog(caster.getName() + " lance " + getName()); 
 		caster.setActionPoint(caster.getActionPoint() - cost);
-		System.out.println(caster.getName() + " lance " + getName());
 		return 0;
 	}
 	
@@ -43,18 +43,12 @@ public abstract class Capacites implements ICast{
 	public void death(Unites killer, Unites cible) {
 		
 		GameLog.setGameLog(
-				killer.getClass().getSimpleName() + 
+				killer.getName() + 
 				" à tué " +
-				cible.getClass().getSimpleName() +
+				cible.getName() +
 				" avec " +
 				getName());
-		
-//		System.out.println(
-//					killer.getClass().getSimpleName() + 
-//					" à tué " +
-//					cible.getClass().getSimpleName() +
-//					" avec " +
-//					getName());
+
 	}
 	
 	public String castOK(Unites caster, Unites target, int[] pos, int[] click) {
