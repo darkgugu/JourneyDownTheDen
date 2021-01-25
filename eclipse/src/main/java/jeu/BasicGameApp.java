@@ -7,24 +7,17 @@ package jeu;
 
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
-import com.almasb.fxgl.animation.Animation;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
-import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.settings.GameSettings;
-import com.almasb.fxgl.ui.FXGLUIFactory;
 
 import capacites.Capacites;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -46,11 +39,12 @@ public class BasicGameApp extends GameApplication {
 	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-
+	//Methods calls
 	private Description description;
 	private Tour tour;
 	private CharInfoView view;
 	private KillUnit killUnit;
+	private WinOrDefeat winOrDefeat;
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -156,6 +150,7 @@ public class BasicGameApp extends GameApplication {
 						GameLog.getGameLog(), tour.getNbTour());
 				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 						selectedUnit, gobelin);
+//				winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 			}
 		}, KeyCode.S);
 	}
