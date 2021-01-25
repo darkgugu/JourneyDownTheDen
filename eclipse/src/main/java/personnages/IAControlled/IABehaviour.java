@@ -13,10 +13,6 @@ public class IABehaviour {
 	
 	public static void isRangeAgressiveSpell(IAControlledEntity unit, Player[] players) {
 		
-		//System.out.println("Size : " + reducePlayerTab(players).length);
-		
-		//players = reducePlayerTab(players);
-		
 		int range = unit.getType().getSkills()[0].getRange();
 		int tab[] = Click.cases(((int) unit.getPosition().getX()), ((int) unit.getPosition().getY()));
 		int posx = tab[0];
@@ -40,9 +36,7 @@ public class IABehaviour {
 	}
 	
 	public static double[] getDist(IAControlledEntity unit, Player[] players) {
-		
-		//players = reducePlayerTab(players);
-		
+				
 		double[] posx = new double[3];
 		double[] posy = new double[3];
 		double[] dist = new double[3];
