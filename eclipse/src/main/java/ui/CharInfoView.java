@@ -97,8 +97,7 @@ public class CharInfoView extends BasicGameApp {
 		textRedInfo.setTranslateY(955);
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "        "
 				+ playerRed.getHeroClass().getMagicalBaseDamage() + "          "
-				+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint()
-				+ "   " + playerRed.getName());
+				+ playerRed.getHeroClass().getMovePoint() + "         " + playerRed.getHeroClass().getActionPoint());
 
 		textGreenInfo = new Text();
 		textGreenInfo.setFont(Font.font("Verdana", 15));
@@ -107,8 +106,7 @@ public class CharInfoView extends BasicGameApp {
 		textGreenInfo.setTranslateY(1000);
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "    "
 				+ playerGreen.getHeroClass().getMagicalBaseDamage() + "          "
-				+ playerGreen.getHeroClass().getMovePoint() + "          " + playerGreen.getHeroClass().getActionPoint()
-				+ "   " + playerGreen.getName());
+				+ playerGreen.getHeroClass().getMovePoint() + "          " + playerGreen.getHeroClass().getActionPoint());
 
 		textBlueInfo = new Text();
 		textBlueInfo.setFont(Font.font("Verdana", 15));
@@ -117,12 +115,11 @@ public class CharInfoView extends BasicGameApp {
 		textBlueInfo.setTranslateY(1050);
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "    "
 				+ playerBlue.getHeroClass().getMagicalBaseDamage() + "          "
-				+ playerBlue.getHeroClass().getMovePoint() + "          " + playerBlue.getHeroClass().getActionPoint()
-				+ "   " + playerBlue.getName());
+				+ playerBlue.getHeroClass().getMovePoint() + "          " + playerBlue.getHeroClass().getActionPoint());
 
-		Entity priestFace = getGameWorld().spawn("priestFace", new Point2D(326, 945));
-		Entity warriorFace = getGameWorld().spawn("warriorFace", new Point2D(326, 1040));
-		Entity magicianFace = getGameWorld().spawn("magicianFace", new Point2D(326, 990));
+		getGameWorld().spawn("priestFace", new Point2D(326, 945));
+		getGameWorld().spawn("magicianFace", new Point2D(326, 1040));
+		getGameWorld().spawn("warriorFace", new Point2D(326, 990));
 
 		gameScene.addUINodes(textSkip, textCharInfo, textRedInfo, textBlueInfo, textGreenInfo, scrollPane, log,
 				textTour);
