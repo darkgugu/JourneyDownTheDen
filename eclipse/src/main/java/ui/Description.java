@@ -15,13 +15,19 @@ import jeu.Player;
 public class Description extends BasicGameApp {
 	private Text descriSpell1;
 	private Text descri;
+	private Text consoMana;
+	private Text range;
 	private int i;
 	public Description(GameScene gamescene) {
 		descriSpell1 = new Text();
 		descriSpell1.setFont(Font.font("Verdana", 25));
 		descri = new Text();
 		descri.setFont(Font.font("Verdana", 20));
-		gamescene.addUINodes(descriSpell1, descri);
+		consoMana = new Text();
+		consoMana.setFont(Font.font("Verdana", 20));
+		range = new Text();
+		range.setFont(Font.font("Verdana", 20));
+		gamescene.addUINodes(descriSpell1, descri, consoMana, range);
 		Entity description = getGameWorld().spawn("description", new Point2D(720, 960));
 	}
 
@@ -34,6 +40,10 @@ public class Description extends BasicGameApp {
 		descriSpell1.setTranslateY(-10);
 		descri.setTranslateX(-10);
 		descri.setTranslateY(-10);
+		consoMana.setTranslateX(-10);
+		consoMana.setTranslateY(-10);
+		range.setTranslateX(-10);
+		range.setTranslateY(-10);
 	}
 
 	/*
@@ -42,6 +52,10 @@ public class Description extends BasicGameApp {
 	public void updateDescriSpell(GameScene gamescene, Player selectedUnit) {
 		descriSpell1.setTranslateX(730);
 		descriSpell1.setTranslateY(985);
+		consoMana.setTranslateX(1050);
+		consoMana.setTranslateY(985);
+		range.setTranslateX(1200);
+		range.setTranslateY(985);
 		descri.setTranslateX(730);
 		descri.setTranslateY(1020);
 		if(selectedUnit == null) {
@@ -49,6 +63,8 @@ public class Description extends BasicGameApp {
 		} else {
 			if(selectedUnit.getHeroClass().getSkills()[i] != null) {
 				descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
+				consoMana.setText("Mana: " + selectedUnit.getHeroClass().getSkills()[i].getCost());
+				range.setText("Portée: " + selectedUnit.getHeroClass().getSkills()[i].getRange());
 				descri.setText(selectedUnit.getHeroClass().getSkills()[i].getDescri());
 			}
 		}
