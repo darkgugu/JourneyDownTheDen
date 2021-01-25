@@ -5,9 +5,10 @@ import java.util.List;
 import com.almasb.fxgl.app.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
-	
+import com.almasb.fxgl.physics.box2d.dynamics.contacts.Position;
+import com.almasb.fxgl.scene.FXGLScene;
+
 import javafx.geometry.Point2D;
-import personnages.IAControlled.Gobelin;
 import javafx.scene.input.KeyCode;
 import personnages.playerControlled.Healer;
 import ui.GameLog;
@@ -59,7 +60,7 @@ public class KillUnit extends BasicGameApp {
 			getInput().mockKeyRelease(KeyCode.ESCAPE);
 			
 		}
-		
+
 	}
 
 }
