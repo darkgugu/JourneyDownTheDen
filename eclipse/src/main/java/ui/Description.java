@@ -30,10 +30,6 @@ public class Description extends BasicGameApp {
 		getGameWorld().spawn("description", new Point2D(720, 960));
 	}
 
-	/*
-	 * On "nettoie" le cadre de description
-	 *
-	 */
 	public void clean(GameScene gamescene) {
 		descriSpell1.setTranslateX(-10);
 		descriSpell1.setTranslateY(-10);
