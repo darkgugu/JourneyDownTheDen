@@ -21,7 +21,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import personnages.IAControlled.Ennemis;
 import ui.CharInfoView;
 import ui.Description;
 import ui.UIEntity;
@@ -63,8 +62,6 @@ public class BasicGameApp extends GameApplication {
 		settings.setMenuEnabled(true);
 //		settings.setProfilingEnabled(true);
 
-//To implement later
-//		settings.setIntroEnabled(true);
 	}
 
 	@Override
