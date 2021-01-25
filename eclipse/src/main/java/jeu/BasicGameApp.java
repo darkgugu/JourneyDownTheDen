@@ -21,7 +21,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import personnages.IAControlled.Ennemis;
 import ui.CharInfoView;
 import ui.Description;
 import ui.UIEntity;
@@ -35,10 +34,7 @@ public class BasicGameApp extends GameApplication {
 	public Player selectedUnit;
 	// Ennemies entities
 	private IAControlledEntity gobelin;
-	// Fake Entities, for UI
-	private Entity Block;
 	private Entity grid;
-	private Entity range;
 	boolean gridState = false;
 	boolean activeSkillOk = false;
 	//Methods calls
@@ -99,8 +95,8 @@ public class BasicGameApp extends GameApplication {
 		/*
 		 * UI
 		 */
-		Entity lineofUI = getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
-		Entity InfoUI = getGameWorld().spawn("infoUI", new Point2D(5, 901));
+		getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
+		getGameWorld().spawn("infoUI", new Point2D(5, 901));
 
 		for (int i = 0; i < 10; i++) {
 
@@ -388,7 +384,7 @@ public class BasicGameApp extends GameApplication {
 				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
 				
 				if(list.contains(vars)) {
-					range = getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
+					getGameWorld().spawn("range", new Point2D(i * 60, j * 60));
 				
 				}
 			}
