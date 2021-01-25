@@ -59,8 +59,6 @@ public class BasicGameApp extends GameApplication {
 		settings.setMenuEnabled(true);
 //		settings.setProfilingEnabled(true);
 
-//To implement later
-//		settings.setIntroEnabled(true);
 	}
 
 	@Override
