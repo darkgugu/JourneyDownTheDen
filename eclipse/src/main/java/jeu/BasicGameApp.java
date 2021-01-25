@@ -21,6 +21,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import personnages.IAControlled.Ennemis;
 import ui.CharInfoView;
 import ui.Description;
 import ui.UIEntity;
@@ -31,8 +32,9 @@ public class BasicGameApp extends GameApplication {
 	private Player redHeroComponent;
 	private Player blueHeroComponent;
 	private Player greenHeroComponent;
-	private IAControlledEntity gobelin;
 	public Player selectedUnit;
+	// Ennemies entities
+	private IAControlledEntity gobelin;
 	// Fake Entities, for UI
 	private Entity Block;
 	private Entity grid;
@@ -150,7 +152,7 @@ public class BasicGameApp extends GameApplication {
 						GameLog.getGameLog(), tour.getNbTour());
 				killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 						selectedUnit, gobelin);
-//				winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
+				winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 			}
 		}, KeyCode.S);
 	}
@@ -165,6 +167,7 @@ public class BasicGameApp extends GameApplication {
 		killUnit = new KillUnit(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent);
 		description = new Description(getGameScene());
 		description.mousePos(selectedUnit);
+		winOrDefeat = new WinOrDefeat(getGameScene());
 		getGameScene().setCursor("cursor.png", hotspot);
 
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -185,6 +188,7 @@ public class BasicGameApp extends GameApplication {
 							GameLog.getGameLog(), tour.getNbTour());
 					killUnit.checkKill(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent,
 							selectedUnit, gobelin);
+					winOrDefeat.gameState(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin);
 
 				}
 

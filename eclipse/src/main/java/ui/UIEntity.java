@@ -164,8 +164,7 @@ public class UIEntity implements EntityFactory {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.BLOCK)
-				.viewFromNode(new Rectangle(25, 25, Color.BLUE))
-				.viewFromTexture("describorder.png")
+				.viewFromNode(new Rectangle(240, 60, Color.LIGHTGRAY))
 				.build();
 	}
 	
