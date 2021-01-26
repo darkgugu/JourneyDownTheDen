@@ -3,21 +3,20 @@ package capacites;
 import personnages.Unites;
 import ui.GameLog;
 
-public class Fireball extends Capacites{
+public class Lance extends Capacites{
 		
 	private int finalDamages;
-	
-	
-	public Fireball() {
-		super(DamageElement.FIRE, 3, "magical", 0, 10, 4, "Boule de Feu"
-				, "Envoie une puissante boule de feu");
 
+	public Lance() {
+		super(DamageElement.EARTH, 3, "physical", 0, 15, 3, "Coup de Lance"
+				,"Coup de lance d'une petite portée");
+		
 	}
 	
 	public int cast(Unites caster, Unites cible) {
 		
 		super.cast(caster);
-		finalDamages = damage * caster.getMagicalBaseDamage();
+		finalDamages = damage * caster.getPhysicalBaseDamage();
 		GameLog.setGameLog("Dégats : " + finalDamages);
 		if(cible.setPv(finalDamages)) {
 
@@ -29,4 +28,6 @@ public class Fireball extends Capacites{
 	public int getFinalDamages() {
 		return finalDamages;
 	}
+
+
 }

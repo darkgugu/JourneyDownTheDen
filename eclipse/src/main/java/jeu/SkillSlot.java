@@ -1,34 +1,24 @@
 package jeu;
 
+import java.util.ArrayList;
+
 public abstract class SkillSlot {
 	
 	public static int isSkillSlot(int x, int y) {
 		
-		int skillSlot = -1;
-		
-		/* 	
-		 	100 = xmin des coords de la barre de sort
-		 	200 = xmax des coords de la barre de sort
-		 	300 & 400 = y min & max des sorts
-		 */
-		if(y >= 900 && y <= 960) {
-		
-			if(x >= 840 && x <= 900) skillSlot = 0;
-//			if(x >= 580 && x <= 620) skillSlot = 1;
-//			if(x >= 300 && x <= 400) skillSlot = 2;
-//			if(x >= 300 && x <= 400) skillSlot = 3;
-//			if(x >= 300 && x <= 400) skillSlot = 4;
-//			if(x >= 300 && x <= 400) skillSlot = 5;
-//			if(x >= 300 && x <= 400) skillSlot = 6;
-//			if(x >= 300 && x <= 400) skillSlot = 7;
-//			if(x >= 300 && x <= 400) skillSlot = 8;
-//			if(x >= 300 && x <= 400) skillSlot = 9;
-		}
-		else {
-			
-			return -1;
+		ArrayList<Integer> slotsCoord = new ArrayList<Integer>(10);
+		for (int i = 12;i <= 21; i++) {
+			slotsCoord.add(i);
 		}
 		
-		return skillSlot;
+		int[] tab = Click.cases(x, y);
+
+		
+		if(tab[1] == 15) {
+			for (int i = 0; i < 10; i++) {
+				if(slotsCoord.get(i) == tab[0]) return i;
+			}
+		}
+		return -1;
 	}
 }

@@ -1,21 +1,22 @@
 package jeu;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 
-import com.almasb.fxgl.core.collection.Grid;
+import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.entity.components.PositionComponent;
 
+import capacites.Capacites;
 import javafx.geometry.Point2D;
 import personnages.playerControlled.Personnages;
 
 public class Player extends Component {
 	private PositionComponent position;
 	private String name;
-private Personnages HeroClass;
+	private Personnages HeroClass;
+	private Capacites activeSkill;
 	
 	
 	public Player(Personnages heroClass) {
@@ -44,41 +45,50 @@ private Personnages HeroClass;
 		this.position = position;
 	}
 
-	public void move(Point2D direction) {
+	public void move(Point2D direction, GameWorld gameworld) {
 
 		int posX = (int) position.getX();
 		int posY = (int) position.getY();
 
 		int casePlayerX = (int) (posX / 60);
 		int casePlayerY = (int) (posY / 60);
-		System.out.println("Coordonï¿½es player pixels ("  + position.getX() + " , " + position.getY() + ")");
-		System.out.println("Coordonï¿½es player case (" + casePlayerX + " , " + casePlayerY + ")");
+		System.out.println("Coordonnées player pixels ("  + position.getX() + " , " + position.getY() + ")");
+		System.out.println("Coordonnées player case (" + casePlayerX + " , " + casePlayerY + ")");
 
-		int tab[] = new Click().cases(((int) direction.getX()), ((int) direction.getY()));
+		new Click();
+		int tab[] = Click.cases(((int) direction.getX()), ((int) direction.getY()));
 		Deplacement move = new Deplacement();
-		move.calculateCross(2, casePlayerX, casePlayerY);
-		move.calculateDiag(2, casePlayerX, casePlayerY);
+		move.calculateCross(HeroClass.getMovePoint(), casePlayerX, casePlayerY);
+		move.calculateDiag(HeroClass.getMovePoint(), casePlayerX, casePlayerY);
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
-
-//		List<SimpleEntry<Integer, Integer>> bannedList = (60);
-//		Iterator<Integer> bannedIterator = bannedList.iterator();
-//		SimpleEntry<Integer, Integer> vars2 = new SimpleEntry<Integer, Integer>(60, 180);
-		
-		System.out.println("Coordonï¿½es du tabl (" + tab[2] + " , " + tab[3] + ")");
-		System.out.println("Coin supï¿½rieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
-
-		if (list.contains(vars)) {
+		List<Entity> entities = gameworld.getEntitiesAt(new Point2D(tab[2], tab[3]));
+		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
+		if (list.contains(vars) && HeroClass.isDidMove() == false && entities.isEmpty()) {
 			
 			position.translateX(tab[2] - position.getX());
 			position.translateY(tab[3] - position.getY());
 			posX = (int) position.getX();
 			posY = (int) position.getY();
+			HeroClass.setDidMove(true);
 
-			System.out.println("Coordonï¿½es player X Y (" + posX + " , " + posY + ") \n\n");
+			System.out.println("Coordonnées player X Y (" + posX + " , " + posY + ") \n\n");
 
 		} else {
 			System.out.println("pas de deplacement");
 		}
+	}
+	
+//	public void suppress() {
+//		
+//		move(new Point2D(-100, -100), getGameWorld());
+//	}
+	
+	public Capacites getActiveSkill() {
+		return activeSkill;
+	}
+	public void setActiveSkill(Capacites activeSkill) {
+		this.activeSkill = activeSkill;
 	}
 }

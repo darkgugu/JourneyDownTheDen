@@ -1,25 +1,21 @@
 package capacites;
 
 import personnages.Unites;
-import ui.GameLog;
 
-public class Soin extends Capacites{
-
+public class Soin2 extends Capacites{
+	
 	private int finalHeal;
 	
-	public Soin() {
-		super(DamageElement.LIGHT, 10, "magical", 20, 0, 3, "Soin"
-				,"Un soin basique et peu couteux");
-		
+	public Soin2() {
+		super(DamageElement.LIGHT, 10, "magical", 20, 0, 6, "Double Soin" ,"Un soin soignant la cible et l'utilisateur");	
 	}
 	
 	public int cast(Unites caster, Unites cible) {
 
 		finalHeal = -1 * heal;
 		cible.setPv(finalHeal);
+		caster.setPv(finalHeal);
 		super.cast(caster);
-		//System.out.println("Cible : " + cible.getName());
-		GameLog.setGameLog("Soin : " + -finalHeal);
 		return finalHeal;
 	}
 

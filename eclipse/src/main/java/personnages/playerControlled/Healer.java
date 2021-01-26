@@ -1,22 +1,13 @@
 package personnages.playerControlled;
 
-import capacites.Fireball;
 import capacites.Soin;
+import capacites.Soin2;
 
 public class Healer extends Personnages{
 	
 	public Healer() {
-		super(95, "Healer", 10, 20, 10, 10, 2);
-		skills[0] = new Fireball();
-		skills[1] = new Fireball();
+		super(95, "Healer", 1, 2, 10, 10, 4);
+		skills[0] = new Soin();
+		skills[1] = new Soin2();
 	}
-
-	
-	@Override
-	public String toString() {
-		
-		String spellBar = "Sort 1 : " + skills[0].getClass().getSimpleName() + "\nSort 2  : " + skills[1].getClass().getSimpleName();
-		return spellBar;
-	}
-
 }

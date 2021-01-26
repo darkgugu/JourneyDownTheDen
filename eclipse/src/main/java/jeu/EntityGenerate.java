@@ -5,8 +5,7 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
-import com.almasb.fxgl.entity.components.CollidableComponent;
-
+import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
 import personnages.playerControlled.Warrior;
@@ -18,8 +17,7 @@ public class EntityGenerate implements EntityFactory {
 		return  Entities.builder()
 				.from(data)
 				.type(EntityType.PLAYER_RED)
-				.viewFromTexture("redHero.png")
-		        .with(new CollidableComponent(true))
+				.viewFromTexture("priest.png")
 				.with(new Player(new Healer()))
 				.build();
 	}
@@ -29,8 +27,7 @@ public class EntityGenerate implements EntityFactory {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.PLAYER_GREEN)
-				.viewFromTexture("greenHero.png")
-		        .with(new CollidableComponent(true))
+				.viewFromTexture("warrior.png")
 				.with(new Player(new Warrior()))
 				.build();
 	}
@@ -40,10 +37,44 @@ public class EntityGenerate implements EntityFactory {
 		return  Entities.builder()
 				.from(data)
 				.type(EntityType.PLAYER_BLUE)
-				.viewFromTexture("blueHero.png")
-		        .with(new CollidableComponent(true))
+				.viewFromTexture("magician.png")
 				.with(new Player(new Magician()))
 				.build();
 	}
 
+	@Spawns("goblin")
+	public Entity newGoblin(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.GOBLIN)
+				.viewFromTexture("goblin.png")
+				.with(new IAControlledEntity(new Gobelin()))
+				.build();
+	}
+	
+	@Spawns("priestFace")
+	public Entity newPriestFace(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.FACE)
+				.viewFromTexture("priestFace.png")
+				.build();
+	}
+	@Spawns("warriorFace")
+	public Entity newWarriorFace(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.FACE)
+				.viewFromTexture("warriorFace.png")
+				.build();
+	}
+	
+	@Spawns("magicianFace")
+	public Entity newMagicianFace(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.FACE)
+				.viewFromTexture("magicianFace.png")
+				.build();
+	}
 }

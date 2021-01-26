@@ -14,8 +14,9 @@ public class Unites {
 	private int pvMax;
 	protected Capacites skills[];
 
+	protected boolean didMove = false;
+	protected boolean isDead = false;
 
-	
 	public Unites(int pv, String name, int physicalBaseDamage, int magicalBaseDamage, int range, int actionPoint, int movePoint) {
 		super();
 		this.pv = pv;
@@ -80,7 +81,14 @@ public class Unites {
 		}
 		if(this.pv <= 0) {
 			
-			return true;
+			this.pv = 0;
+			if(isDead == false) {
+//				isDead = true;
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else {
 		
@@ -100,13 +108,35 @@ public class Unites {
 	public Capacites[] getSkills() {
 		return skills;
 	}
+	
 
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
+	}
 
 	public void setSkills(Capacites skill, int i) {
 		this.skills[i] = skill;
 	}
 
-	
+	public boolean isDidMove() {
+		return didMove;
+	}
+
+	public void setDidMove(boolean didMove) {
+		this.didMove = didMove;
+	}
+	public int getPhysicalBaseDamage() {
+		return physicalBaseDamage;
+	}
+
+	public void setPhysicalBaseDamage(int physicalBaseDamage) {
+		this.physicalBaseDamage = physicalBaseDamage;
+	}
+
 	
 	
 	

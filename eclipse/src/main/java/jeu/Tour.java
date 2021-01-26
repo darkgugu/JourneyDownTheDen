@@ -1,25 +1,57 @@
 package jeu;
 
+import javafx.geometry.Point2D;
+import personnages.IAControlled.IABehaviour;
 import personnages.playerControlled.Personnages;
+import ui.CharInfoView;
+import ui.GameLog;
 
 public class Tour {
 	
+	private Player players[] = new Player[3];
 	private Personnages persos[] = new Personnages[3];
 	private int nbTour = 0;
+	private IAControlledEntity gobelin;
+	private CharInfoView view;
+	private KillUnit killUnit;
+	private WinOrDefeat endGame;
 
-	public Tour(Personnages[] persos) {
+	public Tour(Player perso0, Player perso1, Player perso2, IAControlledEntity gobelin, CharInfoView view, KillUnit killUnit, WinOrDefeat endGame) {
 		super();
-		this.persos = persos;
+		players[0] = perso0;
+		players[1] = perso1;
+		players[2] = perso2;
+		
+		persos[0] = perso0.getHeroClass();
+		persos[1] = perso1.getHeroClass();
+		persos[2] = perso2.getHeroClass();
+		this.gobelin = gobelin;
+		
+		this.view = view;
+		this.killUnit = killUnit;
+		this.endGame = endGame;
 	}
 	
 	public void debut() {
-		
+		GameLog.setGameLog("==============/Tour    Ennemi/==============");
+		double[] tar = ennemyTurn();
+		gobelin.move(new Point2D(tar[0], tar[1]));
+		GameLog.setGameLog("==============/Nouveau Tour/==============");
+		nbTour++;
 		for (int i = 0; i < persos.length; i++) {
-			
-			setNbTour(getNbTour() + 1);
+
 			persos[i].setActionPointToMax();
-			persos[i].setMovePointToMax();
+			persos[i].setDidMove(false);
 		}
+		view.updateInfo(players[0], players[1], players[2], GameLog.getGameLog(), getNbTour());
+		killUnit.checkKill(players[0], players[1], players[2], gobelin);
+		endGame.gameState(players[0], players[1], players[2], gobelin);
+	}
+	
+	public double[] ennemyTurn() {
+		
+		IABehaviour.isRangeAgressiveSpell(gobelin, players);
+		return IABehaviour.getTarCoor(gobelin, IABehaviour.getDist(gobelin, players), players);
 	}
 	
 	public boolean checkFin() {
