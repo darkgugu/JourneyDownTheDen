@@ -37,7 +37,7 @@ public class Tour {
 		double[] tar = ennemyTurn();
 		gobelin.move(new Point2D(tar[0], tar[1]));
 		GameLog.setGameLog("==============/Nouveau Tour/==============");
-		setNbTour(getNbTour() + 1);
+		nbTour++;
 		for (int i = 0; i < persos.length; i++) {
 
 			persos[i].setActionPointToMax();
@@ -51,7 +51,7 @@ public class Tour {
 	public double[] ennemyTurn() {
 		
 		IABehaviour.isRangeAgressiveSpell(gobelin, players);
-		return IABehaviour.getTar(gobelin, IABehaviour.getDist(gobelin, players), players);
+		return IABehaviour.getTarCoor(gobelin, IABehaviour.getDist(gobelin, players), players);
 	}
 	
 	public boolean checkFin() {
