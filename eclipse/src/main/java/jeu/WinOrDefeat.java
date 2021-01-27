@@ -1,5 +1,6 @@
 package jeu;
 
+import com.almasb.fxgl.parser.tiled.TiledMap;
 import com.almasb.fxgl.scene.GameScene;
 
 import javafx.geometry.Point2D;
@@ -8,7 +9,6 @@ import javafx.scene.text.Text;
 
 public class WinOrDefeat extends BasicGameApp {
 	private Text text;
-
 	public WinOrDefeat(GameScene gameScene) {
 		text = new Text();
 		text.setTranslateX(840);
@@ -31,6 +31,10 @@ public class WinOrDefeat extends BasicGameApp {
 			System.out.println(gobelin.getType().getPv());
 			getGameWorld().spawn("rectangle", new Point2D(840, 380));
 			text.setText("VICTOIRE");
+			TiledMap map2 = getAssetLoader().loadTMX("map2.tmx");
+			getGameWorld().setLevelFromMap(map2);
+
+			
 
 		}
 
