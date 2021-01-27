@@ -1,11 +1,22 @@
-package jeu;
+package personnages;
 
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+
+import jeu.EntityType;
+import jeu.IAControlledEntity;
+import jeu.Player;
+import com.almasb.fxgl.particle.ParticleComponent;
+import com.almasb.fxgl.particle.ParticleEmitter;
+import com.almasb.fxgl.particle.ParticleEmitters;
+
+import javafx.scene.effect.BlendMode;
+import javafx.scene.paint.Color;
 import personnages.IAControlled.Gobelin;
+import personnages.IAControlled.Orc;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
 import personnages.playerControlled.Warrior;
@@ -44,11 +55,21 @@ public class EntityGenerate implements EntityFactory {
 
 	@Spawns("goblin")
 	public Entity newGoblin(SpawnData data) {
+		
+        ParticleEmitter emitter = ParticleEmitters.newFireEmitter();
+
+        emitter.setBlendMode(BlendMode.ADD);
+        emitter.setSize(10, 20);
+        emitter.setEmissionRate(1);
+        emitter.setStartColor(Color.YELLOW);
+        emitter.setStartColor(Color.RED);
+		
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.GOBLIN)
 				.viewFromTexture("goblin.png")
 				.with(new IAControlledEntity(new Gobelin()))
+                //.with(new ParticleComponent(emitter))
 				.build();
 	}
 	
@@ -73,8 +94,19 @@ public class EntityGenerate implements EntityFactory {
 	public Entity newMagicianFace(SpawnData data) {
 		return Entities.builder()
 				.from(data)
-				.type(EntityType.FACE)
+			.type(EntityType.FACE)
 				.viewFromTexture("magicianFace.png")
-				.build();
+				.build();	
 	}
+	
+	@Spawns("orc")
+	public Entity newOrc(SpawnData data) {
+		return Entities.builder()
+			.from(data)
+			.type(EntityType.FACE)
+				.viewFromTexture("orc.png")
+				.with(new IAControlledEntity(new Orc()))
+				.build();	
+	}
+	
 }

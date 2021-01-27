@@ -7,6 +7,7 @@ import java.util.List;
 public class Deplacement extends BasicGameApp {
 
 	ObstacleReader obstacles = new ObstacleReader();
+	String currMap = BasicGameApp.getCurrentMap();
 
 	public List<SimpleEntry<Integer, Integer>> list = new ArrayList<SimpleEntry<Integer, Integer>>();
 
@@ -40,7 +41,7 @@ public class Deplacement extends BasicGameApp {
 
 	public void add(int x, int y) {
 
-		obstacles.reader();
+		obstacles.reader(currMap);
 
 		if (!obstacles.map_obstacle.contains(new SimpleEntry<Integer, Integer>(x, y))) {
 

@@ -17,6 +17,7 @@ public class Description extends BasicGameApp {
 	private Text consoMana;
 	private Text range;
 	private int i;
+
 	public Description(GameScene gamescene) {
 		descriSpell1 = new Text();
 		descriSpell1.setFont(Font.font("Verdana", 25));
@@ -27,7 +28,6 @@ public class Description extends BasicGameApp {
 		range = new Text();
 		range.setFont(Font.font("Verdana", 20));
 		gamescene.addUINodes(descriSpell1, descri, consoMana, range);
-		getGameWorld().spawn("description", new Point2D(720, 960));
 	}
 
 	public void clean(GameScene gamescene) {
@@ -53,10 +53,10 @@ public class Description extends BasicGameApp {
 		consoMana.setTranslateY(985);
 		range.setTranslateX(1200);
 		range.setTranslateY(985);
-		if(selectedUnit == null) {
+		if (selectedUnit == null) {
 			return;
 		} else {
-			if(selectedUnit.getHeroClass().getSkills()[i] != null) {
+			if (selectedUnit.getHeroClass().getSkills()[i] != null) {
 				descriSpell1.setText(selectedUnit.getHeroClass().getSkills()[i].getName());
 				descri.setText(selectedUnit.getHeroClass().getSkills()[i].getDescri());
 				consoMana.setText("PA: " + selectedUnit.getHeroClass().getSkills()[i].getCost());
@@ -71,9 +71,10 @@ public class Description extends BasicGameApp {
 			public void handle(MouseEvent event) {
 				int x = (int) event.getSceneX();
 				int y = (int) event.getSceneY();
+				int caseX = x / 60;
+				int caseY = y / 60;
 				int[] tabClick = Click.cases(x, y);
 				int xy = tabClick[0] * 100 + tabClick[1];
-				//System.out.println(xy);
 
 				/*
 				 * Switch statement en fonction de la case ciblée par la souris

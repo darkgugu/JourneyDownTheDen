@@ -34,7 +34,6 @@ public class IABehaviour {
 			
 		}
 	}
-	
 	public static double[] getDist(IAControlledEntity unit, Player[] players) {
 				
 		double[] posx = new double[3];
@@ -91,7 +90,7 @@ public class IABehaviour {
 			
 			if (unit.getType().getHasAggro() == false) {
 				unit.getType().setHasAggro(true);
-				GameLog.setGameLog(unit.getName() + " à reperé l'équipe !");
+				GameLog.setGameLog(unit.getName() + " a repéré l'équipe !");
 			}
 			int pm = unit.getType().getMovePoint();
 

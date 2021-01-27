@@ -55,7 +55,7 @@ public class CharInfoView extends BasicGameApp {
 		textCharInfo.setFill(Color.BLACK);
 		textCharInfo.setTranslateX(20);
 		textCharInfo.setTranslateY(923);
-		textCharInfo.setText("HP          " + "PHY      " + "MAG" + "   " + "MVT" + "    " + "PA");
+		textCharInfo.setText("PV          " + "PHY      " + "MAG" + "   " + "MVT" + "    " + "PA");
 
 		textTour = new Text();
 		textTour.setFont(Font.font("Verdana", 20));
@@ -74,7 +74,7 @@ public class CharInfoView extends BasicGameApp {
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "       "
 				+ playerRed.getHeroClass().getPhysicalBaseDamage() + "          "
 				+ playerRed.getHeroClass().getMagicalBaseDamage() + "        " + playerRed.getHeroClass().getMovePoint()
-				+ "     " + playerRed.getHeroClass().getActionPoint() + "   " + playerRed.getName());
+				+ "     " + playerRed.getHeroClass().getActionPoint());
 
 		textGreenInfo = new Text();
 		textGreenInfo.setFont(Font.font("Verdana", 15));
@@ -84,8 +84,7 @@ public class CharInfoView extends BasicGameApp {
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "   "
 				+ playerGreen.getHeroClass().getPhysicalBaseDamage() + "          "
 				+ playerGreen.getHeroClass().getMagicalBaseDamage() + "        "
-				+ playerGreen.getHeroClass().getMovePoint() + "     " + playerGreen.getHeroClass().getActionPoint()
-				+ "   " + playerGreen.getName());
+				+ playerGreen.getHeroClass().getMovePoint() + "     " + playerGreen.getHeroClass().getActionPoint());
 
 		textBlueInfo = new Text();
 		textBlueInfo.setFont(Font.font("Verdana", 15));
@@ -95,8 +94,7 @@ public class CharInfoView extends BasicGameApp {
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "   "
 				+ +playerBlue.getHeroClass().getPhysicalBaseDamage() + "          "
 				+ playerBlue.getHeroClass().getMagicalBaseDamage() + "        "
-				+ playerBlue.getHeroClass().getMovePoint() + "     " + playerBlue.getHeroClass().getActionPoint()
-				+ "   " + playerBlue.getName());
+				+ playerBlue.getHeroClass().getMovePoint() + "     " + playerBlue.getHeroClass().getActionPoint());
 
 		getGameWorld().spawn("priestFace", new Point2D(326, 945));
 		getGameWorld().spawn("magicianFace", new Point2D(326, 1040));
@@ -112,19 +110,17 @@ public class CharInfoView extends BasicGameApp {
 		textRedInfo.setText(playerRed.getHeroClass().getPv() + "/" + playerRed.getHeroClass().getPvMax() + "       "
 				+ playerRed.getHeroClass().getPhysicalBaseDamage() + "          "
 				+ playerRed.getHeroClass().getMagicalBaseDamage() + "        " + playerRed.getHeroClass().getMovePoint()
-				+ "     " + playerRed.getHeroClass().getActionPoint() + "   " + playerRed.getName());
+				+ "     " + playerRed.getHeroClass().getActionPoint());
 
 		textGreenInfo.setText(playerGreen.getHeroClass().getPv() + "/" + playerGreen.getHeroClass().getPvMax() + "   "
 				+ playerGreen.getHeroClass().getPhysicalBaseDamage() + "          "
 				+ playerGreen.getHeroClass().getMagicalBaseDamage() + "        "
-				+ playerGreen.getHeroClass().getMovePoint() + "     " + playerGreen.getHeroClass().getActionPoint()
-				+ "   " + playerGreen.getName());
+				+ playerGreen.getHeroClass().getMovePoint() + "     " + playerGreen.getHeroClass().getActionPoint());
 		
 		textBlueInfo.setText(playerBlue.getHeroClass().getPv() + "/" + playerBlue.getHeroClass().getPvMax() + "   "
 				+ +playerBlue.getHeroClass().getPhysicalBaseDamage() + "          "
 				+ playerBlue.getHeroClass().getMagicalBaseDamage() + "        "
-				+ playerBlue.getHeroClass().getMovePoint() + "     " + playerBlue.getHeroClass().getActionPoint()
-				+ "   " + playerBlue.getName());
+				+ playerBlue.getHeroClass().getMovePoint() + "     " + playerBlue.getHeroClass().getActionPoint());
 		
 		log.setText(gameLog);
 		scrollPane.setContent(log);
