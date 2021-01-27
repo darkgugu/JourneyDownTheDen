@@ -16,10 +16,10 @@ public class ObstacleReader {
 	public void setBasicGameApp(BasicGameApp basicGameApp) {
 		this.basicGameApp = basicGameApp;
 	}
-	public void reader() {
+	public void reader(String currMap) {
 		
 		try{
-			File file = new File("./map1_obstacles.txt");  
+			File file = new File("./" + currMap + "_obstacles.txt");  
 
 			FileReader FileReader = new FileReader(file);  
 			BufferedReader br = new BufferedReader(FileReader);  
