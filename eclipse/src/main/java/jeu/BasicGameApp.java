@@ -144,7 +144,7 @@ public class BasicGameApp extends GameApplication {
 		
 		
 		/* MOBS */
-		Entity orc = getGameWorld().spawn("orc", new Point2D(1020, 180));
+		Entity orc = getGameWorld().spawn("orc", new Point2D(620, 180));
 		orque = orc.getComponent(IAControlledEntity.class);
 		getOrque().setName("Azog le tyran");
 		currentMob = orque;
@@ -259,7 +259,7 @@ public class BasicGameApp extends GameApplication {
 						}
 					} else {
 
-						GameLog.setGameLog("Selectionnez une unitï¿½ !");
+						GameLog.setGameLog("Selectionnez une unité !");
 					}
 
 				}
