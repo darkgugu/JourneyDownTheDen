@@ -5,6 +5,12 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+import com.almasb.fxgl.particle.ParticleComponent;
+import com.almasb.fxgl.particle.ParticleEmitter;
+import com.almasb.fxgl.particle.ParticleEmitters;
+
+import javafx.scene.effect.BlendMode;
+import javafx.scene.paint.Color;
 import personnages.IAControlled.Gobelin;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
@@ -44,11 +50,21 @@ public class EntityGenerate implements EntityFactory {
 
 	@Spawns("goblin")
 	public Entity newGoblin(SpawnData data) {
+		
+        ParticleEmitter emitter = ParticleEmitters.newFireEmitter();
+
+        emitter.setBlendMode(BlendMode.ADD);
+        emitter.setSize(10, 20);
+        emitter.setEmissionRate(1);
+        emitter.setStartColor(Color.YELLOW);
+        emitter.setStartColor(Color.RED);
+		
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.GOBLIN)
 				.viewFromTexture("goblin.png")
 				.with(new IAControlledEntity(new Gobelin()))
+                //.with(new ParticleComponent(emitter))
 				.build();
 	}
 	
