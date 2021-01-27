@@ -13,6 +13,7 @@ public class UIEntity implements EntityFactory {
 	/*
 	 * Declared entities for UI
 	 */
+	
 	@Spawns("lineOfUI")
 	public Entity newLineOfUI(SpawnData data) {
 		return Entities.builder()

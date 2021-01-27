@@ -52,8 +52,6 @@ public class Player extends Component {
 
 		int casePlayerX = (int) (posX / 60);
 		int casePlayerY = (int) (posY / 60);
-		System.out.println("Coordonnées player pixels ("  + position.getX() + " , " + position.getY() + ")");
-		System.out.println("Coordonnées player case (" + casePlayerX + " , " + casePlayerY + ")");
 
 		new Click();
 		int tab[] = Click.cases(((int) direction.getX()), ((int) direction.getY()));
@@ -63,11 +61,6 @@ public class Player extends Component {
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 		List<Entity> entities = gameworld.getEntitiesAt(new Point2D(tab[2], tab[3]));
-		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
-		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
-		System.out.println(list.contains(vars));
-		System.out.println(HeroClass.isDidMove());
-		System.out.println(entities.isEmpty());
 		if (list.contains(vars) && HeroClass.isDidMove() == false && entities.isEmpty()) {
 			
 			position.translateX(tab[2] - position.getX());
@@ -75,18 +68,9 @@ public class Player extends Component {
 			posX = (int) position.getX();
 			posY = (int) position.getY();
 			HeroClass.setDidMove(true);
-
-			System.out.println("Coordonnées player X Y (" + posX + " , " + posY + ") \n\n");
-
-		} else {
-			System.out.println("pas de deplacement");
 		}
 	}
 	
-//	public void suppress() {
-//		
-//		move(new Point2D(-100, -100), getGameWorld());
-//	}
 	
 	public Capacites getActiveSkill() {
 		return activeSkill;

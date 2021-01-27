@@ -6,6 +6,9 @@
 package jeu;
 
 import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
@@ -13,6 +16,7 @@ import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.parser.text.TextLevelParser;
 import com.almasb.fxgl.parser.tiled.TiledMap;
+import com.almasb.fxgl.particle.ParticleComponent;
 import com.almasb.fxgl.settings.GameSettings;
 
 import capacites.Capacites;
@@ -27,6 +31,9 @@ import ui.Description;
 import ui.UIEntity;
 import ui.GameLog;
 import ui.ProximityCases;
+import capacites.ParticlesEntity;
+import capacites.ParticlesHandler;
+
 
 public class BasicGameApp extends GameApplication {
 	// Playable Entities
@@ -80,8 +87,9 @@ public class BasicGameApp extends GameApplication {
 		currentMap = "map1";
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		getGameWorld().addEntityFactory(new UIEntity());
-
-		/* UNITS */
+		getGameWorld().addEntityFactory(new ParticlesEntity());
+		
+		/*UNITS*/
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(120, 360));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(420, 360));
 		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(720, 360));
@@ -166,6 +174,7 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initInput() {
+		
 		Input input = getInput();
 		input.addAction(new UserAction("Show grid") {
 			@Override
@@ -186,6 +195,20 @@ public class BasicGameApp extends GameApplication {
 				tour.debut();
 			}
 		}, KeyCode.S);
+		
+		input.addAction(new UserAction("Particles1") {
+			@Override
+			protected void onActionBegin() {
+				
+			}
+		}, KeyCode.E);		
+		
+		input.addAction(new UserAction("Particles") {
+			@Override
+			protected void onActionBegin() {
+				//particle.removeComponent(ParticleComponent.class);
+			}
+		}, KeyCode.D);	
 	}
 
 	@Override
@@ -234,7 +257,7 @@ public class BasicGameApp extends GameApplication {
 						}
 					} else {
 
-						GameLog.setGameLog("Selectionnez une unité !");
+						GameLog.setGameLog("Selectionnez une unitï¿½ !");
 					}
 
 				}
@@ -277,8 +300,9 @@ public class BasicGameApp extends GameApplication {
 							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
 									persos[i].getHeroClass(), caster, tabClick) == "OK") {
 
-								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
-										persos[i].getHeroClass());
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
+								new ParticlesHandler(persos[i].getPosition(), selectedUnit.getActiveSkill(), getGameWorld()).spawn();
+
 							} else {
 
 								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
@@ -302,11 +326,12 @@ public class BasicGameApp extends GameApplication {
 								if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(),
 										caster, tabClick) == "OK") {
 
-									selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
-									GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
-									GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/"
-											+ IA[i].getType().getPvMax());
-								} else {
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
+								GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
+								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
+								new ParticlesHandler(IA[i].getPosition(), selectedUnit.getActiveSkill(), getGameWorld()).spawn();
+							}
+							else{
 
 									GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/"
 											+ IA[i].getType().getPvMax());
