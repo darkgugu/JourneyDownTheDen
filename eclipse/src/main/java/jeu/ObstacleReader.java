@@ -9,14 +9,18 @@ import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 
 public class ObstacleReader {
-	
+	private BasicGameApp basicGameApp;
+
 	public List<SimpleEntry<Integer, Integer>> map_obstacle = new ArrayList<SimpleEntry<Integer, Integer>>();
 
-
+	public void setBasicGameApp(BasicGameApp basicGameApp) {
+		this.basicGameApp = basicGameApp;
+	}
 	public void reader() {
+		
 		try{
-			
-			File file = new File("./map1_obstacles.txt");    
+			File file = new File("./map1_obstacles.txt");  
+
 			FileReader FileReader = new FileReader(file);  
 			BufferedReader br = new BufferedReader(FileReader);  
 	      
@@ -37,6 +41,7 @@ public class ObstacleReader {
 	    	
 	      e.printStackTrace();
 	    }
+		
 	}
 
 	public void add(int x, int y) {

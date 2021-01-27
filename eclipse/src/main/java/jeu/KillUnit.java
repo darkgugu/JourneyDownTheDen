@@ -10,11 +10,9 @@ import javafx.scene.input.KeyCode;
 import ui.GameLog;
 
 public class KillUnit extends BasicGameApp {
-	public KillUnit(GameWorld gameWorld, Player playerRed, Player playerBlue, Player playerGreen) {
-	}
-	
-	public void checkKill(Player playerRed, Player playerBlue, Player playerGreen, IAControlledEntity gobelin) {
-		
+
+	public void checkKill(Player playerRed, Player playerBlue, Player playerGreen, IAControlledEntity gobelin,
+			IAControlledEntity orc) {
 
 		if (playerRed.getHeroClass().getPv() <= 0 && playerRed.getHeroClass().isDead() == false) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -23,8 +21,7 @@ public class KillUnit extends BasicGameApp {
 				entity.removeFromWorld();
 			}
 			playerRed.getHeroClass().setDead(true);
-			
-			
+
 		}
 		if (playerBlue.getHeroClass().getPv() <= 0 && playerBlue.getHeroClass().isDead() == false) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -33,7 +30,7 @@ public class KillUnit extends BasicGameApp {
 				entity.removeFromWorld();
 			}
 			playerBlue.getHeroClass().setDead(true);
-			
+
 		}
 		if (playerGreen.getHeroClass().getPv() <= 0 && playerGreen.getHeroClass().isDead() == false) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -42,7 +39,7 @@ public class KillUnit extends BasicGameApp {
 				entity.removeFromWorld();
 			}
 			playerGreen.getHeroClass().setDead(true);
-			
+
 		}
 		if (gobelin.getType().getPv() <= 0 && gobelin.getType().isDead() == false) {
 			List<Entity> target = FXGL.getApp().getGameWorld()
@@ -54,8 +51,15 @@ public class KillUnit extends BasicGameApp {
 			GameLog.setGameLog("HERE");
 			getInput().mockKeyPress(KeyCode.ESCAPE);
 			getInput().mockKeyRelease(KeyCode.ESCAPE);
-			
 		}
+//		if (orc.getType().getPv() <= 0 && orc.getType().isDead() == false) {
+//			List<Entity> target2 = FXGL.getApp().getGameWorld()
+//					.getEntitiesAt(new Point2D(orc.getPosition().getX(), orc.getPosition().getY()));
+//			for (Entity entity : target2) {
+//				entity.removeFromWorld();
+//			}
+//			orc.getType().setDead(true);
+//		}
 
 	}
 

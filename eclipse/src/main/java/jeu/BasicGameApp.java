@@ -21,6 +21,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import personnages.EntityGenerate;
 import ui.CharInfoView;
 import ui.Description;
 import ui.UIEntity;
@@ -35,19 +36,27 @@ public class BasicGameApp extends GameApplication {
 	public Player selectedUnit;
 	// Ennemies entities
 	private IAControlledEntity gobelin;
+	private IAControlledEntity orque;
 	private Entity grid;
+	// Check
 	boolean gridState = false;
 	boolean activeSkillOk = false;
-	//Methods calls
+
+	// Methods calls
 	private Description description;
 	private Tour tour;
 	private CharInfoView view;
 	private KillUnit killUnit;
 	private WinOrDefeat winOrDefeat;
-	//
+
+	private String currentMap;
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public BasicGameApp() {
+
 	}
 
 	@Override
@@ -64,14 +73,15 @@ public class BasicGameApp extends GameApplication {
 
 	@Override
 	protected void initGame() {
-		
-		/*LEVELS*/
+
+		/* LEVELS */
 		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
+		getGameWorld().setLevelFromMap(map1);
+		currentMap = "map1";
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		getGameWorld().addEntityFactory(new UIEntity());
-		getGameWorld().setLevelFromMap(map1);
-		
-		/*UNITS*/
+
+		/* UNITS */
 		Entity redHero = getGameWorld().spawn("redHero", new Point2D(120, 360));
 		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(420, 360));
 		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(720, 360));
@@ -82,14 +92,15 @@ public class BasicGameApp extends GameApplication {
 		greenHeroComponent = greenHero.getComponent(Player.class);
 		greenHeroComponent.setName("green");
 
-		/*MOBS*/
-		Entity goblin1 = getGameWorld().spawn("goblin", new Point2D(1020, 180));
-		gobelin = goblin1.getComponent(IAControlledEntity.class);
+		/* MOBS */
+		Entity goblin = getGameWorld().spawn("goblin", new Point2D(1020, 180));
+		gobelin = goblin.getComponent(IAControlledEntity.class);
 		gobelin.setName("Gob le gobelin");
 
-		/*UI*/
+		/* UI */
 		getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
 		getGameWorld().spawn("infoUI", new Point2D(5, 901));
+		getGameWorld().spawn("description", new Point2D(720, 960));
 
 		for (int i = 0; i < 10; i++) {
 
@@ -102,6 +113,56 @@ public class BasicGameApp extends GameApplication {
 		getAudioPlayer().loopBGM("town_theme.mp3");
 	}
 
+	protected void init2() {
+		
+		TiledMap map2 = getAssetLoader().loadTMX("map2.tmx");
+		getGameWorld().setLevelFromMap(map2);
+		currentMap = "map2";
+		/* UNITS */
+		Entity redHero = getGameWorld().spawn("redHero", new Point2D(120, 360));
+		Entity blueHero = getGameWorld().spawn("blueHero", new Point2D(420, 360));
+		Entity greenHero = getGameWorld().spawn("greenHero", new Point2D(900, 420));
+		redHeroComponent = redHero.getComponent(Player.class);
+		redHeroComponent.setName("red");
+		blueHeroComponent = blueHero.getComponent(Player.class);
+		blueHeroComponent.setName("blue");
+		greenHeroComponent = greenHero.getComponent(Player.class);
+		greenHeroComponent.setName("green");
+		
+
+		/* UI */
+		getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
+		getGameWorld().spawn("infoUI", new Point2D(5, 901));
+		getGameWorld().spawn("description", new Point2D(720, 960));
+		
+		
+		
+		/* MOBS */
+		Entity orc = getGameWorld().spawn("orc", new Point2D(1020, 180));
+		orque = orc.getComponent(IAControlledEntity.class);
+//		getOrque().setName("Azog le tyran");
+
+		for (int i = 0; i < 10; i++) {
+
+			int x = 720 + (60 * i);
+			int y = 901;
+			getGameWorld().spawn("spellBorder", new Point2D(x, y));
+		}
+
+		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
+
+		Player players[] = new Player[3];
+		players[0] = redHeroComponent;
+		players[1] = blueHeroComponent;
+		players[2] = greenHeroComponent;
+		tour.setPlayers(players);
+		tour.updatePerso();
+		tour.debut();
+	}
+
+	public String getCurrentMap() {
+		return currentMap;
+	}
 
 	@Override
 	protected void initInput() {
@@ -131,13 +192,17 @@ public class BasicGameApp extends GameApplication {
 	protected void initUI() {
 
 		Point2D hotspot = Point2D.ZERO;
-		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent, GameLog.getGameLog());
-		killUnit = new KillUnit(getGameWorld(), redHeroComponent, blueHeroComponent, greenHeroComponent);
+		view = new CharInfoView(getGameScene(), redHeroComponent, greenHeroComponent, blueHeroComponent,
+				GameLog.getGameLog());
+		killUnit = new KillUnit();
 		winOrDefeat = new WinOrDefeat(getGameScene());
-		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, view, killUnit, winOrDefeat);
+		winOrDefeat.setBasicGameApp(this);
+		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, getGobelin(), view, killUnit,
+				winOrDefeat);
 		description = new Description(getGameScene());
 		description.mousePos(selectedUnit);
 		getGameScene().setCursor("cursor.png", hotspot);
+
 		getGameScene().getContentRoot().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -167,9 +232,8 @@ public class BasicGameApp extends GameApplication {
 
 							GameLog.setGameLog("Il n'y a aucun sort dans cet emplacement !");
 						}
-					} 
-					else {
-						
+					} else {
+
 						GameLog.setGameLog("Selectionnez une unité !");
 					}
 
@@ -179,32 +243,29 @@ public class BasicGameApp extends GameApplication {
 					Player[] persos = new Player[3];
 					int j = 0;
 					int k = 0;
-					
-					if(!redHeroComponent.getHeroClass().isDead()) {
+
+					if (!redHeroComponent.getHeroClass().isDead()) {
 						persos[j] = redHeroComponent;
 						j++;
-					}
-					else {
+					} else {
 						k++;
 					}
-					if(!greenHeroComponent.getHeroClass().isDead()) {
+					if (!greenHeroComponent.getHeroClass().isDead()) {
 						persos[j] = greenHeroComponent;
 						j++;
-					}
-					else {
+					} else {
 						k++;
 					}
-					if(!blueHeroComponent.getHeroClass().isDead()) {
+					if (!blueHeroComponent.getHeroClass().isDead()) {
 						persos[j] = blueHeroComponent;
 						j++;
-					}
-					else {
+					} else {
 						k++;
 					}
 					IAControlledEntity[] IA = new IAControlledEntity[1];
-					IA[0] = gobelin;
-				
-					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(), (int) selectedUnit.getPosition().getY());
+					IA[0] = getGobelin();
+					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
+							(int) selectedUnit.getPosition().getY());
 
 					for (int i = 0; i < persos.length - k; i++) {
 						int pX = (int) persos[i].getPosition().getX();
@@ -213,40 +274,51 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick) == "OK") {
+							if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
+									persos[i].getHeroClass(), caster, tabClick) == "OK") {
 
-								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
+								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(),
+										persos[i].getHeroClass());
 							} else {
 
-								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), persos[i].getHeroClass(), caster, tabClick));
+								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
+										persos[i].getHeroClass(), caster, tabClick));
 							}
-							view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
+							view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent,
+									GameLog.getGameLog(), tour.getNbTour());
 
 							activeSkillOk = false;
 						}
 					}
-					
+
 					for (int i = 0; i < IA.length; i++) {
-						int pX = (int) IA[i].getPosition().getX();
-						int pY = (int) IA[i].getPosition().getY();
-						int[] tabPerso = Click.cases(pX, pY);
+						if (IA[i].getType().isDead() == false) {
+							int pX = (int) IA[i].getPosition().getX();
+							int pY = (int) IA[i].getPosition().getY();
+							int[] tabPerso = Click.cases(pX, pY);
 
-						if(tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
+							if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 
-							if(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(), caster, tabClick) == "OK") {
+								if (selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(),
+										caster, tabClick) == "OK") {
 
-								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
-								GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
-								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
+									selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
+									GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
+									GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/"
+											+ IA[i].getType().getPvMax());
+								} else {
+
+									GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/"
+											+ IA[i].getType().getPvMax());
+									GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(),
+											IA[i].getType(), caster, tabClick));
+								}
+								view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent,
+										GameLog.getGameLog(), tour.getNbTour());
+								activeSkillOk = false;
 							}
-							else{
-
-								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
-								GameLog.setGameLog(selectedUnit.getActiveSkill().castOK(selectedUnit.getHeroClass(), IA[i].getType(), caster, tabClick));
-							}
-							view.updateInfo(redHeroComponent, blueHeroComponent, greenHeroComponent, GameLog.getGameLog(), tour.getNbTour());
-							activeSkillOk = false;
 						}
+
 					}
 				}
 
@@ -257,13 +329,12 @@ public class BasicGameApp extends GameApplication {
 					persos[1] = blueHeroComponent;
 					persos[2] = greenHeroComponent;
 
-					
 					for (int i = 0; i < persos.length; i++) {
 						int pX = (int) persos[i].getPosition().getX();
 						int pY = (int) persos[i].getPosition().getY();
 
 						int[] tabPerso = Click.cases(pX, pY);
-						
+
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
 							obstacles.reader();
@@ -271,9 +342,10 @@ public class BasicGameApp extends GameApplication {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
 								view.updateSkillsUI(selectedUnit);
-								ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, getGameWorld());
+								ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent,
+										greenHeroComponent, getGobelin(), getGameWorld());
 
-							} else if (persos[i].getHeroClass().isDead() == false){
+							} else if (persos[i].getHeroClass().isDead() == false) {
 								for (Entity entity : list) {
 									entity.removeFromWorld();
 
@@ -285,7 +357,8 @@ public class BasicGameApp extends GameApplication {
 									selectedUnit = persos[i];
 									description.mousePos(selectedUnit);
 									view.updateSkillsUI(selectedUnit);
-									ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent, greenHeroComponent, gobelin, getGameWorld());
+									ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent,
+											greenHeroComponent, getGobelin(), getGameWorld());
 								}
 							}
 						} else {
@@ -305,11 +378,18 @@ public class BasicGameApp extends GameApplication {
 						for (Entity entity : list) {
 							entity.removeFromWorld();
 						}
-
+						System.out.println("---before move---");
 						selectedUnit.move(new Point2D(x, y), getGameWorld());
 					}
 				}
 			}
 		});
+	}
+
+	public IAControlledEntity getGobelin() {
+		return gobelin;
+	}
+	public IAControlledEntity getOrque() {
+		return orque;
 	}
 }

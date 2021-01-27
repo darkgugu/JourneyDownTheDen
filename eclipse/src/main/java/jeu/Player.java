@@ -65,6 +65,9 @@ public class Player extends Component {
 		List<Entity> entities = gameworld.getEntitiesAt(new Point2D(tab[2], tab[3]));
 		System.out.println("Coordonnées du tabl (" + tab[2] + " , " + tab[3] + ")");
 		System.out.println("Coin supérieur gauche de la case (pixels) (" + tab[2] + " , " + tab[3] + ")");
+		System.out.println(list.contains(vars));
+		System.out.println(HeroClass.isDidMove());
+		System.out.println(entities.isEmpty());
 		if (list.contains(vars) && HeroClass.isDidMove() == false && entities.isEmpty()) {
 			
 			position.translateX(tab[2] - position.getX());

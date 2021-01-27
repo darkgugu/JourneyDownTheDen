@@ -4,6 +4,8 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 
+import personnages.IAControlled.Gobelin;
+
 public class Deplacement extends BasicGameApp {
 
 	ObstacleReader obstacles = new ObstacleReader();

@@ -34,7 +34,6 @@ public class IABehaviour {
 			
 		}
 	}
-	
 	public static double[] getDist(IAControlledEntity unit, Player[] players) {
 				
 		double[] posx = new double[3];

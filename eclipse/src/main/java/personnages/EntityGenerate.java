@@ -1,11 +1,16 @@
-package jeu;
+package personnages;
 
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
+
+import jeu.EntityType;
+import jeu.IAControlledEntity;
+import jeu.Player;
 import personnages.IAControlled.Gobelin;
+import personnages.IAControlled.Orc;
 import personnages.playerControlled.Healer;
 import personnages.playerControlled.Magician;
 import personnages.playerControlled.Warrior;
@@ -73,8 +78,19 @@ public class EntityGenerate implements EntityFactory {
 	public Entity newMagicianFace(SpawnData data) {
 		return Entities.builder()
 				.from(data)
-				.type(EntityType.FACE)
+			.type(EntityType.FACE)
 				.viewFromTexture("magicianFace.png")
-				.build();
+				.build();	
 	}
+	
+	@Spawns("orc")
+	public Entity newOrc(SpawnData data) {
+		return Entities.builder()
+			.from(data)
+			.type(EntityType.FACE)
+				.viewFromTexture("orc.png")
+				.with(new IAControlledEntity(new Orc()))
+				.build();	
+	}
+	
 }
