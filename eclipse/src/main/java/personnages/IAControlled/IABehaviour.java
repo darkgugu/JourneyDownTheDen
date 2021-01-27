@@ -90,7 +90,7 @@ public class IABehaviour {
 			
 			if (unit.getType().getHasAggro() == false) {
 				unit.getType().setHasAggro(true);
-				GameLog.setGameLog(unit.getName() + " à reperé l'équipe !");
+				GameLog.setGameLog(unit.getName() + " a repéré l'équipe !");
 			}
 			int pm = unit.getType().getMovePoint();
 
