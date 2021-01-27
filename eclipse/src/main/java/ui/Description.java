@@ -75,7 +75,6 @@ public class Description extends BasicGameApp {
 				int caseY = y / 60;
 				int[] tabClick = Click.cases(x, y);
 				int xy = tabClick[0] * 100 + tabClick[1];
-				System.out.println(caseX + "  " + caseY);
 
 				/*
 				 * Switch statement en fonction de la case ciblée par la souris

@@ -6,17 +6,12 @@
 package jeu;
 
 import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.entity.Entities;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.input.Input;
 import com.almasb.fxgl.input.UserAction;
-import com.almasb.fxgl.parser.text.TextLevelParser;
 import com.almasb.fxgl.parser.tiled.TiledMap;
-import com.almasb.fxgl.particle.ParticleComponent;
 import com.almasb.fxgl.settings.GameSettings;
 
 import capacites.Capacites;
@@ -56,7 +51,8 @@ public class BasicGameApp extends GameApplication {
 	private KillUnit killUnit;
 	private WinOrDefeat winOrDefeat;
 
-	private String currentMap;
+	private static String currentMap;
+	private IAControlledEntity currentMob;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -85,6 +81,7 @@ public class BasicGameApp extends GameApplication {
 		TiledMap map1 = getAssetLoader().loadTMX("map1.tmx");
 		getGameWorld().setLevelFromMap(map1);
 		currentMap = "map1";
+		
 		getGameWorld().addEntityFactory(new EntityGenerate());
 		getGameWorld().addEntityFactory(new UIEntity());
 		getGameWorld().addEntityFactory(new ParticlesEntity());
@@ -104,6 +101,7 @@ public class BasicGameApp extends GameApplication {
 		Entity goblin = getGameWorld().spawn("goblin", new Point2D(1020, 180));
 		gobelin = goblin.getComponent(IAControlledEntity.class);
 		gobelin.setName("Gob le gobelin");
+		currentMob = gobelin;
 
 		/* UI */
 		getGameWorld().spawn("lineOfUI", new Point2D(0, 900));
@@ -149,6 +147,10 @@ public class BasicGameApp extends GameApplication {
 		Entity orc = getGameWorld().spawn("orc", new Point2D(1020, 180));
 		orque = orc.getComponent(IAControlledEntity.class);
 //		getOrque().setName("Azog le tyran");
+		currentMob = orque;
+		
+
+		tour = new Tour(redHeroComponent, blueHeroComponent, greenHeroComponent, getOrque(), view, killUnit, winOrDefeat);
 
 		for (int i = 0; i < 10; i++) {
 
@@ -168,7 +170,7 @@ public class BasicGameApp extends GameApplication {
 		tour.debut();
 	}
 
-	public String getCurrentMap() {
+	public static String getCurrentMap() {
 		return currentMap;
 	}
 
@@ -362,13 +364,13 @@ public class BasicGameApp extends GameApplication {
 
 						if (tabPerso[0] == tabClick[0] && tabPerso[1] == tabClick[1]) {
 							ObstacleReader obstacles = new ObstacleReader();
-							obstacles.reader();
+							obstacles.reader(currentMap);
 							if (selectedUnit == null && persos[i].getHeroClass().isDead() == false) {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
 								view.updateSkillsUI(selectedUnit);
 								ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent,
-										greenHeroComponent, getGobelin(), getGameWorld());
+										greenHeroComponent, currentMob, getGameWorld());
 
 							} else if (persos[i].getHeroClass().isDead() == false) {
 								for (Entity entity : list) {
@@ -383,7 +385,7 @@ public class BasicGameApp extends GameApplication {
 									description.mousePos(selectedUnit);
 									view.updateSkillsUI(selectedUnit);
 									ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent,
-											greenHeroComponent, getGobelin(), getGameWorld());
+											greenHeroComponent, currentMob, getGameWorld());
 								}
 							}
 						} else {
@@ -403,7 +405,6 @@ public class BasicGameApp extends GameApplication {
 						for (Entity entity : list) {
 							entity.removeFromWorld();
 						}
-						System.out.println("---before move---");
 						selectedUnit.move(new Point2D(x, y), getGameWorld());
 					}
 				}
