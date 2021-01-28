@@ -288,7 +288,7 @@ public class BasicGameApp extends GameApplication {
 						k++;
 					}
 					IAControlledEntity[] IA = new IAControlledEntity[1];
-					IA[0] = getGobelin();
+					IA[0] = currentMob;
 					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
 							(int) selectedUnit.getPosition().getY());
 
