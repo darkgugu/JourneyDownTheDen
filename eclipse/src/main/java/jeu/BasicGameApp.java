@@ -259,7 +259,7 @@ public class BasicGameApp extends GameApplication {
 						}
 					} else {
 
-						GameLog.setGameLog("Selectionnez une unité !");
+						GameLog.setGameLog("Selectionnez une unitï¿½ !");
 					}
 
 				}
@@ -288,13 +288,7 @@ public class BasicGameApp extends GameApplication {
 						k++;
 					}
 					IAControlledEntity[] IA = new IAControlledEntity[1];
-					if(currentMap == "map1") {
-						IA[0] = getGobelin();
-
-					}
-					if(currentMap == "map2") {
-						IA[0] = getOrque();
-					}
+					IA[0] = currentMob;
 					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
 							(int) selectedUnit.getPosition().getY());
 
