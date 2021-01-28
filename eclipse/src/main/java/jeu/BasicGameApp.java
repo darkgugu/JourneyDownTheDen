@@ -288,7 +288,13 @@ public class BasicGameApp extends GameApplication {
 						k++;
 					}
 					IAControlledEntity[] IA = new IAControlledEntity[1];
-					IA[0] = getGobelin();
+					if(currentMap == "map1") {
+						IA[0] = getGobelin();
+
+					}
+					if(currentMap == "map2") {
+						IA[0] = getOrque();
+					}
 					int[] caster = Click.cases((int) selectedUnit.getPosition().getX(),
 							(int) selectedUnit.getPosition().getY());
 
