@@ -57,6 +57,40 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+   <groupId>com.akathist.maven.plugins.launch4j</groupId>
+   <artifactId>launch4j-maven-plugin</artifactId>
+   <executions>
+      <execution>
+         <id>l4j-clui</id>
+         <phase>package</phase>
+         <goals>
+            <goal>launch4j</goal>
+         </goals>
+         <configuration>
+            <dontWrapJar>false</dontWrapJar>
+            <headerType>gui</headerType>
+            <outfile>${project.build.directory}/JourneyDownTheDen.exe</outfile>
+            <jar>${project.build.directory}/JourneyDownTheDen-0.1-jar-with-dependencies.jar</jar>
+            <jre>
+               <minVersion>1.6.0</minVersion>
+            </jre>
+            <versionInfo>
+               <fileVersion>1.0.0.0</fileVersion>
+               <txtFileVersion>${project.version}</txtFileVersion>
+               <fileDescription>Description de l'application</fileDescription>
+               <copyright>Copyright FooCompany 2015</copyright>
+               <productVersion>1.0.0.0</productVersion>
+               <txtProductVersion>${project.version}</txtProductVersion>
+               <companyName>FooCompany</companyName>
+               <productName>Nom de l'application</productName>
+               <internalName>Nom de l'application</internalName>
+               <originalFilename>MyApp.exe</originalFilename>
+            </versionInfo>
+         </configuration>
+      </execution>
+   </executions>
+</plugin>
 		</plugins>
 	</build>
 </project>
