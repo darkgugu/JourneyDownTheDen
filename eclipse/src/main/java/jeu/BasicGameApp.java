@@ -52,7 +52,7 @@ public class BasicGameApp extends GameApplication {
 	private WinOrDefeat winOrDefeat;
 
 	private static String currentMap;
-	private IAControlledEntity currentMob;
+	private static IAControlledEntity currentMob;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -172,6 +172,10 @@ public class BasicGameApp extends GameApplication {
 
 	public static String getCurrentMap() {
 		return currentMap;
+	}
+	
+	public static IAControlledEntity getCurrentMob() {
+		return currentMob;
 	}
 
 	@Override

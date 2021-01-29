@@ -41,7 +41,7 @@ public class WinOrDefeat {
 
 //		 Cas de victoire (le gobelin sera remplacé par l'orc)
 		
-		if (orc.getType().isDead() == true) {
+		if (basicGameApp.getCurrentMap().equals("map2") && basicGameApp.getCurrentMob().getType().isDead()) {
 			basicGameApp.getGameWorld().spawn("rectangle", new Point2D(840, 380));
 			text.setText("VICTOIRE");
 		}
