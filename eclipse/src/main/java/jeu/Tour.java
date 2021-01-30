@@ -11,7 +11,7 @@ public class Tour {
 	private Player players[] = new Player[3];
 	private Personnages persos[] = new Personnages[3];
 	private int nbTour = 0;
-	private IAControlledEntity gobelin;
+	private IAControlledEntity ennemy;
 	private IAControlledEntity orc;
 	private CharInfoView view;
 	private KillUnit killUnit;
@@ -27,7 +27,7 @@ public class Tour {
 		persos[0] = perso0.getHeroClass();
 		persos[1] = perso1.getHeroClass();
 		persos[2] = perso2.getHeroClass();
-		this.gobelin = gobelin;
+		this.ennemy = gobelin;
 
 		this.view = view;
 		this.killUnit = killUnit;
@@ -44,9 +44,10 @@ public class Tour {
 	}
 	public void debut() {
 		GameLog.setGameLog("==============/Tour    Ennemi/==============");
-		if (gobelin.getType().isDead() == false) {
-			double[] tar = ennemyTurn();
-			gobelin.move(new Point2D(tar[0], tar[1]));
+		if (ennemy.getType().isDead() == false) {
+			double[] tar = ennemyMove();
+			ennemy.move(new Point2D(tar[0], tar[1]));
+			ennemyAttack();
 		}
 		GameLog.setGameLog("==============/Nouveau Tour/==============");
 		nbTour++;
@@ -56,15 +57,19 @@ public class Tour {
 			System.out.println(persos[i].getName());
 		}
 		view.updateInfo(players[0], players[1], players[2], GameLog.getGameLog(), getNbTour());
-		killUnit.checkKill(players[0], players[1], players[2], gobelin, orc);
-		endGame.gameState(players[0], players[1], players[2], gobelin, orc);
+		killUnit.checkKill(players[0], players[1], players[2], ennemy, orc);
+		endGame.gameState(players[0], players[1], players[2], ennemy, orc);
 
 	}
 
-	public double[] ennemyTurn() {
+	public double[] ennemyMove() {
 
-		IABehaviour.isRangeAgressiveSpell(gobelin, players);
-		return IABehaviour.getTarCoor(gobelin, IABehaviour.getDist(gobelin, players), players);
+		return IABehaviour.getTarCoor(ennemy, IABehaviour.getDist(ennemy, players), players);
+	}
+	
+	public void ennemyAttack() {
+
+		IABehaviour.isRangeAgressiveSpell(ennemy, players);
 	}
 
 	public boolean checkFin() {
