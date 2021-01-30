@@ -1,6 +1,12 @@
 package jeu;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.GameWorld;
+
+import javafx.geometry.Point2D;
 
 public abstract class SkillSlot {
 	
@@ -20,5 +26,22 @@ public abstract class SkillSlot {
 			}
 		}
 		return -1;
+	}
+	
+	public static void surbri(GameWorld gm, int x, int y, String border) {
+				
+		gm.spawn(border, new Point2D(x, y));
+	}
+	
+	public static void del(GameWorld gm) {
+		
+        Entity temp = null;
+		List<Entity> partic = gm.getEntities();
+		for (Entity t : partic) {
+			if (t.getTypeComponent().isType(EntityType.ANIMATED_BORDER)) {
+				temp = t;
+			}
+		}
+		if (temp != null) temp.removeFromWorld();
 	}
 }

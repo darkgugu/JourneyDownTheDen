@@ -14,5 +14,7 @@ public class Test {
 		System.out.println("PM nécéssaires : " + (list.size()-1) + "   " + list);
 		
 		//System.out.println(list);
+//		SkillSlot.del(getGameWorld());
+
 	}
 }

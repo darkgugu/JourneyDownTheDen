@@ -117,6 +117,8 @@ public class BasicGameApp extends GameApplication {
 
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
 		getAudioPlayer().loopBGM("town_theme.mp3");
+		
+		//getGameWorld().spawn("testGif", new Point2D(1380, 700));
 	}
 
 	protected void init2() {
@@ -250,7 +252,9 @@ public class BasicGameApp extends GameApplication {
 						if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
 
 							Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
+							SkillSlot.del(getGameWorld());
 							selectedUnit.setActiveSkill(skill);
+							SkillSlot.surbri(getGameWorld(), tabClick[2], tabClick[3], "testGif");
 
 							activeSkillOk = true;
 						} else {
@@ -303,6 +307,7 @@ public class BasicGameApp extends GameApplication {
 									persos[i].getHeroClass(), caster, tabClick) == "OK") {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
+								SkillSlot.del(getGameWorld());
 								new ParticlesHandler(persos[i].getPosition(), selectedUnit.getActiveSkill(), getGameWorld()).spawn();
 
 							} else {
@@ -329,6 +334,7 @@ public class BasicGameApp extends GameApplication {
 										caster, tabClick) == "OK") {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
+								SkillSlot.del(getGameWorld());
 								GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
 								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
 								new ParticlesHandler(IA[i].getPosition(), selectedUnit.getActiveSkill(), getGameWorld()).spawn();
@@ -350,7 +356,8 @@ public class BasicGameApp extends GameApplication {
 				}
 
 				if (event.getButton() == MouseButton.SECONDARY) {
-
+					
+					SkillSlot.del(getGameWorld());
 					Player[] persos = new Player[3];
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;

@@ -168,5 +168,13 @@ public class UIEntity implements EntityFactory {
 				.viewFromNode(new Rectangle(240, 60, Color.LIGHTGRAY))
 				.build();
 	}
+	@Spawns("testGif")
+	public Entity testGif(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.ANIMATED_BORDER)
+				.viewFromTexture("borderGif.gif")
+				.build();
+	}
 	
 }
