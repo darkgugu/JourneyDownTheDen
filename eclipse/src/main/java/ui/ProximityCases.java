@@ -18,7 +18,6 @@ public class ProximityCases extends BasicGameApp{
 
 	public static void proxCases(Player player, Player redPlayer, Player bluePlayer, Player greenPlayer, IAControlledEntity gobelin, GameWorld gameWorld) {
 
-		Pathfinding path = new Pathfinding();
 		new Click();
 		int tab[] = Click.cases(((int) player.getPosition().getX()), ((int) player.getPosition().getY()));
 		
@@ -39,7 +38,7 @@ public class ProximityCases extends BasicGameApp{
 		
 		for (SimpleEntry<Integer, Integer> i : list) {
 			
-			List<SimpleEntry<Integer, Integer>> pathf = path.distMethod(tab[0], tab[1], i.getKey(), i.getValue());
+			List<SimpleEntry<Integer, Integer>> pathf = Pathfinding.distMethod(tab[0], tab[1], i.getKey(), i.getValue());
 			
 
 			if (pathf != null && pathf.size() - 1 <= player.getHeroClass().getMovePoint()) {

@@ -117,8 +117,6 @@ public class BasicGameApp extends GameApplication {
 
 		getGameWorld().spawn("spellBorder", new Point2D(1380, 901));
 		getAudioPlayer().loopBGM("town_theme.mp3");
-		
-		//getGameWorld().spawn("testGif", new Point2D(1380, 700));
 	}
 
 	protected void init2() {
@@ -199,20 +197,6 @@ public class BasicGameApp extends GameApplication {
 				tour.debut();
 			}
 		}, KeyCode.S);
-		
-		input.addAction(new UserAction("Particles1") {
-			@Override
-			protected void onActionBegin() {
-				
-			}
-		}, KeyCode.E);		
-		
-		input.addAction(new UserAction("Particles") {
-			@Override
-			protected void onActionBegin() {
-				//particle.removeComponent(ParticleComponent.class);
-			}
-		}, KeyCode.D);	
 	}
 
 	@Override

@@ -3,7 +3,6 @@ package jeu;
 import java.util.List;
 import java.util.AbstractMap.SimpleEntry;
 
-import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.GameWorld;
 import com.almasb.fxgl.entity.component.Component;
@@ -21,13 +20,11 @@ public class Player extends Component {
 	private String name;
 	private Personnages HeroClass;
 	private Capacites activeSkill;
-	//private Pathfinding path = new Pathfinding();
 	
     private AnimatedTexture texture;
     private AnimationChannel animIdle, animWalk;
-    private int speed = 0;
     private String dir = null;
-    private double basePos = -100;
+    private List<SimpleEntry<Integer, Integer>> path = null;
 
 	
 	
@@ -36,9 +33,8 @@ public class Player extends Component {
 		setHeroClass(heroClass);
 		
 		
-        animIdle = new AnimationChannel("archer.png", 4, 32, 42, Duration.seconds(1), 1, 1);
-        animWalk = new AnimationChannel("archer.png", 4, 32, 42, Duration.seconds(1), 0, 3);
-
+        animIdle = new AnimationChannel("archer_walk.png", 10, 60, 60, Duration.seconds(1), 1, 1);
+        animWalk = new AnimationChannel("archer_walk.png", 10, 60, 60, Duration.seconds(1), 0, 9);
         texture = new AnimatedTexture(animIdle);
 	}
 	public Personnages getHeroClass() {
@@ -79,74 +75,98 @@ public class Player extends Component {
 		List<SimpleEntry<Integer, Integer>> list = move.list;
 		SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(tab[0], tab[1]);
 		List<Entity> entities = gameworld.getEntitiesAt(new Point2D(tab[2], tab[3]));
-		List<SimpleEntry<Integer, Integer>> pathf = Pathfinding.distMethod(casePlayerX, casePlayerY, tab[0], tab[1]);
-		if (list.contains(vars) && HeroClass.isDidMove() == false && entities.isEmpty() && pathf != null && pathf.size() - 1 <= HeroClass.getMovePoint()) {
+		if (list.contains(vars) && HeroClass.isDidMove() == false && entities.isEmpty()) {
 			
-			position.translateX(tab[2] - position.getX());
-			position.translateY(tab[3] - position.getY());
-			posX = (int) position.getX();
-			posY = (int) position.getY();
-			HeroClass.setDidMove(true);
+			path = Pathfinding.distMethod(casePlayerX, casePlayerY, tab[0], tab[1]);
+
+			if(path != null && path.size() - 1 <= HeroClass.getMovePoint()) {
+			
+//				position.translateX(tab[2] - position.getX());
+//				position.translateY(tab[3] - position.getY());
+//				posX = (int) position.getX();
+//				posY = (int) position.getY();
+				HeroClass.setDidMove(true);
+			}
+			
 		}
 	}
 	
-//	@Override
-//    public void onAdded() {
-//        entity.setView(texture);
-//    }
+	@Override
+    public void onAdded() {
+        entity.setView(texture);
+    }
 
     @Override
     public void onUpdate(double tpf) {
+    			
+    	if(path != null) {
     		
-    	if(dir != null) {
-    	
-        	entity.translateX(60 * tpf);
-    	    if (texture.getAnimationChannel() == animIdle) {
-    	      texture.loopAnimationChannel(animWalk);
-    	    }
-    	    
-        	if(position.getX() == basePos + 60) {
-        		
-        		basePos = -100;
-        		dir = null;
-        	}
+    		if (path.size() > 1) {
+    			
+                if (texture.getAnimationChannel() == animIdle) {
+                    texture.loopAnimationChannel(animWalk);
+                }
+
+    			int x1 = path.get(0).getKey() * 60;
+    			int y1 = path.get(0).getValue() * 60;
+    			int x2 = path.get(1).getKey() * 60;
+    			int y2 = path.get(1).getValue() * 60;
+    			
+    			if(x2 - x1 != 0) {
+    				
+    				dir = "x";
+    			
+    				if(x2 - x1 > 0) {
+    					
+    					entity.translateX(60 * tpf);
+    				}
+    				else {
+    					entity.translateX(-60 * tpf);
+    				}
+    			}
+    			else {
+    				
+    				dir = "y";
+    				
+    				if(y2 - y1 > 0) {
+    					
+    					entity.translateY(60 * tpf);
+    				}
+    				else {
+    					entity.translateY(-60 * tpf);
+    				}
+    			}
+			}
+    		else {
+                texture.loopAnimationChannel(animIdle);
+    		}
     	}
     	
-
-
-        
-
-//        if (speed != 0) {
-//
-//            if (texture.getAnimationChannel() == animIdle) {
-//                texture.loopAnimationChannel(animWalk);
-//            }
-//
-//            speed = (int) (speed * 0.9);
-//
-//            if (FXGLMath.abs(speed) < 1) {
-//                speed = 0;
-//                texture.loopAnimationChannel(animIdle);
-//            }
-//        }
+		if(dir == "x") {
+    		
+			if(position.getX() == path.get(1).getKey() * 60) {
+        		
+        		dir = null;
+        		if(path.size() > 1) path.remove(0);
+        	}
+		}
+		
+		if(dir == "y") {
+    		
+			if(position.getY() == path.get(1).getValue() * 60) {
+        		
+        		dir = null;
+        		if(path.size() > 1) path.remove(0);
+        	}
+		}
     }
 
     public void moveRight() {
 //        speed = 150;
         dir = "rg";
-        basePos = position.getX();
+        position.getX();
         
         getEntity().setScaleX(1);
-    }
-    
-    public void startMoving() {
-    	
-    	dir = "rg";
-    }
-    
-    public void stopMoving() {
-    	
-    	dir = null;
     }
     
 	public Capacites getActiveSkill() {

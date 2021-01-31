@@ -6,10 +6,8 @@ import java.util.AbstractMap.SimpleEntry;
 public class Test {
 
 	public static void main(String[] args) {
-
-		Pathfinding path = new Pathfinding();
 		
-		List<SimpleEntry<Integer, Integer>> list = path.distMethod(14, 9, 13, 7); 
+		List<SimpleEntry<Integer, Integer>> list = Pathfinding.distMethod(14, 9, 18, 9); 
 		
 		System.out.println("PM nécéssaires : " + (list.size()-1) + "   " + list);
 		
