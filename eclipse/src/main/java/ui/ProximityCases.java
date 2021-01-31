@@ -36,20 +36,6 @@ public class ProximityCases extends BasicGameApp{
 		if(!redPlayer.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
 		if(!greenPlayer.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
 		if(!bluePlayer.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
-
-//		for (int i = 0; i < 31; i++) {
-//			for (int j = 0; j < 14; j++) {
-//				
-//				SimpleEntry<Integer, Integer> vars = new SimpleEntry<Integer, Integer>(i, j);
-//				
-//				List<SimpleEntry<Integer, Integer>> pathf = path.distMethod(tab[0], tab[1], i, j); 
-//				
-//				if(list.contains(vars) && pathf != null && pathf.size() < player.getHeroClass().getMovePoint()) {
-//					gameWorld.spawn("range", new Point2D(i * 60, j * 60));
-//				
-//				}
-//			}
-//		}
 		
 		for (SimpleEntry<Integer, Integer> i : list) {
 			

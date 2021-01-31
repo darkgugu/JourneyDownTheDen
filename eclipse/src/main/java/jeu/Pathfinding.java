@@ -6,11 +6,11 @@ import java.util.AbstractMap.SimpleEntry;
 
 public class Pathfinding {
 	
-	ObstacleReader obstacles = new ObstacleReader();
+	static ObstacleReader obstacles = new ObstacleReader();
 //	String currMap = BasicGameApp.getCurrentMap();
-	String currMap = "map1";
+	static String currMap = "map1";
 	
-	public List<SimpleEntry<Integer, Integer>> distMethod(int posx, int posy, int ex, int ey) {
+	public static List<SimpleEntry<Integer, Integer>> distMethod(int posx, int posy, int ex, int ey) {
 		
 		SimpleEntry<Integer, Integer> orig = new SimpleEntry<Integer, Integer>(posx, posy);
 		SimpleEntry<Integer, Integer> S = new SimpleEntry<Integer, Integer>(posx, posy);
@@ -73,7 +73,7 @@ public class Pathfinding {
 			F.add(S);
 			visited.add(S);
 			
-			System.out.println(F);
+			//System.out.println(F);
 			
 			if(j > 0 && checkRetour(orig, S)) {
 				
@@ -86,7 +86,7 @@ public class Pathfinding {
 		return F;
 	}
 	
-	public boolean checkRetour(SimpleEntry<Integer, Integer> orig, SimpleEntry<Integer, Integer> curr) {
+	public static boolean checkRetour(SimpleEntry<Integer, Integer> orig, SimpleEntry<Integer, Integer> curr) {
 		
 		if(	(orig.getKey() == curr.getKey() && orig.getValue() == curr.getValue() - 1) ||
 			(orig.getKey() == curr.getKey() + 1 && orig.getValue() == curr.getValue()) ||
