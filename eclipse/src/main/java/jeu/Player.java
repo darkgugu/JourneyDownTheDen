@@ -33,8 +33,8 @@ public class Player extends Component {
 		setHeroClass(heroClass);
 		
 		
-        animIdle = new AnimationChannel("archer_walk.png", 10, 60, 60, Duration.seconds(1), 1, 1);
-        animWalk = new AnimationChannel("archer_walk.png", 10, 60, 60, Duration.seconds(1), 0, 9);
+        animIdle = new AnimationChannel(HeroClass.getName().toLowerCase() + "_walk.png", 10, 60, 60, Duration.seconds(1), 1, 1);
+        animWalk = new AnimationChannel(HeroClass.getName().toLowerCase() + "_walk.png", 10, 60, 60, Duration.seconds(1), 0, 9);
         texture = new AnimatedTexture(animIdle);
 	}
 	public Personnages getHeroClass() {
