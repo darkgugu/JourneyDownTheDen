@@ -4,47 +4,55 @@ import java.util.List;
 
 import com.almasb.fxgl.entity.GameWorld;
 
+import capacites.Capacites;
+
 import java.util.AbstractMap.SimpleEntry;
 
 import javafx.geometry.Point2D;
 import jeu.BasicGameApp;
 import jeu.Click;
 import jeu.Deplacement;
-import jeu.IAControlledEntity;
 import jeu.Pathfinding;
 import jeu.Player;
 
 public class ProximityCases extends BasicGameApp{
+	
+	private Capacites displaySpell = null;
+	
+	public void setDisplaySpell(Capacites displaySpell) {
+		this.displaySpell = displaySpell;
+	}
 
-	public static void proxCases(Player player, Player redPlayer, Player bluePlayer, Player greenPlayer, IAControlledEntity gobelin, GameWorld gameWorld) {
+	public void proxCases(Player player, String casesToDisplay) {
 
 		new Click();
 		int tab[] = Click.cases(((int) player.getPosition().getX()), ((int) player.getPosition().getY()));
 		
 		Deplacement move = new Deplacement();
-		move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
-		move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
 		
-		int tabMob[] = Click.cases((	(int) gobelin.getPosition().getX()), ((int) gobelin.getPosition().getY()));
-		int tabRedHero[] = Click.cases(((int) redPlayer.getPosition().getX()), ((int) redPlayer.getPosition().getY()));
-		int tabGreenHero[] = Click.cases(((int) greenPlayer.getPosition().getX()), ((int) greenPlayer.getPosition().getY()));
-		int tabBlueHero[] = Click.cases(((int) bluePlayer.getPosition().getX()), ((int) bluePlayer.getPosition().getY()));
+		if(casesToDisplay == "rangeUnit") {
+			move.calculateCross(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
+			move.calculateDiag(player.getHeroClass().getMovePoint(), tab[0], tab[1]);
+		}
+		else if(displaySpell != null){
+			move.calculateCross(displaySpell.getRange(), tab[0], tab[1]);
+			move.calculateDiag(displaySpell.getRange(), tab[0], tab[1]);
+		}
 		
 		List<SimpleEntry<Integer, Integer>> list = move.list;
-		list.remove(new SimpleEntry<Integer, Integer>(tabMob[0], tabMob[1]));
-		if(!redPlayer.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabRedHero[0], tabRedHero[1]));
-		if(!greenPlayer.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabGreenHero[0], tabGreenHero[1]));
-		if(!bluePlayer.getHeroClass().isDead()) list.remove(new SimpleEntry<Integer, Integer>(tabBlueHero[0], tabBlueHero[1]));
 		
 		for (SimpleEntry<Integer, Integer> i : list) {
+		
 			
-			List<SimpleEntry<Integer, Integer>> pathf = Pathfinding.distMethod(tab[0], tab[1], i.getKey(), i.getValue());
+			getGameWorld().spawn(casesToDisplay, new Point2D(i.getKey() * 60, i.getValue() * 60));
 			
-
-			if (pathf != null && pathf.size() - 1 <= player.getHeroClass().getMovePoint()) {
-			
-				gameWorld.spawn("range", new Point2D(i.getKey() * 60, i.getValue() * 60));
-			}
+//			List<SimpleEntry<Integer, Integer>> pathf = Pathfinding.distMethod(tab[0], tab[1], i.getKey(), i.getValue());
+//			
+//
+//			if (pathf != null && pathf.size() - 1 <= player.getHeroClass().getMovePoint()) {
+//			
+//				getGameWorld().spawn(casesToDisplay, new Point2D(i.getKey() * 60, i.getValue() * 60));
+//			}
 		}
 	}
 }

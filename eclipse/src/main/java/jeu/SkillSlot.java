@@ -33,15 +33,13 @@ public abstract class SkillSlot {
 		gm.spawn(border, new Point2D(x, y));
 	}
 	
-	public static void del(GameWorld gm) {
+	public static void del(GameWorld gm, EntityType entity) {
 		
-        Entity temp = null;
-		List<Entity> partic = gm.getEntities();
+		List<Entity> partic = gm.getEntitiesByType(entity);
 		for (Entity t : partic) {
-			if (t.getTypeComponent().isType(EntityType.ANIMATED_BORDER)) {
-				temp = t;
+			if (t.getTypeComponent().isType(entity)) {
+				t.removeFromWorld();
 			}
 		}
-		if (temp != null) temp.removeFromWorld();
 	}
 }

@@ -236,7 +236,8 @@ public class BasicGameApp extends GameApplication {
 						if (selectedUnit.getHeroClass().getSkills()[skillSlot] != null) {
 
 							Capacites skill = selectedUnit.getHeroClass().getSkills()[skillSlot];
-							SkillSlot.del(getGameWorld());
+							SkillSlot.del(getGameWorld(), EntityType.ANIMATED_BORDER);
+							SkillSlot.del(getGameWorld(), EntityType.RANGE_SPELL);
 							selectedUnit.setActiveSkill(skill);
 							SkillSlot.surbri(getGameWorld(), tabClick[2], tabClick[3], "testGif");
 
@@ -291,7 +292,8 @@ public class BasicGameApp extends GameApplication {
 									persos[i].getHeroClass(), caster, tabClick) == "OK") {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), persos[i].getHeroClass());
-								SkillSlot.del(getGameWorld());
+								SkillSlot.del(getGameWorld(), EntityType.ANIMATED_BORDER);
+								SkillSlot.del(getGameWorld(), EntityType.RANGE_SPELL);
 								new ParticlesHandler(persos[i].getPosition(), selectedUnit.getActiveSkill(), getGameWorld()).spawn();
 
 							} else {
@@ -318,7 +320,8 @@ public class BasicGameApp extends GameApplication {
 										caster, tabClick) == "OK") {
 
 								selectedUnit.getActiveSkill().cast(selectedUnit.getHeroClass(), IA[i].getType());
-								SkillSlot.del(getGameWorld());
+								SkillSlot.del(getGameWorld(), EntityType.ANIMATED_BORDER);
+								SkillSlot.del(getGameWorld(), EntityType.RANGE_SPELL);								
 								GameLog.setGameLog("Cible : " + IA[i].getName() + " " + IA[i].getType().getPv());
 								GameLog.setGameLog(IA[i].getName() + " PV : " + IA[i].getType().getPv() + "/" + IA[i].getType().getPvMax());
 								new ParticlesHandler(IA[i].getPosition(), selectedUnit.getActiveSkill(), getGameWorld()).spawn();
@@ -341,7 +344,8 @@ public class BasicGameApp extends GameApplication {
 
 				if (event.getButton() == MouseButton.SECONDARY) {
 					
-					SkillSlot.del(getGameWorld());
+					SkillSlot.del(getGameWorld(), EntityType.ANIMATED_BORDER);
+					SkillSlot.del(getGameWorld(), EntityType.RANGE_SPELL);
 					Player[] persos = new Player[3];
 					persos[0] = redHeroComponent;
 					persos[1] = blueHeroComponent;
@@ -360,8 +364,7 @@ public class BasicGameApp extends GameApplication {
 								selectedUnit = persos[i];
 								description.mousePos(selectedUnit);
 								view.updateSkillsUI(selectedUnit);
-								ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent,
-										greenHeroComponent, currentMob, getGameWorld());
+								new ProximityCases().proxCases(selectedUnit, "rangeUnit");
 
 							} else if (persos[i].getHeroClass().isDead() == false) {
 								for (Entity entity : list) {
@@ -375,8 +378,7 @@ public class BasicGameApp extends GameApplication {
 									selectedUnit = persos[i];
 									description.mousePos(selectedUnit);
 									view.updateSkillsUI(selectedUnit);
-									ProximityCases.proxCases(selectedUnit, redHeroComponent, blueHeroComponent,
-											greenHeroComponent, currentMob, getGameWorld());
+									new ProximityCases().proxCases(selectedUnit, "rangeUnit");
 								}
 							}
 						} else {

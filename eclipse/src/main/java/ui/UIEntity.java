@@ -41,12 +41,21 @@ public class UIEntity implements EntityFactory {
 	/*
 	 * Declared entities for range
 	 */
-	@Spawns("range")
-	public Entity newRange(SpawnData data) {
+	@Spawns("rangeUnit")
+	public Entity newRangeUnit(SpawnData data) {
 		return Entities.builder()
 				.from(data)
 				.type(EntityType.RANGE)
-				.viewFromTexture("range.png")
+				.viewFromTexture("rangeUnit.png")
+				.build();
+	}
+	
+	@Spawns("rangeSpell")
+	public Entity newRangeSpell(SpawnData data) {
+		return Entities.builder()
+				.from(data)
+				.type(EntityType.RANGE_SPELL)
+				.viewFromTexture("rangeSpell.png")
 				.build();
 	}
 	

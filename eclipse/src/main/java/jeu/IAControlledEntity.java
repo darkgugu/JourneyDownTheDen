@@ -5,8 +5,11 @@ import java.util.AbstractMap.SimpleEntry;
 
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.entity.components.PositionComponent;
+import com.almasb.fxgl.texture.AnimatedTexture;
+import com.almasb.fxgl.texture.AnimationChannel;
 
 import javafx.geometry.Point2D;
+import javafx.util.Duration;
 import personnages.IAControlled.Ennemis;
 
 public class IAControlledEntity extends Component {
@@ -14,6 +17,11 @@ public class IAControlledEntity extends Component {
 	private String name;
 	private Ennemis type;
 	//private Capacites activeSkill;
+	
+    private AnimatedTexture texture;
+    private AnimationChannel animIdle, animWalk;
+    private String dir = null;
+    private List<SimpleEntry<Integer, Integer>> path = null;
 	
 	
 	public Ennemis getType() {
@@ -27,6 +35,9 @@ public class IAControlledEntity extends Component {
 	public IAControlledEntity(Ennemis type) {
 		super();
 		setType(type);
+        animIdle = new AnimationChannel(type.getName().toLowerCase() + "_walk.png", 10, 84, 60, Duration.seconds(1), 1, 1);
+        animWalk = new AnimationChannel(type.getName().toLowerCase() + "_walk.png", 10, 84, 60, Duration.seconds(1), 0, 9);
+        texture = new AnimatedTexture(animIdle);
 	}
 	
 	public String getName() {
@@ -68,4 +79,10 @@ public class IAControlledEntity extends Component {
 			posY = (int) position.getY();
 		}
 	}
+	
+	@Override
+    public void onAdded() {
+        entity.setView(texture);
+    }
+
 }

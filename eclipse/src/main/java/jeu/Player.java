@@ -14,6 +14,7 @@ import capacites.Capacites;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 import personnages.playerControlled.Personnages;
+import ui.ProximityCases;
 
 public class Player extends Component {
 	private PositionComponent position;
@@ -25,6 +26,7 @@ public class Player extends Component {
     private AnimationChannel animIdle, animWalk;
     private String dir = null;
     private List<SimpleEntry<Integer, Integer>> path = null;
+    private ProximityCases cases = new ProximityCases();
 
 	
 	
@@ -80,11 +82,7 @@ public class Player extends Component {
 			path = Pathfinding.distMethod(casePlayerX, casePlayerY, tab[0], tab[1]);
 
 			if(path != null && path.size() - 1 <= HeroClass.getMovePoint()) {
-			
-//				position.translateX(tab[2] - position.getX());
-//				position.translateY(tab[3] - position.getY());
-//				posX = (int) position.getX();
-//				posY = (int) position.getY();
+				
 				HeroClass.setDidMove(true);
 			}
 			
@@ -174,5 +172,7 @@ public class Player extends Component {
 	}
 	public void setActiveSkill(Capacites activeSkill) {
 		this.activeSkill = activeSkill;
+		cases.setDisplaySpell(activeSkill);
+		cases.proxCases(this, "rangeSpell");
 	}
 }

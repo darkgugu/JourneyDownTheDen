@@ -8,7 +8,7 @@ public class Pathfinding {
 	
 	static ObstacleReader obstacles = new ObstacleReader();
 //	String currMap = BasicGameApp.getCurrentMap();
-	static String currMap = "map1";
+	static String currMap = BasicGameApp.getCurrentMap();
 	
 	public static List<SimpleEntry<Integer, Integer>> distMethod(int posx, int posy, int ex, int ey) {
 		
@@ -65,8 +65,6 @@ public class Pathfinding {
 				S = temp.getNeighbor();
 			}
 			else {
-			
-				System.out.println("No path");
 				return null;
 			}
 						

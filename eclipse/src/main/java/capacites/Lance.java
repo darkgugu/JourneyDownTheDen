@@ -8,7 +8,7 @@ public class Lance extends Capacites{
 	private int finalDamages;
 
 	public Lance() {
-		super(DamageElement.EARTH, 3, "physical", 0, 15, 3, "Coup de Lance"
+		super(DamageElement.EARTH, 3, "physical", 0, 10, 3, "Coup de Lance"
 				,"Coup de lance d'une petite portée");
 		
 	}

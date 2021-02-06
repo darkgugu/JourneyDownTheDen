@@ -54,12 +54,10 @@ public class Tour {
 		for (int i = 0; i < persos.length; i++) {
 			persos[i].setActionPointToMax();
 			persos[i].setDidMove(false);
-			System.out.println(persos[i].getName());
 		}
 		view.updateInfo(players[0], players[1], players[2], GameLog.getGameLog(), getNbTour());
 		killUnit.checkKill(players[0], players[1], players[2], ennemy, orc);
 		endGame.gameState(players[0], players[1], players[2], ennemy, orc);
-
 	}
 
 	public double[] ennemyMove() {
